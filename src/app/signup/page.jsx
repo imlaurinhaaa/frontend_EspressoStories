@@ -63,15 +63,6 @@ export default function Home() {
         className={styles.ballImage4}
       />
 
-      <div className={styles.logoContainer}>
-        <Image
-          src="/img/logo.png"
-          alt="Logo"
-          width={50}
-          height={50}
-          className={styles.logo}
-        />
-      </div>
       <div className={styles.contentContainer}>
         <div className={styles.posterContainer}>
           <Image
@@ -85,15 +76,20 @@ export default function Home() {
 
         </div>
         <div className={styles.formContainer}>
-          <h2 className={styles.welcomeTitle}>WELCOME BACK TO</h2>
           <Image
-            src="/img/espressoName.png"
+            src="/img/logo02.png"
             alt="Logo Espresso Stories"
             width={200}
-            height={50}
-            className={styles.logo02}
+            height={75}
+            className={styles.logo}
           />
           <Form onFinish={onFinish} className={styles.form}>
+            <Form.Item
+              name="email"
+              rules={[{ required: true, message: 'Email inválido' }]}>
+              <Input placeholder='Email' className={styles.input} />
+            </Form.Item>
+            
             <Form.Item
               name="nome"
               rules={[{ required: true, message: 'Nome inválido' }]}>
@@ -115,42 +111,9 @@ export default function Home() {
               <Input.Password placeholder='Senha' className={styles.input} />
             </Form.Item>
 
-            <div className={styles.options}>
-              <div className={styles.inLine}>
-                <div className={styles.line}></div>
-                <p style={{ color: '#7B7B7B'}}>or sign in with</p>
-                <div className={styles.line}></div>
-              </div>
-              <div className={styles.icons}>
-                <Image 
-                  src="/img/googleIcon.png"
-                  alt="Google Icon"
-                  width={20}
-                  height={20}
-                  className={styles.icon}
-                />
-                <Image 
-                  src="/img/facebookIcon.png"
-                  alt="Facebook Icon"
-                  width={20}
-                  height={20}
-                  className={styles.icon}
-                />
-                <Image 
-                  src="/img/appleIcon.png"
-                  alt="Apple Icon"
-                  width={20}
-                  height={20}
-                  className={styles.icon}
-                />
-              </div>
-
-              <p>{"Don't have an account? "}<a href="/signup" style={{ color: '#7B7B7B', textDecoration: 'underline' }}>Enter!</a></p>
-            </div>
-
             <Form.Item>
               <Button htmlType="submit" block loading={carregando} className={styles.button}>
-                Sign In
+                Sign Up
               </Button>
             </Form.Item>
           </Form>
