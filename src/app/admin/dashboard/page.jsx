@@ -4,6 +4,7 @@ import styles from "./dashboard.module.css";
 import { SyncOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { useRef } from "react";
+import OrderCard from "../../../components/orderCard/page.jsx";
 
 export default function Dashboard() {
     const cardSectionRef = useRef(null);
@@ -35,8 +36,8 @@ export default function Dashboard() {
                 className={`${styles.ballImage} ${styles.position1}`}
                     src="/img/ball.png"
                     alt="Ball"
-                    width={230}
-                    height={230}
+                    width={400}
+                    height={400}
                 />
                 <Image
                 className={`${styles.ballImage} ${styles.position2}`}
@@ -64,63 +65,55 @@ export default function Dashboard() {
                     </button>
                     
                     <div className={styles.cardSection} ref={cardSectionRef}>
-                        <div className={styles.card}>
-                        <Image
-                        className={styles.cardImage}
-                            src="/img/paoDeQueijo.png"
-                            alt="Pão de Queijo"
-                            width={140}
-                            height={140}
+                        <OrderCard 
+                            cardImage="/img/paoDeQueijo.png"
+                            orderName="PÃO DE QUEIJO"
+                            orderNumber="001"
+                            orderClient="JOÃO"
+                            orderQtde={2}
+                            orderPrice={10.00}
                         />
-                        <p className={styles.orderName}>
-                            PÃO DE QUEIJO
-                        </p>
-                        <p className={styles.orderNumber}>
-                            PEDIDO #0006
-                        </p>
-                        <p></p>
-                    </div>
-                    <div className={styles.card}>
-                        <Image
-                            className={styles.cardImage}
-                            src="/img/cappuccino.png"
-                            alt="Cappuccino"
-                            width={160}
-                            height={140}
+                        <OrderCard 
+                            cardImage="/img/cappuccino.png"
+                            orderName="CAPPUCCINO"
+                            orderNumber="002"
+                            orderClient="MARIA"
+                            orderQtde={1}
+                            orderPrice={8.50}
                         />
-                    </div>
-                    <div className={styles.card}>
-                        {/* <Image
-                            src="/img/paoDeQueijo.png"
-                            alt="Pão de Queijo"
-                            width={100}
-                            height={100}
-                        /> */}
-                    </div>
-                    <div className={styles.card}>
-                        {/* <Image
-                            src="/img/paoDeQueijo.png"
-                            alt="Pão de Queijo"
-                            width={100}
-                            height={100}
-                        /> */}
-                    </div>
-                    <div className={styles.card}>
-                        {/* <Image
-                            src="/img/paoDeQueijo.png"
-                            alt="Pão de Queijo"
-                            width={100}
-                            height={100}
-                        /> */}
-                    </div>
-                    <div className={styles.card}>
-                        {/* <Image
-                            src="/img/paoDeQueijo.png"
-                            alt="Pão de Queijo"
-                            width={100}
-                            height={100}
-                        /> */}
-                    </div>
+                        <OrderCard 
+                            cardImage="/img/paoDeQueijo.png"
+                            orderName="ESPRESSO"
+                            orderNumber="003"
+                            orderClient="CARLOS"
+                            orderQtde={3}
+                            orderPrice={7.00}
+                        />
+                        <OrderCard 
+                            cardImage="/img/cappuccino.png"
+                            orderName="LATTE"
+                            orderNumber="004"
+                            orderClient="ANA"
+                            orderQtde={1}
+                            orderPrice={9.00}
+                        />
+                        
+                        <OrderCard 
+                            cardImage="/img/paoDeQueijo.png"
+                            orderName="MOCHA"
+                            orderNumber="005"
+                            orderClient="PEDRO"
+                            orderQtde={2}
+                            orderPrice={11.00}
+                        />
+                        <OrderCard 
+                            cardImage="/img/cappuccino.png"
+                            orderName="CAFÉ"
+                            orderNumber="006"
+                            orderClient="BRUNA"
+                            orderQtde={3}
+                            orderPrice={12.00}
+                        />
                     </div>
 
                     <button 

@@ -33,7 +33,7 @@
 }
 
 .ballImage.position1 {
-    top: -160px;
+    top: -180px;
     left: 220px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 900;
     color: #3F1D0E;
     z-index: 5;
@@ -58,7 +58,7 @@
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #3F1D0E;
 }
@@ -82,6 +82,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 5;
     position: relative;
+    cursor: pointer;
 }
 
 .cardContainer {
@@ -89,7 +90,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-top: 100px;
+    padding-top: 1rem;
 }
 
 .cardSection {
@@ -98,10 +99,10 @@
     gap: 3rem;
     overflow-x: hidden;
     overflow-y: visible;
-    padding: 50px 30px 20px 30px;
-    margin-bottom: -20px;
+    padding: 80px 30px 80px 30px;
     flex: 1;
     scroll-behavior: smooth;
+    min-height: 600px;
 }
 
 .scrollButton {
@@ -125,34 +126,4 @@
     background-color: #fff;
     color: #85AFD8;
     transform: scale(1.1);
-}
-
-.card {
-    background-color: #E4CDB0;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    width: 300px;
-    min-width: 300px;
-    height: 450px;
-    z-index: 3;
-    position: relative;
-    flex-shrink: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    overflow: visible;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #A2663C;
-}
-
-.cardImage {
-    display: block;
-    margin: 0 auto 1rem auto;
-    position: relative;
-    top: -40px;
-    z-index: 4;
 }
