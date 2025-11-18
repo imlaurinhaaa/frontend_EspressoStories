@@ -1,0 +1,161 @@
+.container {
+    background-color: #E6E2D7;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200vh;
+}
+
+.posterHome {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    display: block;
+    margin: 0;
+    object-fit: cover;
+    position: relative;
+    z-index: 20;
+}
+
+.ballImage {
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.511));
+}
+
+.position {
+    top: -90px;
+    right: 550;
+}
+
+.position2 {
+    top: 0;
+    left: 600;
+}
+
+.contentContainer {
+    position: absolute;
+    top: 530px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 40;
+    background-color: transparent;
+}
+
+.searchArea {
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.espressoName {
+    position: relative;
+    z-index: 10;
+    top: 0;
+}
+
+.rowArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.searchInput {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-size: 15px;
+    outline: none;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.searchInput input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    background-color: transparent;
+    padding: 12px 16px;
+}
+
+.searchIcon {
+    background-color: #562b19;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+.filiaisButton {
+    background-color: #fff;
+    color: #562b19;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.foodCardsArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 30px;
+}
+
+.mainContent {
+    background-color: #C1DBE8;
+    width: 100%;
+    height: 320px;
+    position: relative;
+    z-index: 10;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% / 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 800px) {
+    .mainContent {
+        height: 220px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 420px) {
+    .mainContent {
+        height: 180px;
+        width: 98%;
+    }
+}
