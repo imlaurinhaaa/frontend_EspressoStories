@@ -36,7 +36,7 @@ export default function Home() {
         alt="Ball"
         width={250}
         height={250}
-        className={styles.ballImage}
+        className={`${styles.ballImage} ${styles.position}`}
       />
 
       <Image
@@ -44,7 +44,7 @@ export default function Home() {
         alt="Ball"
         width={90}
         height={90}
-        className={styles.ballImage2}
+        className={`${styles.ballImage} ${styles.position2}`}
       />
 
       <Image
@@ -52,7 +52,7 @@ export default function Home() {
         alt="Ball"
         width={90}
         height={90}
-        className={styles.ballImage3}
+        className={`${styles.ballImage} ${styles.position3}`}
       />
 
       <Image
@@ -60,7 +60,7 @@ export default function Home() {
         alt="Ball"
         width={250}
         height={250}
-        className={styles.ballImage4}
+        className={`${styles.ballImage} ${styles.position4}`}
       />
 
       <div className={styles.logoContainer}>
