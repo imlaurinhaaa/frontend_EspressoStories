@@ -2,6 +2,7 @@
 
 import styles from "./dashboard.module.css";
 import { SyncOutlined } from "@ant-design/icons";
+import Image from "next/image";
 
 export default function Dashboard() {
     return (
@@ -10,7 +11,13 @@ export default function Dashboard() {
 
             </header>
             <main className={styles.main}>
-                <div className={styles.bola1}></div>
+                <Image
+                className={styles.ballImage}
+                    src="/img/ball.png"
+                    alt="Ball"
+                    width={100}
+                    height={100}
+                />
                 <div className={styles.titleSection}>
                     <h1 className={styles.title}>DASHBOARD</h1>
                     <h3 className={styles.subtitle}>FILA DE PEDIDOS</h3>
