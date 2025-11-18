@@ -1,0 +1,59 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    height: 4rem;
+    background-color: #F9F6EC;
+    padding: 1rem;
+}
+
+.main {
+    flex: 1;
+    position: relative;
+    background-color: #E6E2D7;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.titleSection {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #3F1D0E;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #5C4033;
+}
+
+.buttonSection {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 8rem;
+    height: 2rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 5rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
