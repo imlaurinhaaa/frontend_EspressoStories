@@ -1,8 +1,10 @@
 .page {
     display: flex;
+    position: fixed;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    z-index: 0;
 }
 
 .header {
@@ -19,23 +21,32 @@
     overflow-y: auto;
 }
 
+.ballImage {
+    position: fixed;
+    top: -90px;
+    left: -90px;
+    z-index: 20;
+    pointer-events: none;
+    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.511));
+}
+
 .titleSection {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin: 3rem 0 2rem 0;
 }
 
 .title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 900;
     color: #3F1D0E;
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
-    color: #5C4033;
+    color: #3F1D0E;
 }
 
 .buttonSection {
@@ -56,4 +67,3 @@
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
