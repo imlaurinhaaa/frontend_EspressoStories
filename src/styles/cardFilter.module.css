@@ -1,0 +1,20 @@
+.filter-card {
+    /* ... seus estilos de layout e imagem de fundo ... */
+    opacity: 0.6;
+    border: 3px solid transparent; /* Borda padrão invisível */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* O estado de destaque que o React adiciona/remove */
+.filter-card.active {
+    opacity: 1; /* Fica em destaque */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    border: 3px solid #6F4E37; /* Borda visível de destaque */
+    transform: scale(1.05); /* Efeito sutil de crescimento */
+}
+
+/* Estilo para ocultar o produto no container principal */
+.product-card.hidden {
+    display: none;
+}
