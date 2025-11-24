@@ -87,7 +87,7 @@ export default function Home() {
         <div className={styles.formContainer}>
           <h2 className={styles.welcomeTitle}>WELCOME BACK TO</h2>
           <Image
-            src="/img/espressoName.png"
+            src="/img/logoName.png"
             alt="Logo Espresso Stories"
             width={200}
             height={50}
