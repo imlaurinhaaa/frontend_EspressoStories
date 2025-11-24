@@ -3,10 +3,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import FoodCard from "./../../components/foodCard/foodCard"
+import React from "react";
+import Header from '../../components/header'
+import Footer from '../../components/footer/footer'
 
 export default function Home() {
     return (
         <div className={styles.container}>
+            {/* <Header /> */}
             <Image
                 src="/img/posterHome.png"
                 alt="Poster Home"
@@ -80,12 +84,40 @@ export default function Home() {
                 </div>
 
                 <div className={styles.mainContent}>
-                    <h2 className={styles.mainTitle}>NOSSOS DIFERENCIAIS</h2>
-                    <p className={styles.mainDescription}>
-                       ooii
-                    </p>
+                    <h2 className={styles.mainTitle}>POR QUE NOS ESCOLHER?</h2>
+                    <div className={styles.boxes}>
+                        <div className={styles.box}>
+                            <Image 
+                                src='/img/entrega-rapida-icon.png'
+                                alt='ícone de entrega'
+                                width={70}
+                                height={70}
+                            />
+                            <p>Entregas Rápidas</p>
+                        </div>
+                        <div className={styles.box}>
+                            <Image 
+                                src='/img/pedido-icon.png'
+                                alt='ícone de pedido'
+                                width={70}
+                                height={70}
+                            />
+                            <p>Pedidos preparados com carinho</p>
+                        </div>
+                        <div className={styles.box}>
+                            <Image 
+                                src='/img/experiencia-icon.png'
+                                alt='ícone de experiência'
+                                width={70}
+                                height={70}
+                            />
+                            <p>Esperiência literária mágica</p>
+                        </div>
+                    </div>
+                    <p className={styles.text}>Na Espresso Stories, acreditamos que uma boa história, assim como um bom café, deve ser saboreada lentamente. Somos mais do que uma cafeteria: somos um refúgio para amantes de livros e de boa comida. A sua próxima pausa não será apenas um momento, mas um capítulo inesquecível.</p>
                 </div>
             </div>
+            <Footer className={styles.footer}/>
         </div>
     )
 }
