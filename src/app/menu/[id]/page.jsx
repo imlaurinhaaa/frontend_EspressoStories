@@ -5,6 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import Header from "../../../components/header";
 import styles from "./foodId.module.css";
+import { Flex, InputNumber } from "antd";
 
 export default function FoodDetail() {
   const { id } = useParams();
@@ -36,6 +37,18 @@ export default function FoodDetail() {
     return <p>Produto não encontrado.</p>;
   }
 
+  const onChange = (value) => {
+    console.log("changed", value);
+  };
+
+  const sharedProps = {
+    min: 1,
+    max: 10,
+    defaultValue: 3,
+    onChange,
+    style: { width: 150 },
+  };
+
   return (
     <div className={styles.container}>
       <Header />
@@ -54,6 +67,53 @@ export default function FoodDetail() {
             unoptimized
           />
         </div>
+      </section>
+
+      <section className={styles.productDetails}>
+        <div className={styles.productHeader}>
+          <h2 className={styles.productName}>{product.name}</h2>
+          <p className={styles.price}>Preço: R$ {product.price}</p>
+        </div>
+
+        <div className={styles.info}>
+          <div className={styles.sobre}>
+            <h3 className={styles.subTitle}>Sobre</h3>
+            <div className={styles.descriptionBox}>
+                <div className={styles.text}>
+              <p>{product.description}</p>
+              {product.inspiration && <p className={styles.inspiration}>{product.inspiration}</p>}
+                </div>
+              {product.photo_inspiration && (
+                <aside className={styles.book}>
+                  <Image
+                    src={`http://localhost:3000/uploads/${product.photo_inspiration}.jpg`}
+                    alt={
+                      product.name ? `${product.name} inspiração` : "Inspiração"
+                    }
+                    width={300}
+                    height={300}
+                    className={styles.inspirationPhoto}
+                    unoptimized
+                  />
+                </aside>
+              )}
+            </div>
+          </div>
+
+          <aside className={styles.quantitySection}>
+            <h3 className={styles.subTitle}>Quantidade</h3>
+            <Flex vertical gap="middle">
+              <InputNumber {...sharedProps} />
+            </Flex>
+          </aside>
+        </div>
+
+        <button
+          className={styles.backButton}
+          onClick={() => router.push("/menu")}
+        >
+          Voltar ao Menu
+        </button>
       </section>
     </div>
   );
