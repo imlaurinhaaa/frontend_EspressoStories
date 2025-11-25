@@ -8,6 +8,7 @@ import FoodCard from "../../components/categoryCard/categoryCard";
 import Link from "next/link";
 import React from "react";
 import SearchInput from "../../components/searchInput/searchInput";
+import ProductCard from "../../components/productCard/productCard";
 
 export default function Doces() {
     return (
@@ -45,6 +46,16 @@ export default function Doces() {
                 <SearchInput 
                     placeholder={"Pesquisar sobremesas..."}
                 />
+
+                <div className={styles.productsArea}>
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                </div>
             </div>
             <Footer />
         </>

@@ -34,3 +34,12 @@
   color: #4b3b2b;
   text-decoration: underline;
 }
+
+.productsArea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
