@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import FoodCard from "../../components/categoryCard/categoryCard"
+import CategoryCard from "../../components/categoryCard/categoryCard"
 import React from "react";
 import Header from '../../components/header'
 import Footer from '../../components/footer/footer'
@@ -55,23 +55,23 @@ export default function Home() {
 
                 </div>
 
-                <div className={styles.foodCardsArea}>
+                <div className={styles.categoryCardsArea}>
                     <Link href="/doces">
-                        <FoodCard
+                        <CategoryCard
                             img='/img/doce-banner.png'
                             alt='Banner de sobremesas'
                             name='SOBREMESAS'
                         />
                     </Link>
                     <Link href="/bebidas">
-                        <FoodCard
+                        <CategoryCard
                             img='/img/bebida-banner.png'
                             alt='Banner de bebida'
                             name='BEBIDAS'
                         />
                     </Link>
                     <Link href="/salgados">
-                        <FoodCard
+                        <CategoryCard
                             img='/img/salgado-banner.png'
                             alt='Banner de salgado'
                             name='SALGADOS'
@@ -127,6 +127,7 @@ export default function Home() {
                             alt='Imagem da bebida Drink Me'
                             width={120}
                             height={30}
+                            className={styles.drinkmeTitle}
                         />
                         <p>Este elixir mágico e refrescante é um convite líquido para o País das Maravilhas, combinando o doce e o cítrico em perfeita harmonia. Sua cor azul-arroxeada vibrante e a leve efervescência garantem um frescor imediato. É preparado com Infusão de Blueberry e Chá Branco, Suco de Limão Siciliano e um toque de mistério floral do Xarope de Flor de Sabugueiro, finalizado com Água Gaseificada. Uma poção deliciosa que desperta a curiosidade a cada gole.</p>
                     </div>
