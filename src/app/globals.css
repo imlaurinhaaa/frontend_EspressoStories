@@ -4,12 +4,13 @@
   margin: 0;
 }
 
-html, body {
-  height: 100%;
+html, body, #__next {
+  min-height: 100%;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
-.no-scroll {
-  height: 100vh;
-  overflow: hidden;
+.pageContent {
+  min-height: 100vh;
+  overflow: visible;
 }
