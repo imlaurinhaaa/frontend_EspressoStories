@@ -112,3 +112,47 @@
     font-weight: bold;
     font-size: 1rem;
 }
+
+.categoriesSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.categoryBox {
+    background-color: #ffffff;
+    text-align: center;
+    width: 10rem;
+    height: auto;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.categoryBox:hover {
+    background-color: #A2663CB8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.categoryBox:hover .categoryTitle {
+    color: #ffffff;
+}
+
+.categoryTitle{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3F1D0E;
+    transition: color 0.3s ease;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: center;
+}

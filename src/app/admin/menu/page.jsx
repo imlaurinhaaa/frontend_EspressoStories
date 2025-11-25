@@ -5,10 +5,37 @@ import Image from "next/image";
 import styles from './menu.module.css';
 import Link from "next/link";
 import { Search } from 'lucide-react';
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Header from "../../../components/headerAdmin/Header.jsx";
+import ProductAdmin from "../../../components/productAdmin/ProductAdmin.jsx";
 
 export default function Menu() {
+
+    const [products, setProducts] = useState([]);
+    const url = process.env.NEXT_PUBLIC_API_URL
+    const uploads = process.env.NEXT_PUBLIC_UPLOADS_URL
+    const [search, setSearch] = useState("");
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`${url}/products`);
+                setProducts(Array.isArray(response.data) ? response.data : response.data.products || []);
+                console.log(response.data);
+                console.log(uploads);
+
+
+            } catch (error) {
+                console.error("Error fetching products:", error);
+                setProducts([]);
+            }
+        };
+
+        fetchProducts();
+    }, [url, uploads, search]);
+
+
     return (
         <div className={styles.page}>
             <Header />
@@ -46,15 +73,29 @@ export default function Menu() {
                     </Link>
                 </div>
                 <div className={styles.categoriesSection}>
-                    <div>
-                        <h2 className={styles.categoryTitle}>Bebidas</h2>
+                    <div className={styles.categoryBox}>
+                        <p className={styles.categoryTitle}>Bebidas</p>
                     </div>
-                    <div>
-                        <h2 className={styles.categoryTitle}>Sobremesas</h2>
+                    <div className={styles.categoryBox}>
+                        <p className={styles.categoryTitle}>Sobremesas</p>
                     </div>
-                    <div>
-                        <h2 className={styles.categoryTitle}>Salgados</h2>
+                    <div className={styles.categoryBox}>
+                        <p className={styles.categoryTitle}>Salgados</p>
                     </div>
+                </div>
+                <div className={styles.menu}>
+                    {products.map((p) => (
+                        <Link key={p.id} href={`/menu/${p.id}`} style={{ textDecoration: 'none' }}>
+                            <ProductAdmin
+                                photo={p.photo ? `${uploads}/${p.photo}` : null}
+                                name={p.name}
+                                description={p.description}
+                                price={p.price}
+                                inspiration={p.inspiration}
+                                photo_inspiration={p.photo_inspiration ? `${uploads}/${p.photo_inspiration}` : null}
+                            />
+                        </Link>
+                    ))}
                 </div>
             </main>
         </div>
