@@ -3,11 +3,30 @@
 import styles from "./dashboard.module.css";
 import { SyncOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import OrderCard from "../../../components/orderCard/page.jsx";
 
 export default function Dashboard() {
     const cardSectionRef = useRef(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    const checkScrollButtons = () => {
+        if (cardSectionRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = cardSectionRef.current;
+            setCanScrollLeft(scrollLeft > 0);
+            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+        }
+    };
+
+    useEffect(() => {
+        checkScrollButtons();
+        const element = cardSectionRef.current;
+        if (element) {
+            element.addEventListener('scroll', checkScrollButtons);
+            return () => element.removeEventListener('scroll', checkScrollButtons);
+        }
+    }, []);
 
     const scrollLeft = () => {
         if (cardSectionRef.current) {
@@ -46,6 +65,20 @@ export default function Dashboard() {
                     width={80}
                     height={80}
                 />
+                <Image
+                className={`${styles.ballImage} ${styles.position3}`}
+                    src="/img/ball.png"
+                    alt="Ball"
+                    width={300}
+                    height={300}
+                />
+                <Image
+                className={`${styles.ballImage} ${styles.position4}`}
+                    src="/img/ball.png"
+                    alt="Ball"
+                    width={100}
+                    height={100}
+                />
                 <div className={styles.titleSection}>
                     <h1 className={styles.title}>DASHBOARD</h1>
                     <h3 className={styles.subtitle}>FILA DE PEDIDOS</h3>
@@ -58,8 +91,9 @@ export default function Dashboard() {
                 </div>
                 <div className={styles.cardContainer}>
                     <button 
-                        className={`${styles.scrollButton} ${styles.scrollLeft}`}
+                        className={`${styles.scrollButton} ${styles.scrollLeft} ${!canScrollLeft ? styles.disabled : ''}`}
                         onClick={scrollLeft}
+                        disabled={!canScrollLeft}
                     >
                         <LeftOutlined />
                     </button>
@@ -71,7 +105,7 @@ export default function Dashboard() {
                             orderNumber="001"
                             orderClient="JOÃO"
                             orderQtde={2}
-                            orderPrice={10.00}
+                            orderPrice="10.00"
                         />
                         <OrderCard 
                             cardImage="/img/cappuccino.png"
@@ -79,7 +113,7 @@ export default function Dashboard() {
                             orderNumber="002"
                             orderClient="MARIA"
                             orderQtde={1}
-                            orderPrice={8.50}
+                            orderPrice="8.50"
                         />
                         <OrderCard 
                             cardImage="/img/paoDeQueijo.png"
@@ -87,7 +121,7 @@ export default function Dashboard() {
                             orderNumber="003"
                             orderClient="CARLOS"
                             orderQtde={3}
-                            orderPrice={7.00}
+                            orderPrice="7.00"
                         />
                         <OrderCard 
                             cardImage="/img/cappuccino.png"
@@ -95,7 +129,7 @@ export default function Dashboard() {
                             orderNumber="004"
                             orderClient="ANA"
                             orderQtde={1}
-                            orderPrice={9.00}
+                            orderPrice="9.00"
                         />
                         
                         <OrderCard 
@@ -104,7 +138,7 @@ export default function Dashboard() {
                             orderNumber="005"
                             orderClient="PEDRO"
                             orderQtde={2}
-                            orderPrice={11.00}
+                            orderPrice="11.00"
                         />
                         <OrderCard 
                             cardImage="/img/cappuccino.png"
@@ -112,13 +146,14 @@ export default function Dashboard() {
                             orderNumber="006"
                             orderClient="BRUNA"
                             orderQtde={3}
-                            orderPrice={12.00}
+                            orderPrice="12.00"
                         />
                     </div>
 
                     <button 
-                        className={`${styles.scrollButton} ${styles.scrollRight}`}
+                        className={`${styles.scrollButton} ${styles.scrollRight} ${!canScrollRight ? styles.disabled : ''}`}
                         onClick={scrollRight}
+                        disabled={!canScrollRight}
                     >
                         <RightOutlined />
                     </button>

@@ -42,6 +42,16 @@
     right: 250px;
 }
 
+.ballImage.position3 {
+    top: 750px;
+    right: 50px;
+}
+
+.ballImage.position4 {
+    top: 950px;
+    left: 80px;
+}
+
 .titleSection {
     display: flex;
     gap: 0.8rem;
@@ -90,19 +100,45 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-top: 1rem;
+    padding-top: 5rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .cardSection {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     gap: 3rem;
-    overflow-x: hidden;
-    overflow-y: visible;
-    padding: 80px 30px 80px 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 180px 30px 40px 30px;
     flex: 1;
     scroll-behavior: smooth;
-    min-height: 600px;
+    min-height: 680px;
+    height: 680px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    transform: rotateX(180deg);
+}
+
+.cardSection::-webkit-scrollbar {
+    height: 8px;
+}
+
+.cardSection::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.cardSection::-webkit-scrollbar-thumb {
+    background: #85AFD8;
+    border-radius: 4px;
+}
+
+.cardSection::-webkit-scrollbar-thumb:hover {
+    background: #6B9BC9;
 }
 
 .scrollButton {
@@ -116,14 +152,27 @@
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-    transition: all 0.3s ease;
+    z-index: 15;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     color: #fff;
     font-size: 18px;
+    position: relative;
 }
 
 .scrollButton:hover {
     background-color: #fff;
     color: #85AFD8;
     transform: scale(1.1);
+}
+
+.scrollButton.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.scrollButton.disabled:hover {
+    background-color: #85AFD8;
+    color: #fff;
+    transform: none;
 }
