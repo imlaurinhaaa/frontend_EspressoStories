@@ -2,13 +2,35 @@
 
 import styles from "./createProduct.module.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
 export default function CreateProduct() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    const [selectedBranch, setSelectedBranch] = useState('');
+    const [isBranchOpen, setIsBranchOpen] = useState(false);
     const fileInputRef = useRef(null);
+    const selectRef = useRef(null);
+    const branchSelectRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (selectRef.current && !selectRef.current.contains(event.target)) {
+                setIsCategoryOpen(false);
+            }
+            if (branchSelectRef.current && !branchSelectRef.current.contains(event.target)) {
+                setIsBranchOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const handleImageClick = () => {
         fileInputRef.current?.click();
@@ -26,6 +48,30 @@ export default function CreateProduct() {
             reader.readAsDataURL(file);
         }
     };
+
+    const handleCategorySelect = (category) => {
+        setSelectedCategory(category);
+        setIsCategoryOpen(false);
+    };
+
+    const handleBranchSelect = (branch) => {
+        setSelectedBranch(branch);
+        setIsBranchOpen(false);
+    };
+
+    const categoryOptions = [
+        { value: 'bebidas', label: 'Bebidas' },
+        { value: 'doces', label: 'Doces' },
+        { value: 'salgados', label: 'Salgados' }
+    ];
+
+    const branchOptions = [
+        { value: 'belém', label: 'Belém' },
+        { value: 'caxias do sul', label: 'Caxias do Sul' },
+        { value: 'fortaleza', label: 'Fortaleza' },
+        { value: 'rio de janeiro', label: 'Rio de Janeiro' },
+        { value: 'são paulo', label: 'São Paulo' }
+    ];
 
     return (
         <div className={styles.page}>
@@ -73,12 +119,62 @@ export default function CreateProduct() {
                         step="0.01"
                         className={styles.formInput}
                     />
-                    <select className={styles.formInput}>
-                        <option value="">Selecione uma categoria</option>
-                        <option value="bebidas">Bebidas</option>
-                        <option value="doces">Doces</option>
-                        <option value="salgados">Salgados</option>
-                    </select>
+                    <div className={styles.customSelect} ref={selectRef}>
+                        <div 
+                            className={`${styles.selectHeader} ${isCategoryOpen ? styles.selectOpen : ''}`}
+                            onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                        >
+                            <span className={selectedCategory ? styles.selectedText : styles.placeholderText}>
+                                {selectedCategory ? categoryOptions.find(opt => opt.value === selectedCategory)?.label : 'Categoria'}
+                            </span>
+                            <span className={`${styles.selectArrow} ${isCategoryOpen ? styles.arrowUp : ''}`}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </span>
+                        </div>
+                        {isCategoryOpen && (
+                            <div className={styles.selectOptions}>
+                                {categoryOptions.map((option) => (
+                                    <div 
+                                        key={option.value}
+                                        className={`${styles.selectOption} ${selectedCategory === option.value ? styles.optionSelected : ''}`}
+                                        onClick={() => handleCategorySelect(option.value)}
+                                    >
+                                        {option.label}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <div className={styles.customSelect} ref={branchSelectRef}>
+                        <div 
+                            className={`${styles.selectHeader} ${isBranchOpen ? styles.selectOpen : ''}`}
+                            onClick={() => setIsBranchOpen(!isBranchOpen)}
+                        >
+                            <span className={selectedBranch ? styles.selectedText : styles.placeholderText}>
+                                {selectedBranch ? branchOptions.find(opt => opt.value === selectedBranch)?.label : 'Filial Disponível'}
+                            </span>
+                            <span className={`${styles.selectArrow} ${isBranchOpen ? styles.arrowUp : ''}`}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </span>
+                        </div>
+                        {isBranchOpen && (
+                            <div className={styles.selectOptions}>
+                                {branchOptions.map((option) => (
+                                    <div 
+                                        key={option.value}
+                                        className={`${styles.selectOption} ${selectedBranch === option.value ? styles.optionSelected : ''}`}
+                                        onClick={() => handleBranchSelect(option.value)}
+                                    >
+                                        {option.label}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     <button type="submit" className={styles.submitButton}>
                         Criar Produto
                     </button>
