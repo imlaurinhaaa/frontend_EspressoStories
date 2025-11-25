@@ -1,0 +1,158 @@
+.page {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    padding: 2rem;
+    background-color: #E6E2D7;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #3F1D0E;
+    text-decoration: underline;
+    margin-bottom: 3rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #A2663C;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 2rem;
+    height: auto;
+    gap: 2rem;
+}
+
+.imageStyle {
+    object-fit: cover;
+    border-radius: 20px;
+    height: 5rem;
+    width: 5rem;
+}
+
+.postBlock {
+    width: 450px;
+    height: 450px;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 3px dashed transparent;
+    gap: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.postBlock:hover {
+    border-color: #A2663C;
+    background-color: #f0f0f0;
+}
+
+.addImageIcon {
+    cursor: pointer;
+    font-size: 6rem;
+    color: #A2663C;
+}
+
+.addImageText {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A2663C;
+}
+
+.postForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 450px;
+    border-radius: 20px;
+}
+
+.formInput {
+    padding: 1rem 1.5rem;
+    border: 2px solid #d4d4d4;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3F1D0E;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.formInput::placeholder {
+    color: #A0A0A0;
+    font-weight: 400;
+}
+
+.formInput:focus {
+    border-color: #A2663C;
+    box-shadow: 0 0 0 3px rgba(162, 102, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+.formInput:hover {
+    border-color: #B8B8B8;
+}
+
+.submitButton {
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, #A2663C 0%, #8B5A2B 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(162, 102, 60, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+}
+
+.submitButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(162, 102, 60, 0.4);
+    background: linear-gradient(135deg, #B8733D 0%, #9A6330 100%);
+}
+
+.submitButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(162, 102, 60, 0.3);
+}
+
+.formInput[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.formInput[type="number"]::-webkit-outer-spin-button,
+.formInput[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formInput[rows] {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.formInput option {
+    padding: 0.5rem;
+    background-color: #fff;
+    color: #3F1D0E;
+}
