@@ -63,13 +63,13 @@
 .postForm {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     width: 450px;
     border-radius: 20px;
 }
 
 .formInput {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     border: 2px solid #d4d4d4;
     border-radius: 12px;
     font-size: 1rem;
@@ -139,8 +139,157 @@
     font-family: inherit;
 }
 
+select.formInput {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23A2663C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px 16px;
+    padding-right: 3rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+select.formInput:hover {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23B8733D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(162, 102, 60, 0.15);
+}
+
+select.formInput:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23A2663C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+    transform: translateY(-2px);
+}
+
 .formInput option {
-    padding: 0.5rem;
+    padding: 0.8rem;
     background-color: #fff;
     color: #3F1D0E;
+    font-weight: 500;
+    border: none;
+}
+
+.formInput option:hover {
+    background-color: #F9F6EC;
+    color: #A2663C;
+}
+
+.formInput option[value=""] {
+    color: #A0A0A0;
+    font-style: italic;
+}
+
+/* Custom Select Styles */
+.customSelect {
+    position: relative;
+    width: 100%;
+}
+
+.selectHeader {
+    padding: 1rem;
+    border: 2px solid #d4d4d4;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3F1D0E;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.selectHeader:hover {
+    border-color: #B8B8B8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(162, 102, 60, 0.15);
+}
+
+.selectHeader.selectOpen {
+    border-color: #A2663C;
+    box-shadow: 0 0 0 3px rgba(162, 102, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+.placeholderText {
+    color: #A0A0A0;
+    font-weight: 400;
+}
+
+.selectedText {
+    color: #3F1D0E;
+    font-weight: 500;
+}
+
+.selectArrow {
+    color: #A2663C;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+}
+
+.selectArrow.arrowUp {
+    transform: rotate(180deg);
+}
+
+.selectOptions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 2px solid #A2663C;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(162, 102, 60, 0.2);
+    z-index: 1000;
+    overflow: hidden;
+    animation: dropdownSlide 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: top;
+}
+
+@keyframes dropdownSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scaleY(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+.selectOption {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3F1D0E;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.selectOption:last-child {
+    border-bottom: none;
+}
+
+.selectOption:hover {
+    background-color: #F9F6EC;
+    color: #A2663C;
+    transform: translateX(5px);
+}
+
+.selectOption.optionSelected {
+    background-color: #A2663C;
+    color: white;
+    font-weight: 600;
+}
+
+.selectOption.optionSelected:hover {
+    background-color: #B8733D;
+    transform: translateX(0);
 }
