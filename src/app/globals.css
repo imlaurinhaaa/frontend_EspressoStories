@@ -5,11 +5,11 @@
 }
 
 html, body, #__next {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-y: auto;
 }
 
 .pageContent {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow: visible;
 }

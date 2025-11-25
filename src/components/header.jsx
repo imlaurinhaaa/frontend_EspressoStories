@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../styles/menu.module.css";
+import styles from "../styles/header.module.css";
 
-export default function Menu() {
+export default function Header() {
     return (
         <header className={styles.header}>
             <Image src={"/img/logocompleta.png"} alt="Logo Espresso Stories" width={200} height={100} className={styles.logo} />
@@ -14,4 +14,4 @@ export default function Menu() {
             </section>
         </header>
     )
-}
+} 
