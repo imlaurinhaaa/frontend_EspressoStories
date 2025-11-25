@@ -18,7 +18,7 @@
 .posterHome {
     width: 100%;
     max-width: none;
-    height: 400px;
+    height: auto;
     display: block;
     margin: 0;
     object-fit: cover;
@@ -71,7 +71,7 @@
     top: 0;
 }
 
-.foodCardsArea {
+.categoryCardsArea {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -97,6 +97,25 @@
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     color: #3F1D0E;
+}
+
+@media (min-width: 1024px) {
+    .mainContent {
+        width: 2300px;
+    }
+
+    .categoryCardsArea {
+        gap: 40px;
+    }
+
+    .refresherBanner {
+        width: 70% !important;
+    }
+
+    .drinkmeTitle {
+        width: 150px !important;
+        height: auto !important;
+    }
 }
 
 .boxes {
@@ -133,6 +152,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    margin-bottom: 60px;
 }
 
 .titleRefresher {
@@ -152,7 +172,7 @@
 }
 
 .footer {
-  margin-top: 1000px;
+    margin-top: 1000px;
 }
 
 @media (max-width: 800px) {

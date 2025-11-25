@@ -42,3 +42,10 @@
     text-align: center;
     border-radius: 8px;
 }
+
+@media (min-width: 1024px) {
+    .card {
+        width: 330px;
+        height: 330px;
+    }
+}

@@ -1,7 +1,7 @@
 import styles from "./categoryCard.module.css";
 import Image from "next/image";
 
-export default function categoryCard({ img, alt, name }) {
+export default function CategoryCard({ img, alt, name }) {
     return (
         <div className={styles.card}>
             <Image 

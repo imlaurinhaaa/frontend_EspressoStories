@@ -44,8 +44,24 @@
 .position4 {
   top: 500px;
   left: 1100px;
-  z-index: 20;
 }
+
+@media (min-width: 1024px) {
+  .position2 {
+    left: 1500px
+  }
+
+  .position3 {
+    top: 700px
+  }
+
+  .position4 {
+    top: 650px;
+    left: 1600px;
+  }
+}
+
+
 
 .logoContainer {
   width: 100%;
