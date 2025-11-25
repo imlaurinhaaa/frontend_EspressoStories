@@ -8,7 +8,7 @@ export default function FoodCard({ item }) {
       <Image
         src={
           item.photo
-            ? `http://localhost:3000/uploads/${item.photo}`
+            ? `http://localhost:3000/uploads/${item.photo}.jpg`
             : "/img/logo.png"
         }
         alt={item.name || "Item sem nome"}

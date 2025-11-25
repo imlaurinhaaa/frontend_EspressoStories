@@ -90,7 +90,7 @@ export default function Menu() {
   });
   
   return (
-    <>
+    <div className={styles.menuPage }>
       <Header />
       <section className={styles.menuBanner}>
         <Image src={"/img/menuBanner.png"} alt="Menu Banner" width={1300} height={500} className={styles.menuBannerImage} />
@@ -101,7 +101,7 @@ export default function Menu() {
           {/* Sobremesas */}
           <div 
             className={`${styles.filterCard} ${activeCategory === "Comidas Doce" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/doceBanner.png')" }}
+            style={{ backgroundImage: "url('/img/doce-banner.png')" }}
             onClick={() => handleFilterClick("Comidas Doce")}
           >
             <span className={styles.filterLabel}>SOBREMESAS</span>
@@ -110,7 +110,7 @@ export default function Menu() {
           {/* Bebidas */}
           <div 
             className={`${styles.filterCard} ${activeCategory === "bebidas" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/bebidaBanner.png')" }}
+            style={{ backgroundImage: "url('/img/bebida-banner.png')" }}
             onClick={() => handleFilterClick("bebidas")}
           >
             <span className={styles.filterLabel}>BEBIDAS</span>
@@ -119,7 +119,7 @@ export default function Menu() {
           {/* Salgados */}
           <div 
             className={`${styles.filterCard} ${activeCategory === "Comidas Salgadas" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/salgadoBanner.png')" }}
+            style={{ backgroundImage: "url('/img/salgado-banner.png')" }}
             onClick={() => handleFilterClick("Comidas Salgadas")}
           >
             <span className={styles.filterLabel}>SALGADOS</span>
@@ -143,6 +143,6 @@ export default function Menu() {
           )}
         </section>
       </main>
-    </>
+    </div>
   )
 }
