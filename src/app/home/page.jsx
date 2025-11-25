@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import FoodCard from "./../../components/foodCard/foodCard"
+import FoodCard from "../../components/categoryCard/categoryCard"
 import React from "react";
 import Header from '../../components/header'
 import Footer from '../../components/footer/footer'
+import Link from "next/link";
+import SearchInput from "../../components/searchInput/searchInput";
 
 export default function Home() {
     return (
@@ -47,42 +49,34 @@ export default function Home() {
                         className={styles.espressoName}
                     />
 
-                    <div className={styles.rowArea}>
-                        <div className={styles.searchInput}>
-                            <input
-                                type="search"
-                                placeholder="Pesquise por um produto..."
-                                className={styles.input}
-                            />
-                            <div className={styles.searchIcon}>
-                                <Image
-                                    src="/img/searchIcon.png"
-                                    alt="Search Icon"
-                                    width={24}
-                                    height={24}
-                                />
-                            </div>
-                        </div>
-                        <button className={styles.filiaisButton}>FILIAIS</button>
-                    </div>
+                    <SearchInput 
+                        placeholder={"Pesquisar produtos..."}
+                    />
+
                 </div>
 
                 <div className={styles.foodCardsArea}>
-                    <FoodCard
-                        img='/img/doce-banner.png'
-                        alt='Banner de doce'
-                        name='DOCES'
-                    />
-                    <FoodCard
-                        img='/img/bebida-banner.png'
-                        alt='Banner de bebida'
-                        name='BEBIDAS'
-                    />
-                    <FoodCard
-                        img='/img/salgado-banner.png'
-                        alt='Banner de salgado'
-                        name='SALGADOS'
-                    />
+                    <Link href="/doces">
+                        <FoodCard
+                            img='/img/doce-banner.png'
+                            alt='Banner de sobremesas'
+                            name='SOBREMESAS'
+                        />
+                    </Link>
+                    <Link href="/bebidas">
+                        <FoodCard
+                            img='/img/bebida-banner.png'
+                            alt='Banner de bebida'
+                            name='BEBIDAS'
+                        />
+                    </Link>
+                    <Link href="/salgados">
+                        <FoodCard
+                            img='/img/salgado-banner.png'
+                            alt='Banner de salgado'
+                            name='SALGADOS'
+                        />
+                    </Link>
                 </div>
 
                 <div className={styles.mainContent}>
