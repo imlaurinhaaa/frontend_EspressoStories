@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import Header from '../../components/header'
 import styles from './page.module.css'
 import Image from 'next/image'
@@ -8,13 +9,40 @@ import CardFilter from '../../components/cardFilter';
 export default function Menu() {
   
 
-  const [activeCategory, setActiveCategory] = useState('null');
+  const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const fetchProducts = async () => {
+    try{
+      setIsLoading(true);
+      console.log('Fetching products...');
 
-  const handleFilterClick = (category) => { setActiveCategory(category); }
-  const filteredItems = products.filter((product) => product.category === activeCategory || activeCategory === null);
+      const response = await axios.get('http://localhost:3000/api/products');
+      console.log('Products received:', response.data);
+
+      sessionStorage.setItem('products', JSON.stringify(response.data));
+      console.log('Products stored in sessionStorage.');
+
+      setProducts(response.data);
+
+    } catch (error) {
+      console.error('Error fetching products:', error);
+
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const produtosArmazenados = sessionStorage.getItem('products');
+    if (produtosArmazenados) {
+      const produtos = JSON.parse(produtosArmazenados);
+      setProducts(produtos);
+      console.log('Produtos carregados da sessionStorage:', produtos);
+    }
+  }, []);
+  
 
   return (
     <>
@@ -22,48 +50,6 @@ export default function Menu() {
       <section className={styles.menuBanner}>
         <Image src={"/img/menuBanner.png"} alt="Menu Banner" width={1300} height={500} className={styles.menuBannerImage} />
       </section>
-
-      <main className={styles.mainMenu}>
-        <div className={styles.filterContainer}>
-          <CardFilter
-            category={"sobremesas"}
-            label={"SOBREMESAS"}
-            imageUrl={"/img/sobremesas.jpg"}
-            isActive={activeCategory === "sobremesas"}
-            onClick={handleFilterClick}
-          />
-
-          <CardFilter
-            category={"bebidas"}
-            label={"BEBIDAS"}
-            imageUrl={"/img/bebidas.jpg"}
-            isActive={activeCategory === "bebidas"}
-            onClick={handleFilterClick}
-          />
-
-          <CardFilter
-            category={"salgados"}
-            label={"SALGADOS"}
-            imageUrl={"/img/salgados.jpg"}
-            isActive={activeCategory === "salgados"}
-            onClick={handleFilterClick}
-          />
-        </div>
-
-        {/* Exemplo simples de listagem dos itens filtrados */}
-        <section className={styles.productsList}>
-          {isLoading ? (
-            <p>Carregando...</p>
-          ) : (
-            filteredItems.map(item => (
-              <div key={item.id} className={styles.productCard}>
-                <h4>{item.name}</h4>
-                <p>{item.category}</p>
-              </div>
-            ))
-          )}
-        </section>
-      </main>
     </>
   )
 }

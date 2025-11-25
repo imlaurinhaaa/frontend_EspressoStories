@@ -1,0 +1,23 @@
+.menuBanner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.menuBannerImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.mainMenu {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mainMenuTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
