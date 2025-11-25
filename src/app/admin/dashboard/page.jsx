@@ -2,11 +2,14 @@
 
 import styles from "./dashboard.module.css";
 import { SyncOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import OrderCard from "../../../components/orderCard/page.jsx";
+import OrderCard from "../../../components/orderCard/OrderCard.jsx";
+import HeaderAdmin from "../../../components/headerAdmin/Header.jsx";
 
 export default function Dashboard() {
+    const router = useRouter();
     const cardSectionRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
@@ -47,9 +50,7 @@ export default function Dashboard() {
     };
     return (
         <div className={styles.page}>
-            <header className={styles.header}>
-
-            </header>
+            <HeaderAdmin />
             <main className={styles.main}>
                 <Image
                 className={`${styles.ballImage} ${styles.position1}`}
@@ -84,7 +85,7 @@ export default function Dashboard() {
                     <h3 className={styles.subtitle}>FILA DE PEDIDOS</h3>
                 </div>
                 <div className={styles.buttonSection}>
-                    <button type="button" className={styles.button}>
+                    <button type="button" className={styles.button} onClick={() => router.refresh()}>
                         <SyncOutlined />
                         ATUALIZAR
                     </button>
