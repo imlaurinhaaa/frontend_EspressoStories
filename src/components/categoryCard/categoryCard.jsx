@@ -1,7 +1,7 @@
-import styles from "./foodCard.module.css";
+import styles from "./categoryCard.module.css";
 import Image from "next/image";
 
-export default function FoodCard({ img, alt, name }) {
+export default function categoryCard({ img, alt, name }) {
     return (
         <div className={styles.card}>
             <Image 
