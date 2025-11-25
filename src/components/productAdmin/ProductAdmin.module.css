@@ -1,7 +1,70 @@
 .content {
     background-color: #E4CDB0;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 2rem;
     width: 95%;
     height: auto;
+    display: flex;
+}
+
+.productInfo {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-left: 2rem;
+}
+
+.productName {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.productPrice {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.productDescription {
+    font-size: 1rem;
+    width: 85%;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.productPhoto {
+    margin-right: 2rem;
+}
+
+.updateButton {
+    background-color: #FFFFFFB2;
+    color: #3F1D0E;
+    border: none;
+    border-radius: 5rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.deleteButton {
+    background-color: #D9060699;
+    color: #ffffff;
+    border: none;
+    border-radius: 5rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
 }
