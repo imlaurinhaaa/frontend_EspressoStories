@@ -8,6 +8,10 @@
     width: 100%;
     margin: 0;
     box-sizing: border-box;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+
 }
 
 .content {
