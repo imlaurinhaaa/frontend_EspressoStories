@@ -1,0 +1,91 @@
+.bannerCompleted {
+    width: 100vh;
+    height: auto;
+    display: block;
+    margin: 0;
+    position: relative;
+    z-index: 20;
+}
+
+.container {
+    background-color: rgb(230, 226, 215);
+    min-height: 100vh;
+}
+
+.title {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.line {
+    width: 40%;
+    height: 0.5px;
+    background-color: #000;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.lineItems {
+    width: 45%;
+    height: 0.5px;
+    background-color: #4b85bf;
+    margin-top: 20px;
+}
+
+.contentOrder {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.contentItems {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 16px
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 12px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    gap: 25vh;
+}
+
+.name {
+    font-weight: bold;
+    color: #4b85bf;
+}
+
+.titleImage {
+    margin-bottom: 12px;
+    color: #4b85bf;
+}
+
+.sideImage {
+    width: 450px;
+    padding: 12px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30vh;
+}
+
+.button {
+    text-decoration: none;
+    background-color: #E4CDB0;
+    padding: 12px 24px;
+    border-radius: 2vh;
+    color: #A2663C;
+}
