@@ -14,7 +14,7 @@ export default function HeaderAdmin() {
             <section className={styles.navLinks}>
                 <Link href="dashboard" className={styles.link}>Dashboard</Link>
                 <Link href="menu" className={styles.link}>Cardápio</Link>
-                <SquarePlus className={styles.link} />
+                <Link href="create"><SquarePlus className={styles.link} /></Link>
                 <SquarePen className={styles.link} />
                 <UserRoundCheck className={styles.link} />
             </section>

@@ -4,7 +4,9 @@ import styles from "./createProduct.module.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { Link } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import filialStyles from "../createFilial/createProduct.module.css";
 
 export default function CreateProduct() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -14,6 +16,8 @@ export default function CreateProduct() {
     
     const fileInputRef = useRef(null);
     const inspirationFileInputRef = useRef(null);
+
+    const pathname = usePathname();
 
     const handleImageClick = () => {
         fileInputRef.current?.click();
@@ -52,6 +56,14 @@ export default function CreateProduct() {
     return (
         <div className={styles.page}>
             <h1 className={styles.title}>CRIAR PRODUTO</h1>
+            <div className={filialStyles.buttonSection}>
+                <Link href="/admin/createGeral" className={`${filialStyles.navButton} ${pathname === '/admin/createGeral' ? filialStyles.activeButton : ''}`}>
+                    GERAL
+                </Link>
+                <Link href="/admin/createFilial" className={`${filialStyles.navButton} ${pathname === '/admin/createFilial' ? filialStyles.activeButton : ''}`}>
+                    FILIAL
+                </Link>
+            </div>
             <div className={styles.container}>
                 <div className={styles.imagesContainer}>
                     <div className={styles.postBlock} onClick={handleImageClick}>
