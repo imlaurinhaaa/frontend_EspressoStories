@@ -105,8 +105,8 @@ export default function CreateProduct() {
                 className={`${styles.ballImage} ${styles.position4}`}
                 src="/img/ball.png"
                 alt="Ball"
-                width={350}
-                height={350}
+                width={300}
+                height={300}
             />
             <Image
                 className={`${styles.ballImage} ${styles.position5}`}
