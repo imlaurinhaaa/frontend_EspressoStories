@@ -75,7 +75,9 @@ export default function CreateProduct() {
 
     return (
         <div className={styles.page}>
-            <h1 className={styles.title}>CRIAR PRODUTO</h1>
+            <div className={styles.titleSection}>
+                <h1 className={styles.title}>CRIAR PRODUTO</h1>
+            </div>
             <div className={styles.container}>
                 <div className={styles.postBlock} onClick={handleImageClick}>
                     <input
@@ -85,7 +87,6 @@ export default function CreateProduct() {
                         accept="image/*"
                         style={{ display: 'none' }}
                     />
-
                     {imagePreview ? (
                         <Image
                             src={imagePreview}
@@ -103,24 +104,24 @@ export default function CreateProduct() {
                     )}
                 </div>
                 <form className={styles.postForm}>
-                    <input 
-                        type="text" 
-                        placeholder="Nome do Produto" 
+                    <input
+                        type="text"
+                        placeholder="Nome do Produto"
                         className={styles.formInput}
                     />
-                    <textarea 
-                        placeholder="Descrição do Produto" 
+                    <textarea
+                        placeholder="Descrição do Produto"
                         className={styles.formInput}
                         rows={4}
                     />
-                    <input 
-                        type="number" 
-                        placeholder="Preço do Produto (R$)" 
+                    <input
+                        type="number"
+                        placeholder="Preço do Produto (R$)"
                         step="0.01"
                         className={styles.formInput}
                     />
                     <div className={styles.customSelect} ref={selectRef}>
-                        <div 
+                        <div
                             className={`${styles.selectHeader} ${isCategoryOpen ? styles.selectOpen : ''}`}
                             onClick={() => setIsCategoryOpen(!isCategoryOpen)}
                         >
@@ -129,14 +130,14 @@ export default function CreateProduct() {
                             </span>
                             <span className={`${styles.selectArrow} ${isCategoryOpen ? styles.arrowUp : ''}`}>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="m6 9 6 6 6-6"/>
+                                    <path d="m6 9 6 6 6-6" />
                                 </svg>
                             </span>
                         </div>
                         {isCategoryOpen && (
                             <div className={styles.selectOptions}>
                                 {categoryOptions.map((option) => (
-                                    <div 
+                                    <div
                                         key={option.value}
                                         className={`${styles.selectOption} ${selectedCategory === option.value ? styles.optionSelected : ''}`}
                                         onClick={() => handleCategorySelect(option.value)}
@@ -148,7 +149,7 @@ export default function CreateProduct() {
                         )}
                     </div>
                     <div className={styles.customSelect} ref={branchSelectRef}>
-                        <div 
+                        <div
                             className={`${styles.selectHeader} ${isBranchOpen ? styles.selectOpen : ''}`}
                             onClick={() => setIsBranchOpen(!isBranchOpen)}
                         >
@@ -157,14 +158,14 @@ export default function CreateProduct() {
                             </span>
                             <span className={`${styles.selectArrow} ${isBranchOpen ? styles.arrowUp : ''}`}>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="m6 9 6 6 6-6"/>
+                                    <path d="m6 9 6 6 6-6" />
                                 </svg>
                             </span>
                         </div>
                         {isBranchOpen && (
                             <div className={styles.selectOptions}>
                                 {branchOptions.map((option) => (
-                                    <div 
+                                    <div
                                         key={option.value}
                                         className={`${styles.selectOption} ${selectedBranch === option.value ? styles.optionSelected : ''}`}
                                         onClick={() => handleBranchSelect(option.value)}
@@ -175,9 +176,14 @@ export default function CreateProduct() {
                             </div>
                         )}
                     </div>
-                    <button type="submit" className={styles.submitButton}>
-                        Criar Produto
-                    </button>
+                    <div className={styles.buttonSection}>
+                        <button type="submit" className={styles.cancelButton}>
+                            CANCELAR
+                        </button>
+                        <button type="submit" className={styles.submitButton}>
+                            SALVAR
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
