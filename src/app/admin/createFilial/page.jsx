@@ -4,6 +4,10 @@ import styles from "./createProduct.module.css";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin";
 
 export default function CreateProduct() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -15,6 +19,7 @@ export default function CreateProduct() {
     const fileInputRef = useRef(null);
     const selectRef = useRef(null);
     const branchSelectRef = useRef(null);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -66,18 +71,62 @@ export default function CreateProduct() {
     ];
 
     const branchOptions = [
-        { value: 'belém', label: 'Belém' },
-        { value: 'caxias do sul', label: 'Caxias do Sul' },
-        { value: 'fortaleza', label: 'Fortaleza' },
-        { value: 'rio de janeiro', label: 'Rio de Janeiro' },
-        { value: 'são paulo', label: 'São Paulo' }
+        { value: 'belém', label: 'Belém - PA' },
+        { value: 'caxias do sul', label: 'Caxias do Sul - RS' },
+        { value: 'fortaleza', label: 'Fortaleza - CE' },
+        { value: 'rio de janeiro', label: 'Rio de Janeiro - RJ' },
+        { value: 'são paulo', label: 'São Paulo - SP' }
     ];
 
     return (
         <div className={styles.page}>
+            <Image
+                className={`${styles.ballImage} ${styles.position1}`}
+                src="/img/ball.png"
+                alt="Ball"
+                width={400}
+                height={400}
+            />
+            <Image
+                className={`${styles.ballImage} ${styles.position2}`}
+                src="/img/ball.png"
+                alt="Ball"
+                width={80}
+                height={80}
+            />
+            <Image
+                className={`${styles.ballImage} ${styles.position3}`}
+                src="/img/ball.png"
+                alt="Ball"
+                width={250}
+                height={250}
+            />
+            <Image
+                className={`${styles.ballImage} ${styles.position4}`}
+                src="/img/ball.png"
+                alt="Ball"
+                width={350}
+                height={350}
+            />
+            <Image
+                className={`${styles.ballImage} ${styles.position5}`}
+                src="/img/ball.png"
+                alt="Ball"
+                width={100}
+                height={100}
+            />
+            <HeaderAdmin />
             <div className={styles.titleSection}>
                 <h1 className={styles.title}>CRIAR PRODUTO</h1>
             </div>
+            <div className={styles.buttonSection}>
+                        <Link href="/admin/createGeral" className={`${styles.navButton} ${pathname === '/admin/createGeral' ? styles.activeButton : ''}`}>
+                            GERAL
+                        </Link>
+                        <Link href="/admin/createFilial" className={`${styles.navButton} ${pathname === '/admin/createFilial' ? styles.activeButton : ''}`}>
+                            FILIAL
+                        </Link>
+                    </div>
             <div className={styles.container}>
                 <div className={styles.postBlock} onClick={handleImageClick}>
                     <input

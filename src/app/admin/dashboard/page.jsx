@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import OrderCard from "../../../components/orderCard/OrderCard.jsx";
-import HeaderAdmin from "../../../components/headerAdmin/Header.jsx";
+import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin.jsx";
 
 export default function Dashboard() {
     const router = useRouter();

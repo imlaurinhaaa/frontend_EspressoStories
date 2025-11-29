@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Search } from 'lucide-react';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "../../../components/headerAdmin/Header.jsx";
+import Header from "../../../components/headerAdmin/HeaderAdmin.jsx";
 import ProductAdmin from "../../../components/productAdmin/ProductAdmin.jsx";
 
 export default function Menu() {

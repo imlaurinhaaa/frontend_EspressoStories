@@ -1,13 +1,45 @@
 .page {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100dvh;
     width: 100vw;
     z-index: 1;
-    padding: 2rem;
     background-color: #E6E2D7;
+}
+
+.ballImage {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    filter: drop-shadow(10px 6px 12px rgba(0, 0, 0, 0.368));
+}
+
+.ballImage.position1 {
+    top: -160px;
+    left: 220px;
+}
+
+.ballImage.position2 {
+    top: 150px;
+    right: 250px;
+}
+
+.ballImage.position3 {
+    top: 650px;
+    right: 50px;
+}
+
+.ballImage.position4 {
+    top: 750px;
+    left: -130px;
+}
+
+.ballImage.position5 {
+    top: 850px;
+    right: 600px;
 }
 
 .titleSection {
@@ -15,14 +47,41 @@
     width: 100%;
     justify-content: flex-start;
     align-items: center;
+    padding: 3rem 0 2rem 2rem;
+    position: relative;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 800;
     color: #3F1D0E;
     text-decoration: underline;
     margin-bottom: 3rem;
+}
+
+.navButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #85AFD8;
+    color: white;
+    height: 3rem;
+    width: 12rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(162, 102, 60, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.activeButton {
+    background-color: #F3F3F3;
+    color: #3F1D0E;
 }
 
 .container {
@@ -36,6 +95,8 @@
     padding: 2rem;
     border-radius: 30px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0 8rem 0;
+    position: relative;
 }
 
 .postBlock {
@@ -76,21 +137,22 @@
 .postForm {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    width: 450px;
+    gap: 0.8rem;
+    width: 500px;
     border-radius: 20px;
 }
 
 .formInput {
     padding: 1rem;
-    border: 2px solid #d4d4d4;
+    border: 1px solid #d4d4d4;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
     color: #3F1D0E;
-    background-color: #fff;
+    background-color: #F3F3F3;
     transition: all 0.3s ease;
     outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .formInput::placeholder {
@@ -110,13 +172,15 @@
 }
 
 .buttonSection {
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
 }
 
 .submitButton {
-    height: 2.5rem;
+    height: 3rem;
     width: 12rem;
     background-color: #85AFD8;
     color: white;
@@ -143,7 +207,7 @@
 }
 
 .cancelButton {
-    height: 2.5rem;
+    height: 3rem;
     width: 12rem;
     background-color: #F3F3F3;
     color: #797979;
@@ -229,7 +293,6 @@ select.formInput:focus {
     font-style: italic;
 }
 
-/* Custom Select Styles */
 .customSelect {
     position: relative;
     width: 100%;
@@ -237,12 +300,12 @@ select.formInput:focus {
 
 .selectHeader {
     padding: 1rem;
-    border: 2px solid #d4d4d4;
+    border: 1px solid #d4d4d4;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
     color: #3F1D0E;
-    background-color: #fff;
+    background-color: #F3F3F3;
     transition: all 0.3s ease;
     outline: none;
     cursor: pointer;
@@ -250,6 +313,7 @@ select.formInput:focus {
     justify-content: space-between;
     align-items: center;
     user-select: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .selectHeader:hover {

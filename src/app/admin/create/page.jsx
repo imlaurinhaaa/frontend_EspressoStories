@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import styles from './create.module.css';
 import Link from "next/link";
-import Header from "../../../components/headerAdmin/Header.jsx";
+import Header from "../../../components/headerAdmin/HeaderAdmin.jsx";
 
 export default function Create() {
     return (
