@@ -12,7 +12,7 @@ export default function ProductAdmin({ item }) {
                 <Image
                     src={
                         item.photo
-                            ? `http://localhost:3000/uploads/${item.photo}.jpg`
+                            ? `http://localhost:4000/uploads/${item.photo}.jpg`
                             : "/img/logo.png"
                     }
                     alt={item.name || "Item sem nome"}
@@ -29,7 +29,7 @@ export default function ProductAdmin({ item }) {
             </div>
                 {item.photo_inspiration && (
                     <Image
-                        src={`http://localhost:3000/uploads/${item.photo_inspiration}.jpg`}
+                        src={`http://localhost:4000/uploads/${item.photo_inspiration}.jpg`}
                         alt={item.name || "Item sem nome"}
                         width={150}
                         height={150}
