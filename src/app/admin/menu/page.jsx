@@ -18,7 +18,7 @@ export default function Menu() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/products`);
+                const response = await axios.get(`http://localhost:4000/api/products`);
                 setProducts(Array.isArray(response.data) ? response.data : response.data.products || []);
                 console.log(response.data);
 
