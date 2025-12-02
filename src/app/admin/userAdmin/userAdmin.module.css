@@ -14,6 +14,7 @@
     background-color: #E6E2D7;
     padding: 2rem;
     overflow-y: auto;
+    justify-content: center;
     z-index: 2;
 }
 
@@ -50,33 +51,36 @@
     position: relative;
 }
 
-.infoContainer {
-    margin-top: 20px;
-    text-align: center;
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .adminPhoto {
-    border-radius: 100%;
+    border-radius: 50%;
+    border: 5px solid #3F1D0E;
     object-fit: cover;
+    margin-top: 2rem;
 }
 
-.infoText {
-    font-size: 1.2rem;
-    margin-top: 10px;
+.button {
+    background-color: #A2663CB8;
+    color: #3F1D0E;
+    padding: 2rem 4rem;
+    border-radius: 5rem;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 5rem;
 }
 
-.logoutButton {
-    margin-top: 20px;
-    padding: 10px 25px;
-    background-color: #d9534f;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.2s;
-}
-
-.logoutButton:hover {
-    background-color: #c9302c;
+.button:hover {
+    background-color: #8B5530;
+    color: #FFFFFF;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }

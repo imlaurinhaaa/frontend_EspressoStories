@@ -22,10 +22,8 @@ export default function Login() {
                 password_hash: values.password_hash
             });
 
-            // Salva o usuário na session storage
             sessionStorage.setItem('usuario', JSON.stringify(data.usuario));
 
-            // Redireciona para home
             router.replace('/admin/dashboard');
 
         } catch (err) {
