@@ -7,8 +7,8 @@ import Header from '../../components/header'
 import FoodCard from '../../components/foodCard1/foodCard';
 
 export default function Menu() {
-  
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
+  const API_URL = 'http://localhost:4000/api';
 
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
@@ -16,21 +16,22 @@ export default function Menu() {
   const [error, setError] = useState(null);
 
   const fetchProducts = async () => {
-    try{
+    try {
       setIsLoading(true);
       setError(null);
+
       console.log('Fetching products from:', `${API_URL}/products`);
 
       const response = await axios.get(`${API_URL}/products`);
       console.log('Products received:', response.data);
 
       let data = response.data;
-      if (!data || typeof data.length !== 'number') {
-         if (data && data.products) data = data.products;
-         else if (data && data.data) data = data.data;
-      }
-      if (!data || typeof data.length !== 'number') {
-        data = [];
+
+      // Garante que data seja um array
+      if (!Array.isArray(data)) {
+        if (data?.products) data = data.products;
+        else if (data?.data) data = data.data;
+        else data = [];
       }
 
       sessionStorage.setItem('products', JSON.stringify(data));
@@ -61,7 +62,7 @@ export default function Menu() {
         console.error('Erro ao ler sessionStorage:', error);
       }
     }
-    
+
     if (!loadedFromCache) {
       fetchProducts();
     }
@@ -77,28 +78,35 @@ export default function Menu() {
     setActiveCategory((prev) => (prev === category ? null : category));
   };
 
-  const filteredItems = (products && typeof products.filter === 'function' ? products : []).filter((product) => {
-    if (activeCategory === null) return true;
-    const mappedId = categoryMap[activeCategory];
-    
-    const productCategoryId = product.category_id;
+  const filteredItems = (products || []).filter((product) => {
+    if (!activeCategory) return true;
 
-    if (typeof mappedId === 'object' && mappedId.length) {
-      return mappedId.includes(Number(productCategoryId)) || mappedId.includes(String(productCategoryId));
+    const mappedId = categoryMap[activeCategory];
+    const productCategoryId = Number(product.category_id);
+
+    if (Array.isArray(mappedId)) {
+      return mappedId.includes(productCategoryId);
     }
-    return productCategoryId === mappedId || String(productCategoryId) === String(mappedId);
+
+    return productCategoryId === mappedId;
   });
-  
+
   return (
-    <div className={styles.menuPage }>
+    <div className={styles.menuPage}>
       <Header />
       <section className={styles.menuBanner}>
-        <Image src={"/img/menuBanner.png"} alt="Menu Banner" width={1300} height={500} className={styles.menuBannerImage} />
+        <Image 
+          src={"/img/menuBanner.png"} 
+          alt="Menu Banner" 
+          width={1300} 
+          height={500} 
+          className={styles.menuBannerImage} 
+        />
       </section>
 
       <main className={styles.mainMenu}>
         <div className={styles.filterContainer}>
-          {/* Sobremesas */}
+
           <div 
             className={`${styles.filterCard} ${activeCategory === "Comidas Doce" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/doce-banner.png')" }}
@@ -107,7 +115,6 @@ export default function Menu() {
             <span className={styles.filterLabel}>SOBREMESAS</span>
           </div>
 
-          {/* Bebidas */}
           <div 
             className={`${styles.filterCard} ${activeCategory === "bebidas" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/bebida-banner.png')" }}
@@ -116,7 +123,6 @@ export default function Menu() {
             <span className={styles.filterLabel}>BEBIDAS</span>
           </div>
 
-          {/* Salgados */}
           <div 
             className={`${styles.filterCard} ${activeCategory === "Comidas Salgadas" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/salgado-banner.png')" }}
@@ -132,7 +138,9 @@ export default function Menu() {
           ) : error ? (
             <div className={styles.errorMessage}>
               <p>{error}</p>
-              <button onClick={fetchProducts} className={styles.retryButton}>Tentar Novamente</button>
+              <button onClick={fetchProducts} className={styles.retryButton}>
+                Tentar Novamente
+              </button>
             </div>
           ) : filteredItems.length === 0 ? (
             <p>Nenhum produto encontrado.</p>
@@ -144,5 +152,5 @@ export default function Menu() {
         </section>
       </main>
     </div>
-  )
+  );
 }

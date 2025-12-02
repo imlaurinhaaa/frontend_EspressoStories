@@ -16,7 +16,7 @@ export default function FoodCard({ item, onClick }) {
         <Image
           src={
             item.photo
-              ? `http://localhost:3000/uploads/${item.photo}.jpg`
+              ? `http://localhost:4000/uploads/${item.photo}.jpg`
               : "/img/logo.png"
           }
           alt={item.name || "Item sem nome"}

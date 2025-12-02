@@ -17,7 +17,7 @@ export default function FoodDetail() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/products/${id}`
+          `http://localhost:4000/api/products/${id}`
         );
         setProduct(response.data.product);
       } catch (error) {
@@ -57,7 +57,7 @@ export default function FoodDetail() {
           <Image
             src={
               product.photo
-                ? `http://localhost:3000/uploads/${product.photo}.jpg`
+                ? `http://localhost:4000/uploads/${product.photo}.jpg`
                 : "/img/logo.png"
             }
             alt={product.name || "Item sem nome"}
@@ -86,7 +86,7 @@ export default function FoodDetail() {
               {product.photo_inspiration && (
                 <aside className={styles.book}>
                   <Image
-                    src={`http://localhost:3000/uploads/${product.photo_inspiration}.jpg`}
+                    src={`http://localhost:4000/uploads/${product.photo_inspiration}.jpg`}
                     alt={
                       product.name ? `${product.name} inspiração` : "Inspiração"
                     }
