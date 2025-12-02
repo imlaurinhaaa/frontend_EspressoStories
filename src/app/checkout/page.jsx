@@ -1,172 +1,228 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
-import styles from './page.module.css';
-import Header from '../../components/header';
-import Footer from '../../components/footer/footer';
-import { message } from 'antd';
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import { message } from "antd";
+import styles from "./page.module.css";
+import Header from "../../components/header";
+import Footer from "../../components/footer/footer";
 
 export default function CheckoutPage() {
-    const [userId, setUserId] = useState(null);
+    const params = useSearchParams();
+    const router = useRouter();
+
+    const paramUserId = params?.get("userId");
+    const initialUserId = paramUserId
+        ? Number(paramUserId)
+        : typeof window !== "undefined"
+            ? Number(localStorage.getItem("userId")) || 1
+            : 1;
+
+    const [userId] = useState(initialUserId);
+    const [cartData, setCartData] = useState({ cart: null, items: [], total_price: 0 });
     const [addresses, setAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
-
-    const [orderData, setOrderData] = useState({
-        items: [],
-        address: null,
-        total_price: 0,
-        order: null
-    });
-
-    const [paymentMethod, setPaymentMethod] = useState("pix");
+    const [loading, setLoading] = useState(true);
+    const [paymentMethod, setPaymentMethod] = useState("PIX");
 
     const [newAddress, setNewAddress] = useState({
-        cep: "",
         street: "",
         number: "",
         neighborhood: "",
         city: "",
         state: "",
-        complement: ""
+        cep: ""
     });
 
-    const router = useRouter();
+    const [isCreatingAddress, setIsCreatingAddress] = useState(false);
 
-    useEffect(() => {
-        const storedId = typeof window !== 'undefined'
-            ? localStorage.getItem("userId")
-            : null;
-
-        const id = storedId ? Number(storedId) : 1;
-        setUserId(id);
-
-        if (id) {
-            loadOrder(id);
-            loadAddresses(id);
-        }
-    }, []);
-
-    const loadOrder = async (userId) => {
+    const loadCart = async () => {
         try {
-            const res = await fetch(`http://localhost:4000/api/user/order/${userId}`);
+            const res = await fetch(`http://localhost:4000/api/users/cart/${userId}`);
+            const data = await res.json();
+            setCartData(data);
+        } catch (error) {
+            console.error("Erro ao carregar carrinho:", error);
+            message.error("Erro ao carregar o carrinho.");
+        }
+    };
+
+    const loadAddresses = async () => {
+        try {
+            const res = await fetch(`http://localhost:4000/api/user_addresses?user_id=${userId}`);
             const data = await res.json();
 
-            setOrderData({
-                items: data.items || [],
-                address: data.address || null,
-                total_price: data.total_price || 0,
-                order: data.order || null
-            });
+            setAddresses(data.addresses || []);
 
-            if (data.address) {
-                setSelectedAddress(data.address);
+            if (data.addresses?.length > 0) {
+                setSelectedAddress(data.addresses[0]);
+                setIsCreatingAddress(false);
+            } else {
+                setIsCreatingAddress(true);
             }
-        } catch (e) {
-            console.error("Erro ao carregar pedido", e);
+        } catch (err) {
+            console.error("Erro ao carregar endereços:", err);
+            setAddresses([]);
+            setIsCreatingAddress(true);
         }
     };
 
-    const loadAddresses = async (id) => {
-        const res = await fetch(`http://localhost:4000/api/user_addresses?user_id=${id}`);
-        const data = await res.json();
-
-        setAddresses(data.addresses || []);
-
-        if (!data.addresses || data.addresses.length === 0) {
-            setSelectedAddress(null);
+    useEffect(() => {
+        if (userId) {
+            Promise.all([loadCart(), loadAddresses()]).finally(() => setLoading(false));
         }
-    };
+    }, [userId]);
 
-    const createAddress = async () => {
-        const body = { ...newAddress, user_id: userId };
-
-        const response = await fetch(`http://localhost:4000/api/user_addresses`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        });
-
-        const result = await response.json();
-
-        message.success("Endereço adicionado com sucesso!");
-        await loadAddresses(userId);
-    };
-
-    const finalizeOrder = async () => {
-        if (!selectedAddress) {
-            message.error("Selecione ou adicione um endereço.");
-            return;
-        }
-
-        const body = {
-            order_id: orderData.order?.id,
-            address_id: selectedAddress.id,
-            payment_method: paymentMethod
-        };
-
-        const response = await fetch(`http://localhost:4000/api/orders`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            message.error(result.message || "Erro ao finalizar pedido!");
-            return;
-        }
-
-        router.push(`/orders/${orderData.order.id}`);
-    };
-
-    const subtotal = Number(orderData.total_price || 0);
+    const subtotal = Number(cartData.total_price || 0);
     const frete = 15;
     const total = subtotal + frete;
 
+    const saveAddress = async () => {
+        for (const field in newAddress) {
+            if (!newAddress[field]) {
+                return message.error("Preencha todos os campos do endereço.");
+            }
+        }
+
+        try {
+            const res = await fetch("http://localhost:4000/api/user_addresses", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ...newAddress, user_id: userId })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                return message.error("Erro ao salvar endereço.");
+            }
+
+            message.success("Endereço salvo com sucesso!");
+            setNewAddress({
+                street: "",
+                number: "",
+                neighborhood: "",
+                city: "",
+                state: "",
+                cep: ""
+            });
+
+            loadAddresses();
+        } catch (err) {
+            console.error(err);
+            message.error("Erro ao salvar endereço.");
+        }
+    };
+
+    const finalizeOrder = async () => {
+        if (!selectedAddress) return message.error("Selecione ou cadastre um endereço.");
+
+        try {
+            const orderBody = {
+                user_id: userId,
+                branch_id: cartData.cart?.branch_id || 1,
+                user_address_id: selectedAddress.id,
+                payment_method: paymentMethod
+            };
+
+            const orderRes = await fetch(`http://localhost:4000/api/orders`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderBody),
+            });
+
+            const orderResult = await orderRes.json();
+
+            if (!orderRes.ok) {
+                return message.error("Erro ao criar o pedido.");
+            }
+
+            const orderId = orderResult?.newOrder?.id || orderResult?.id;
+
+            for (const item of cartData.items) {
+                await fetch(`http://localhost:4000/api/order_items`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        product_id: item.product_id || null,
+                        featured_product_id: item.featured_product_id || null,
+                        quantity: item.quantity
+                    })
+                });
+            }
+
+            await fetch(`http://localhost:4000/api/cart/clear/${cartData.cart.id}`, {
+                method: "DELETE"
+            });
+
+            message.success("Pedido criado com sucesso!");
+            router.push(`/orderCompleted/[id]`);
+
+        } catch (error) {
+            console.error("Erro ao finalizar pedido:", error);
+            message.error("Erro ao finalizar pedido.");
+        }
+    };
+
+    if (loading) return <p>Carregando...</p>
+
     return (
         <div className={styles.checkoutPage}>
+            <Header />
 
-            <div className={styles.card}>
-                <h2 className={styles.sectionTitle}>Itens do Pedido</h2>
+            <main className={styles.main}>
+                <div className={styles.card}>
+                    <h2 className={styles.sectionTitle}>Itens do Pedido</h2>
 
-                {orderData?.items?.length > 0 ? (
-                    orderData.items.map(item => (
-                        <div key={item.id} className={styles.itemRow}>
-                            <div className={styles.itemImage}></div>
+                    {cartData.items.map(item => {
+                        const productName = item.product_name || item.featured_product_name;
+                        const productPhoto = item.product_photo
+                            ? `http://localhost:4000/uploads/${item.product_photo}.jpg`
+                            : item.featured_product_photo
+                                ? `http://localhost:4000/uploads/${item.featured_product_photo}.jpg`
+                                : "/img/logo.png";
 
-                            <div className={styles.itemInfo}>
-                                <p className={styles.itemName}>{item.product_name}</p>
-                                <p className={styles.itemQtd}>Qtd: {item.quantity}</p>
+                        return (
+                            <div key={item.id} className={styles.itemRow}>
+                                <Image
+                                    src={productPhoto}
+                                    alt={productName}
+                                    width={100}
+                                    height={80}
+                                    className={styles.itemImage}
+                                    unoptimized
+                                />
+
+                                <div className={styles.itemInfo}>
+                                    <p className={styles.itemName}>{productName}</p>
+                                    <p className={styles.itemQtd}>Qtd: {item.quantity}</p>
+                                </div>
+
+                                <p className={styles.itemPrice}>
+                                    R$ {Number(item.total_item_price).toFixed(2)}
+                                </p>
                             </div>
+                        );
+                    })}
 
-                            <p className={styles.itemPrice}>
-                                R$ {item.total_item_price.toFixed(2)}
-                            </p>
-                        </div>
-                    ))
-                ) : (
-                    <p>Nenhum item no carrinho.</p>
-                )}
+                    <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
+                    <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
 
-                <hr />
+                    <p className={styles.totalRow}>
+                        Total: <strong>R$ {total.toFixed(2)}</strong>
+                    </p>
+                </div>
+                <div className={styles.card}>
+                    <h2 classNam
+                        e={styles.sectionTitle}>Endereço de Entrega</h2>
 
-                <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
-                <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
-                <p className={styles.totalRow}>Total: <strong>R$ {total.toFixed(2)}</strong></p>
-            </div>
-
-            <div className={styles.card}>
-                <h2 className={styles.sectionTitle}>Informações para entrega</h2>
-
-                {addresses.length > 0 && (
-                    <>
-                        {addresses.map(addr => (
+                    {addresses.length > 0 ? (
+                        addresses.map(addr => (
                             <label key={addr.id} className={styles.addressCard}>
                                 <input
                                     type="radio"
-                                    name="address"
                                     checked={selectedAddress?.id === addr.id}
                                     onChange={() => setSelectedAddress(addr)}
                                 />
@@ -176,52 +232,62 @@ export default function CheckoutPage() {
                                     <p>CEP: {addr.cep}</p>
                                 </div>
                             </label>
-                        ))}
-                    </>
-                )}
+                        ))
+                    ) : (
+                        <p>Nenhum endereço cadastrado.</p>
+                    )}
 
-                <div className={styles.addressForm}>
-                    <h3 className={styles.subTitle}>Cadastrar novo endereço</h3>
+                    <button
+                        className={styles.addAddressBtn}
+                        onClick={() => setIsCreatingAddress(!isCreatingAddress)}
+                    >
+                        {isCreatingAddress ? "Cancelar" : "Cadastrar novo endereço"}
+                    </button>
 
-                    <div className={styles.formGrid}>
-                        {Object.keys(newAddress).map(key => (
-                            <input
-                                key={key}
-                                placeholder={key}
-                                value={newAddress[key]}
-                                onChange={(e) =>
-                                    setNewAddress({ ...newAddress, [key]: e.target.value })
-                                }
-                                className={styles.input}
-                            />
+                    {isCreatingAddress && (
+                        <div className={styles.addressForm}>
+                            {Object.keys(newAddress).map(key => (
+                                <input
+                                    key={key}
+                                    placeholder={key.toUpperCase()}
+                                    value={newAddress[key]}
+                                    onChange={e => setNewAddress({ ...newAddress, [key]: e.target.value })}
+                                />
+                            ))}
+
+                            <button className={styles.saveBtn} onClick={saveAddress}>
+                                Salvar Endereço
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                <div className={styles.card}>
+                    <h2 className={styles.sectionTitle}>Forma de Pagamento</h2>
+
+                    <div className={styles.paymentRow}>
+                        {[
+                            { label: "PIX", value: "PIX" },
+                            { label: "Cartão", value: "cartao" },
+                            { label: "Dinheiro", value: "dinheiro" }
+                        ].map(method => (
+                            <button
+                                key={method.value}
+                                className={`${styles.paymentBtn} ${paymentMethod === method.value ? styles.active : ""}`}
+                                onClick={() => setPaymentMethod(method.value)}
+                            >
+                                {method.label}
+                            </button>
                         ))}
                     </div>
-
-                    <button className={styles.btnPrimary} onClick={createAddress}>
-                        Salvar Endereço
-                    </button>
                 </div>
-            </div>
 
-            <div className={styles.card}>
-                <h2 className={styles.sectionTitle}>Forma de Pagamento</h2>
-
-                <div className={styles.paymentRow}>
-                    {["credito", "debito", "pix", "dinheiro"].map(method => (
-                        <button
-                            key={method}
-                            className={`${styles.paymentBtn} ${paymentMethod === method ? styles.active : ""}`}
-                            onClick={() => setPaymentMethod(method)}
-                        >
-                            {method.toUpperCase()}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            <button className={styles.finishBtn} onClick={finalizeOrder}>
-                Finalizar Pedido
-            </button>
+                <button className={styles.finishBtn} onClick={finalizeOrder}>
+                    Finalizar Pedido
+                </button>
+            </main>
+            <Footer />
         </div>
     );
+
 }
