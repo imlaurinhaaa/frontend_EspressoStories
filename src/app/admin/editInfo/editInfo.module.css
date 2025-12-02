@@ -1,0 +1,195 @@
+.backBanner {
+    width: 100%;
+}
+
+.backBanner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.808));
+    z-index: 0;
+}
+
+.backBanner Image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.editArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sectionEdit {
+    background-color: white;
+    width: 40vw;
+    height: 65vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    position: relative;
+    z-index: 1;
+    top: -200px;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.input {
+    padding: 1rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3F1D0E;
+    background-color: #F3F3F3;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input::placeholder {
+    color: #A0A0A0;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input:focus {
+    border-color: #A2663C;
+    box-shadow: 0 0 0 3px rgba(162, 102, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+.input:hover {
+    border-color: #B8B8B8;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.buttonCancel {
+    padding: 10px 20px;
+    background-color: #e63535;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #2e8632;
+}
+
+.postBlock {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 3px dashed transparent;
+    gap: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.postBlock:hover {
+    border-color: #3F1D0E;
+}
+
+.addImageIcon {
+    cursor: pointer;
+    font-size: 6rem;
+    color: #3F1D0E;
+}
+
+.addImageText {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3F1D0E;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modalActions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.confirmation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.checkIcon {
+    font-size: 1.5rem;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
