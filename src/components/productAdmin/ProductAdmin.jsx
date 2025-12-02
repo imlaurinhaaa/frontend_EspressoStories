@@ -38,7 +38,9 @@ export default function ProductAdmin({ item }) {
                     />
                 )}
                 <div className={styles.buttonsContainer}>
-                    <Link href="updateProducts" className={styles.updateButton}>Editar</Link>
+                    <Link 
+                    href={`/admin/editProduct/${item.id}`}
+                    className={styles.updateButton}>Editar</Link>
                     <button className={styles.deleteButton}><h3>Apagar</h3></button>
                 </div>
         </div>
