@@ -54,12 +54,40 @@
     position: relative;
 }
 
+.containerTitle{
+    display: flex;
+    flex-direction: row;
+}
+
 .title {
     font-size: 3rem;
     font-weight: 900;
     color: #3F1D0E;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
+
+.deleteAllBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #3F1D0E;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 4rem;
+    transition: 0.2s;
+    width: max-content;
+    margin-left: auto;
+    margin-top: 1.5rem;
+}
+
+.deleteAllBtn:hover {
+    background: #4e2310;
+}
+
 
 .cartItems {
     display: flex;
@@ -86,8 +114,8 @@
 }
 
 .productPhoto {
-    width: 160px;
-    height: 120px;
+    width: 200px;
+    height: 160px;
     border-radius: 12px;
     object-fit: cover;
     box-shadow: 0 4px 14px #3f1d0e47;
@@ -121,33 +149,13 @@
 }
 
 .cartTotal {
-    margin-top: 1.4rem;
     text-align: right;
     font-size: 1.4rem;
     font-weight: 800;
     color: #3F1D0E;
+    margin-bottom: 1.5rem;
 }
 
-.deleteAllBtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #3F1D0E;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 20px;
-    transition: 0.2s;
-    width: max-content;
-    margin-left: auto;
-}
-
-.deleteAllBtn:hover {
-    background: #4e2310;
-}
 
 .qtyControls {
     display: flex;
@@ -209,6 +217,23 @@
 .checkoutBtn:disabled {
     background: #b6a494;
     cursor: not-allowed;
+}
+
+.itemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteItemBtn {
+    background: transparent;
+    border: none;
+    color: rgb(94, 65, 65);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
 }
 
 @media (max-width: 700px) {
