@@ -11,129 +11,153 @@ import OrderCard from "../../../components/orderCard/OrderCard.jsx";
 import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin.jsx";
 
 export default function Dashboard() {
-    const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const cardSectionRef = useRef(null);
-    const [canScrollLeft, setCanScrollLeft] = useState(false);
-    const [canScrollRight, setCanScrollRight] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const cardSectionRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-    const fetchOrders = async () => {
-        try {
-            setError(false);
-            const response = await axios.get(`http://localhost:4000/api/order_items`);
-            setOrders(Array.isArray(response.data) ? response.data : response.data.orders || []);
-        } catch (error) {
-            console.error("Erro ao buscar encomendas:", error);
-            setError(true);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const fetchOrders = async () => {
+    try {
+      setError(false);
+      const response = await axios.get("http://localhost:4000/api/order_items");
+      setOrders(response.data);
+      console.log("Encomendas buscadas com sucesso:", response.data);
+    } catch (error) {
+      console.error("Erro ao buscar encomendas:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const checkScrollButtons = () => {
-        if (cardSectionRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } = cardSectionRef.current;
-            setCanScrollLeft(scrollLeft > 0);
-            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-        }
-    };
+  useEffect(() => {
+    console.log("STATE orders atualizado:", orders);
+  }, [orders]);
 
-    useEffect(() => {
-        checkScrollButtons();
-        const element = cardSectionRef.current;
-        if (element) {
-            element.addEventListener('scroll', checkScrollButtons);
-            return () => element.removeEventListener('scroll', checkScrollButtons);
-        }
-    }, []);
+  const checkScrollButtons = () => {
+    if (cardSectionRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = cardSectionRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    }
+  };
 
-    const scrollLeft = () => {
-        if (cardSectionRef.current) {
-            cardSectionRef.current.scrollBy({
-                left: -320,
-                behavior: 'smooth'
-            });
-        }
-    };
+  useEffect(() => {
+    checkScrollButtons();
+    const element = cardSectionRef.current;
+    if (element) {
+      element.addEventListener("scroll", checkScrollButtons);
+      return () => element.removeEventListener("scroll", checkScrollButtons);
+    }
+  }, []);
 
-    const scrollRight = () => {
-        if (cardSectionRef.current) {
-            cardSectionRef.current.scrollBy({
-                left: 320,
-                behavior: 'smooth'
-            });
-        }
-    };
-    return (
-        <div className={styles.page}>
-            <HeaderAdmin />
-            <main className={styles.main}>
-                <Image
-                    className={`${styles.ballImage} ${styles.position1}`}
-                    src="/img/ball.png"
-                    alt="Ball"
-                    width={400}
-                    height={400}
-                />
-                <Image
-                    className={`${styles.ballImage} ${styles.position2}`}
-                    src="/img/ball.png"
-                    alt="Ball"
-                    width={80}
-                    height={80}
-                />
-                <Image
-                    className={`${styles.ballImage} ${styles.position3}`}
-                    src="/img/ball.png"
-                    alt="Ball"
-                    width={300}
-                    height={300}
-                />
-                <Image
-                    className={`${styles.ballImage} ${styles.position4}`}
-                    src="/img/ball.png"
-                    alt="Ball"
-                    width={100}
-                    height={100}
-                />
-                <div className={styles.titleSection}>
-                    <h1 className={styles.title}>DASHBOARD</h1>
-                    <h3 className={styles.subtitle}>FILA DE PEDIDOS</h3>
-                </div>
-                <div className={styles.buttonSection}>
-                    <button type="button" className={styles.button} onClick={() => {
-                        setLoading(true);
-                        fetchOrders();
-                    }}>
-                        <SyncOutlined />
-                        ATUALIZAR
-                    </button>
-                </div>
+  const scrollLeft = () => {
+    if (cardSectionRef.current) {
+      cardSectionRef.current.scrollBy({
+        left: -320,
+        behavior: "smooth",
+      });
+    }
+  };
 
-                {loading ? (
-                    <p>Carregando pedidos ...</p>
-                ) : error ? (
-                    <p>Erro ao carregar pedidos!</p>
-                ) : (
-                    <>
-                        <div className={styles.cardContainer}>
-                            <button
-                                className={`${styles.scrollButton} ${styles.scrollLeft} ${!canScrollLeft ? styles.disabled : ''}`}
-                                onClick={scrollLeft}
-                                disabled={!canScrollLeft}
-                            >
-                                <LeftOutlined />
-                            </button>
+  const scrollRight = () => {
+    if (cardSectionRef.current) {
+      cardSectionRef.current.scrollBy({
+        left: 320,
+        behavior: "smooth",
+      });
+    }
+  };
+  return (
+    <div className={styles.page}>
+      <HeaderAdmin />
+      <main className={styles.main}>
+        <Image
+          className={`${styles.ballImage} ${styles.position1}`}
+          src="/img/ball.png"
+          alt="Ball"
+          width={400}
+          height={400}
+        />
+        <Image
+          className={`${styles.ballImage} ${styles.position2}`}
+          src="/img/ball.png"
+          alt="Ball"
+          width={80}
+          height={80}
+        />
+        <Image
+          className={`${styles.ballImage} ${styles.position3}`}
+          src="/img/ball.png"
+          alt="Ball"
+          width={300}
+          height={300}
+        />
+        <Image
+          className={`${styles.ballImage} ${styles.position4}`}
+          src="/img/ball.png"
+          alt="Ball"
+          width={100}
+          height={100}
+        />
+        <div className={styles.titleSection}>
+          <h1 className={styles.title}>DASHBOARD</h1>
+          <h3 className={styles.subtitle}>FILA DE PEDIDOS</h3>
+        </div>
+        <div className={styles.buttonSection}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => {
+              setLoading(true);
+              fetchOrders();
+            }}
+          >
+            <SyncOutlined />
+            ATUALIZAR
+          </button>
+        </div>
 
-                            <div className={styles.cardSection} ref={cardSectionRef}>
-                                {orders.map((order) => (
-                                    <OrderCard
-                                        key={order.id}
-                                        order={order}
-                                    />
-                                ))}
-                                {/* <OrderCard
+        {loading ? (
+          <p>Carregando pedidos ...</p>
+        ) : error ? (
+          <p>Erro ao carregar pedidos!</p>
+        ) : (
+          <>
+            <div className={styles.cardContainer}>
+              <button
+                className={`${styles.scrollButton} ${styles.scrollLeft} ${
+                  !canScrollLeft ? styles.disabled : ""
+                }`}
+                onClick={scrollLeft}
+                disabled={!canScrollLeft}
+              >
+                <LeftOutlined />
+              </button>
+
+              <div className={styles.cardSection} ref={cardSectionRef}>
+                {orders.map((order) => {
+                  const productImageUrl = `http://127.0.0.1:4000/uploads/${order.order_product_photo}.jpg`; // Usando 'order_product_photo'
+
+                  // Logando o URL da imagem no console
+                  console.log("Imagem do produto:", productImageUrl);
+
+                  return (
+                    <OrderCard
+                      key={order.id}
+                      productImage={productImageUrl} // Passando a URL completa da imagem
+                      productName={order.order_product_name} // Usando o nome correto do produto
+                      orderNumber={order.order_id}
+                      orderClient={order.order_user_name}
+                      productQuantity={order.quantity}
+                      orderPrice={order.order_total_value}
+                    />
+                  );
+                })}
+
+                {/* <OrderCard
                                     cardImage="/img/paoDeQueijo.png"
                                     orderName="PÃO DE QUEIJO"
                                     orderNumber="001"
@@ -182,19 +206,21 @@ export default function Dashboard() {
                                     orderQtde={3}
                                     orderPrice="12.00"
                                 /> */}
-                            </div>
+              </div>
 
-                            <button
-                                className={`${styles.scrollButton} ${styles.scrollRight} ${!canScrollRight ? styles.disabled : ''}`}
-                                onClick={scrollRight}
-                                disabled={!canScrollRight}
-                            >
-                                <RightOutlined />
-                            </button>
-                        </div>
-                    </>
-                )}
-            </main>
-        </div>
-    );
+              <button
+                className={`${styles.scrollButton} ${styles.scrollRight} ${
+                  !canScrollRight ? styles.disabled : ""
+                }`}
+                onClick={scrollRight}
+                disabled={!canScrollRight}
+              >
+                <RightOutlined />
+              </button>
+            </div>
+          </>
+        )}
+      </main>
+    </div>
+  );
 }
