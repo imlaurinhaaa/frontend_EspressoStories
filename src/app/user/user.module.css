@@ -1,0 +1,164 @@
+.page {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.main {
+    flex: 1;
+    position: relative;
+    background-color: #E6E2D7;
+    padding: 2rem;
+    overflow-y: auto;
+    justify-content: center;
+    z-index: 2;
+}
+
+.ballImage {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    filter: drop-shadow(10px 6px 12px rgba(0, 0, 0, 0.368));
+}
+
+.ballImage.position1 {
+    top: -180px;
+    left: 220px;
+}
+
+.ballImage.position2 {
+    top: 80px;
+    right: 250px;
+}
+
+
+.titleSection {
+    display: flex;
+    gap: 0.8rem;
+    flex-direction: column;
+    margin: 2rem 0 2rem 0;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #3F1D0E;
+    z-index: 5;
+    position: relative;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminPhoto {
+    border-radius: 50%;
+    border: 5px solid #3F1D0E;
+    object-fit: cover;
+}
+
+.photoContainer {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.photoContainer:hover {
+    transform: scale(1.05);
+}
+
+.editOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: rgba(63, 29, 14, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photoContainer:hover .editOverlay {
+    opacity: 1;
+}
+
+.addressSection {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.addressTitle {
+    color: #3F1D0E;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.addressTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.addressTable th,
+.addressTable td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #A2663C;
+    color: #3F1D0E;
+}
+
+.addressTable th {
+    font-weight: bold;
+    width: 30%;
+}
+
+.addressTable input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #A2663C;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #3F1D0E;
+}
+
+.button {
+    background-color: #A2663CB8;
+    color: #3F1D0E;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+}
+
+.button:hover {
+    background-color: #8B5530;
+    color: #FFFFFF;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}

@@ -22,7 +22,14 @@ export default function Login() {
                 password_hash: values.password_hash
             });
 
-            sessionStorage.setItem('usuario', JSON.stringify(data.usuario));
+            console.log("Dados do login recebidos:", data);
+            const adminData = data.usuario || data.admin || data;
+            
+            if (adminData) {
+                sessionStorage.setItem('usuario', JSON.stringify(adminData));
+            } else {
+                console.error("Nenhum dado de usuário/admin encontrado na resposta do login");
+            }
 
             router.replace('/admin/dashboard');
 

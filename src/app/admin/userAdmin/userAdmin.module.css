@@ -44,7 +44,7 @@
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 900;
     color: #3F1D0E;
     z-index: 5;
@@ -62,20 +62,19 @@
     border-radius: 50%;
     border: 5px solid #3F1D0E;
     object-fit: cover;
-    margin-top: 2rem;
 }
 
 .button {
     background-color: #A2663CB8;
     color: #3F1D0E;
-    padding: 2rem 4rem;
+    padding: 1rem 2rem;
     border-radius: 5rem;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1rem;
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .button:hover {

@@ -17,126 +17,96 @@ export default function Home() {
     setCarregando(true);
 
     try {
-      const { data } = await axios.post('/api/login', values);
-      sessionStorage.setItem('usuario', JSON.stringify(data.usuario));
+      const { data } = await axios.post("http://localhost:4000/api/login/users", {
+        name: values.name,
+        email: values.email,
+        password_hash: values.password_hash
+      });
+
+      console.log("Dados do login recebidos:", data);
+      const userData = data.usuario || data.user || data;
+
+      if (userData) {
+        sessionStorage.setItem('usuario', JSON.stringify(userData));
+      } else {
+        console.error("Nenhum dado de usuário/user encontrado na resposta do login");
+      }
+
       router.replace('/home');
+
     } catch (err) {
-      setErro(err.response?.data?.erro || 'Erro ao conectar com o servidor');
+      console.log("ERRO LOGIN FRONT:", err.response?.data);
+
+      setErro(err.response?.data?.message || "Erro ao conectar com o servidor");
     } finally {
       setCarregando(false);
     }
   };
 
   return (
-    <>
-      <div className={styles.container} onScrollEnd={false} />
-      <div className={styles.pageContent}>
-      <Image
-        src="/img/ball.png"
-        alt="Ball"
-        width={250}
-        height={250}
-        className={`${styles.ballImage} ${styles.position}`}
-      />
-
-      <Image
-        src="/img/ball.png"
-        alt="Ball"
-        width={90}
-        height={90}
-        className={`${styles.ballImage} ${styles.position2}`}
-      />
-
-      <Image
-        src="/img/ball.png"
-        alt="Ball"
-        width={90}
-        height={90}
-        className={`${styles.ballImage} ${styles.position3}`}
-      />
-
-      <Image
-        src="/img/ball.png"
-        alt="Ball"
-        width={250}
-        height={250}
-        className={`${styles.ballImage} ${styles.position4}`}
-      />
-
+    <div className={styles.pageContent}>
       <div className={styles.logoContainer}>
-        <Image
-          src="/img/logo.png"
-          alt="Logo"
-          width={50}
-          height={50}
-          className={styles.logo}
-        />
+        <Image src="/img/logo.png" alt="Logo" width={50} height={50} className={styles.logo} />
       </div>
+
       <div className={styles.contentContainer}>
         <div className={styles.posterContainer}>
-          <Image
-            src="/img/initialPoster.png"
-            alt="Poster"
-            width={700}
-            height={800}
-            className={styles.posterImage}
-          />
-
-
+          <Image src="/img/initialPoster.png" alt="Poster" width={700} height={800} className={styles.posterImage} />
         </div>
+
         <div className={styles.formContainer}>
           <h2 className={styles.welcomeTitle}>WELCOME BACK TO</h2>
-          <Image
-            src="/img/logoName.png"
-            alt="Logo Espresso Stories"
-            width={200}
-            height={50}
-            className={styles.logo02}
-          />
+          <Image src="/img/logoName.png" alt="Logo Espresso Stories" width={200} height={50} className={styles.logo02} />
+
+          {erro && <Alert message={erro} type="error" style={{ marginBottom: 16 }} />}
+
           <Form onFinish={onFinish} className={styles.form}>
             <Form.Item
-              name="nome"
-              rules={[{ required: true, message: 'Nome inválido' }]}>
-              <Input placeholder='Nome Completo' className={styles.input} />
+              name="name"
+              rules={[{ required: true, message: 'Nome obrigatório' }]}
+            >
+              <Input placeholder="Nome Completo" className={styles.input} />
             </Form.Item>
 
             <Form.Item
-              name="cep"
+              name="email"
               rules={[
-                { required: true, message: 'CEP' },
-                { pattern: /^\d{5}-?\d{3}$/, message: 'CEP inválido!' }
-              ]}>
-              <Input placeholder="CEP" maxLength={9} className={styles.input} />
+                { required: true, message: 'Email obrigatório' },
+                { type: 'email', message: 'Email inválido' }
+              ]}
+            >
+              <Input placeholder="Email" className={styles.input} />
             </Form.Item>
 
             <Form.Item
-              name="senha"
-              rules={[{ required: true, message: 'Senha inválida' }]}>
-              <Input.Password placeholder='Senha' className={styles.input} />
+              name="password_hash"
+              rules={[{ required: true, message: 'Senha obrigatória' }]}
+            >
+              <Input.Password placeholder="Senha" className={styles.input} />
             </Form.Item>
 
             <div className={styles.options}>
               <div className={styles.inLine}>
                 <div className={styles.line}></div>
-                <p style={{ color: '#7B7B7B'}}>or sign in with</p>
+                <p style={{ color: '#7B7B7B' }}>or sign in with</p>
                 <div className={styles.line}></div>
               </div>
               <div className={styles.icons}>
-                <Image 
+                <Image
                   src="/img/googleIcon.png"
                   alt="Google Icon"
                   width={20}
                   height={20}
                   className={styles.icon}
                 />
-                <Image 
+                <Image
                   src="/img/facebookIcon.png"
                   alt="Facebook Icon"
                   width={20}
                   height={20}
                   className={styles.icon}
                 />
-                <Image 
+                <Image
                   src="/img/appleIcon.png"
                   alt="Apple Icon"
                   width={20}
@@ -148,15 +118,20 @@ export default function Home() {
               <p>{"Don't have an account? "}<a href="/signup" style={{ color: '#7B7B7B', textDecoration: 'underline' }}>Enter!</a></p>
             </div>
 
+
             <Form.Item>
-              <Button htmlType="submit" block loading={carregando} className={styles.button}>
+              <Button
+                htmlType="submit"
+                block
+                loading={carregando}
+                className={styles.button}
+              >
                 Sign In
               </Button>
             </Form.Item>
           </Form>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   );
 }
