@@ -169,12 +169,16 @@ export default function CheckoutPage() {
     if (loading) return <p>Carregando...</p>
 
     return (
-        <div className={styles.checkoutPage}>
+        <div className={styles.page}>
             <Header />
 
             <main className={styles.main}>
-                <div className={styles.card}>
-                    <h2 className={styles.sectionTitle}>Itens do Pedido</h2>
+                <Image src="/img/ball.png" alt="Ball" width={400} height={400} className={`${styles.ballImage} ${styles.position}`} />
+                <Image src="/img/ball.png" alt="Ball" width={100} height={100} className={`${styles.ballImage} ${styles.position2}`} />
+                <Image src="/img/ball.png" alt="Ball" width={100} height={100} className={`${styles.ballImage} ${styles.position3}`} />
+                <Image src="/img/ball.png" alt="Ball" width={250} height={250} className={`${styles.ballImage} ${styles.position4}`} />
+                <div className={styles.cardContainer}>
+                    <h2 className={styles.title}>Itens do Pedido</h2>
 
                     {cartData.items.map(item => {
                         const productName = item.product_name || item.featured_product_name;
@@ -214,9 +218,9 @@ export default function CheckoutPage() {
                         Total: <strong>R$ {total.toFixed(2)}</strong>
                     </p>
                 </div>
-                <div className={styles.card}>
+                <div className={styles.cardContainer}>
                     <h2 classNam
-                        e={styles.sectionTitle}>Endereço de Entrega</h2>
+                        e={styles.title}>Endereço de Entrega</h2>
 
                     {addresses.length > 0 ? (
                         addresses.map(addr => (
@@ -260,10 +264,8 @@ export default function CheckoutPage() {
                             </button>
                         </div>
                     )}
-                </div>
 
-                <div className={styles.card}>
-                    <h2 className={styles.sectionTitle}>Forma de Pagamento</h2>
+                    <h2 className={styles.title}>Forma de Pagamento</h2>
 
                     <div className={styles.paymentRow}>
                         {[
@@ -280,11 +282,10 @@ export default function CheckoutPage() {
                             </button>
                         ))}
                     </div>
+                    <button className={styles.finishBtn} onClick={finalizeOrder}>
+                        Finalizar Pedido
+                    </button>
                 </div>
-
-                <button className={styles.finishBtn} onClick={finalizeOrder}>
-                    Finalizar Pedido
-                </button>
             </main>
             <Footer />
         </div>
