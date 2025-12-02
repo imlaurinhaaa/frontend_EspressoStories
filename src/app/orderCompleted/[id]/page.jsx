@@ -12,7 +12,17 @@ export default function OrderCompleted({ params }) {
     useEffect(() => {
         async function fetchItems() {
             try {
-                const response = await fetch(`http://localhost:3000/api/order_items/${orderId}`);
+                const response = await fetch(`http://localhost:4000/api/order_items/${orderId}`);
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || "Itens do pedido não encontrados.");
+                    }
+                    setOrderItems([]);
+                    return;
+                }
+
                 const data = await response.json();
                 if (data.orderItem) {
                     setOrderItems(data.orderItem);
@@ -24,7 +34,11 @@ export default function OrderCompleted({ params }) {
             }
         }
 
-        fetchItems();
+        if (orderId) {
+            fetchItems();
+        } else {
+            setLoading(false);
+        }
     }, [orderId]);
 
     if (loading) {
@@ -35,19 +49,43 @@ export default function OrderCompleted({ params }) {
         return <p className={styles.noItems}>Nenhum item encontrado para este pedido.</p>
     }
 
+    const calculateTotal = () => {
+        return orderItems.reduce((total, item) => {
+            const itemPrice = parseFloat(item.price) || 0;
+            return total + itemPrice;
+        }, 0);
+    };
+
+    const totalCompra = calculateTotal().toFixed(2);
+
     return (
         <div className={styles.container}>
             <div className={styles.bannerCompleted}>
-                <Image src={"/img/orderCompleted.png"} alt="Pedido Completo" width={1500} height={500} style={{ objectFit: "cover" }} />
+                <Image src={"/img/orderCompleted.png"} alt="Banner Pedido Completo" width={1600} height={500} style={{ objectFit: "cover" }} unoptimized />
             </div>
             <div className={styles.content}>
-                <h2 className={styles.title}>Seu pedido foi concluído com sucesso! #{orderId}</h2>
+                <h3 className={styles.title}>Seu Pedido</h3>
                 <div className={styles.line}></div>
                 <div className={styles.contentItems}>
-                    <div className={styles.contentOrder}>
+                    <div className={styles.orderItemList}>
                         {orderItems.map((item) => (
-                            <div key={item.id} className={styles.items}>
-                                <h3 className={styles.name}>{item.name}</h3>
+                            <div key={item.id} className={styles.itemHeader}>
+                                <div className={styles.itemInfo}>
+                                    {item.photo && typeof item.photo === 'string' && item.photo.trim() !== '' && (
+                                        <div className={styles.imageContainer}>
+                                            <Image
+                                                src={`http://localhost:4000/uploads/${item.photo}.jpg`}
+                                                alt={item.name}
+                                                width={80}
+                                                height={80}
+                                                style={{ objectFit: "cover" }}
+                                                unoptimized
+                                            />
+                                        </div>
+                                    )}
+                                    <h3 className={styles.name}>{item.name}</h3>
+                                </div>
+
                                 <div className={styles.details}>
                                     <p className={styles.quantity}>Quantidade: {item.quantity}</p>
                                     <p className={styles.price}>Preço: R$ {parseFloat(item.price).toFixed(2)}</p>
@@ -60,9 +98,17 @@ export default function OrderCompleted({ params }) {
                         <Image src={"/img/mensagem_order.png"} alt="Café Completo" width={350} height={380} style={{ objectFit: "cover" }} />
                     </aside>
                 </div>
+
+                <div className={styles.orderSummary}>
+                    <div className={styles.summaryLine}></div>
+                    <p className={styles.finalTotal}>
+                        Total da Compra: <strong>R$ {totalCompra}</strong>
+                    </p>
+                </div>
+
                 <div className={styles.buttonContainer}>
                     <Link href={"/home"} className={styles.button}>Volte para a nossa home</Link>
-                    <Link href={"/status"} className={styles.button}>Ver o status do pedido</Link>
+                    <Link href={"/orderStatus"} className={styles.button}>Ver o status do pedido</Link>
                 </div>
             </div>
         </div>

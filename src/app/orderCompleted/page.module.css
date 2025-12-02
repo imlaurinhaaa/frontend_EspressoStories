@@ -12,67 +12,154 @@
     min-height: 100vh;
 }
 
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
 .title {
+    color: #A2663C;
     margin-top: 20px;
     margin-left: 15px;
+    font-size: 1.3rem;
 }
 
 .line {
-    width: 40%;
-    height: 0.5px;
-    background-color: #000;
-    margin-top: 20px;
-    margin-left: 15px;
-}
-
-.lineItems {
-    width: 45%;
-    height: 0.5px;
-    background-color: #4b85bf;
-    margin-top: 20px;
-}
-
-.contentOrder {
-    display: flex;
-    flex: 1 1 auto;
-    gap: 12px;
-    flex-direction: column;
+    width: 200px;
+    height: 2.5px;
+    background: linear-gradient(90deg, #b47141 0%, transparent 100%);
+    margin: 0 0 32px 0;
+    border-radius: 2px;
 }
 
 .contentItems {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 300px;
     gap: 24px;
-    align-items: flex-start;
-    padding: 16px
+    align-items: center;
+    margin: 24px 0;
 }
 
-.items {
+.orderItemList {
+    min-width: 0;
+    padding-right: 0;
+}
+
+.itemCard {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(162, 102, 60, 0.3);
+}
+
+.itemCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.itemHeader {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    gap: 35vh;
+    margin-bottom: 10px;
+}
+
+.imageContainer {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 2px solid #E4CDB0;
+}
+
+.itemInfo {
     display: flex;
-    flex-direction: column;
-    gap: 5vh;
-    padding: 12px;
+    flex-direction: row;
+    gap: 4vh;
 }
 
 .details {
     display: flex;
     flex-direction: row;
-    gap: 25vh;
+    gap: 45vh;
 }
 
 .name {
     font-weight: bold;
     color: #4b85bf;
+    margin: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
 }
 
-.titleImage {
-    margin-bottom: 12px;
-    color: #4b85bf;
+.quantity, 
+.price {
+    margin: 0;
+    color: #555;
+    margin: 0;
+}
+
+.price {
+    font-weight: bold;
+    color: #A2663C;
+}
+
+.lineItems {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #4b85bf 50%, transparent 100%);
+    margin-top: 12px;
+}
+
+.orderSummary {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.summaryLine {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4b85bf 0%, #E4CDB0 100%);
+    margin-bottom: 16px;
+}
+
+.finalTotal {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c2c2c;
+    margin: 0;
+    text-align: right;display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.finalTotal strong {
+    color: #A2663C;
 }
 
 .sideImage {
-    width: 450px;
-    padding: 12px;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    justify-self: center;
+    align-self: center;
+    width: 320px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 12px;
+    z-index: 1;
 }
 
 .buttonContainer {
@@ -80,12 +167,41 @@
     flex-direction: row;
     justify-content: center;
     gap: 30vh;
+    flex-wrap: wrap;
 }
 
 .button {
     text-decoration: none;
     background-color: #E4CDB0;
-    padding: 12px 24px;
+    padding: 12px 30px;
     border-radius: 2vh;
     color: #A2663C;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(162, 102, 60, 0.3);
+    border: 2px solid transparent;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #d4bb9f 0%, #c4ab8f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(162, 102, 60, 0.5);
+    border-color: #A2663C;
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.loading, 
+.noItems {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    padding: 48px;
+    background: white;
+    border-radius: 12px;
+    margin: 32px auto;
+    max-width: fit-content;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
