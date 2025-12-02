@@ -179,7 +179,7 @@ export default function EditProduct() {
                                         ? `http://localhost:4000/uploads/${product.photo}.jpg`
                                         : "/img/logo.png"
                                 }
-                                alt={product?.name || "Item sem nome"}
+                                alt={product?.name || "Produto sem nome"}
                                 width={150}
                                 height={150}
                                 className={styles.productPhoto}
