@@ -86,63 +86,90 @@ export default function EditInfo() {
                     style={{ objectFit: 'cover', objectPosition: 'top', filter: 'blur(2px) brightness(50%)' }}
                 />
             </div>
-            <section className={styles.editArea}>
-                <section className={styles.sectionEdit}>
-                    <h2>Editar Informações do Café</h2>
-                    <form
-                        onSubmit={handleSubmit}
-                        style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '90%' }}
-                    >
-                        <label htmlFor="openingHours">Nome da loja:</label>
-                        <input type="text" id="lojaName" name="lojaName" placeholder="Espresso Stories" className={styles.input} />
 
-                        <label htmlFor="openingHours">Horário de Funcionamento:</label>
-                        <input type="text" id="openingHours" name="openingHours" placeholder="Ex: Seg-Sex: 8h-18h" className={styles.input} />
+            <Image
+                src="/img/ball.png"
+                alt="Ball"
+                width={250}
+                height={250}
+                className={`${styles.ballImage} ${styles.position}`}
+            />
 
-                        <label htmlFor="contact">Contato:</label>
-                        <input type="tel" id="contact" name="contact" placeholder="(11) 1234-5678" maxLength="15" className={styles.input} />
+            <Image
+                src="/img/ball.png"
+                alt="Ball"
+                width={90}
+                height={90}
+                className={`${styles.ballImage} ${styles.position2}`}
+            />
 
-                        <label htmlFor="location">Descrição da loja:</label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            placeholder="Descrição da loja..."
-                            rows="5"
-                            style={{ resize: "vertical" }}
-                            className={styles.input}
-                        />
+            <Image
+                src="/img/ball.png"
+                alt="Ball"
+                width={400}
+                height={400}
+                className={`${styles.ballImage} ${styles.position3}`}
+            />
 
-                        <button type="submit" className={styles.button}>Salvar Alterações</button>
-                    </form>
-                </section>
-                <section className={styles.sectionEdit}>
-                    <h2>Editar Foto do Café</h2>
-                    <div className={styles.postBlock} onClick={handleImageClick}>
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            onChange={handleImageChange}
-                            accept="image/*"
-                            style={{ display: 'none' }}
-                        />
-                        {imagePreview ? (
-                            <Image
-                                src={imagePreview}
-                                alt="Preview do produto"
-                                fill
-                                style={{ objectFit: 'cover', borderRadius: '20px' }}
+            <div className={styles.rowArea}>
+                <section className={styles.editArea}>
+                    <section className={styles.sectionEdit}>
+                        <h2>Editar Informações do Café</h2>
+                        <form
+                            onSubmit={handleSubmit}
+                            style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '90%' }}
+                        >
+                            <label htmlFor="openingHours">Nome da loja:</label>
+                            <input type="text" id="lojaName" name="lojaName" placeholder="Espresso Stories" className={styles.input} />
+
+                            <label htmlFor="openingHours">Horário de Funcionamento:</label>
+                            <input type="text" id="openingHours" name="openingHours" placeholder="Ex: Seg-Sex: 8h-18h" className={styles.input} />
+
+                            <label htmlFor="contact">Contato:</label>
+                            <input type="tel" id="contact" name="contact" placeholder="(11) 1234-5678" maxLength="15" className={styles.input} />
+
+                            <label htmlFor="location">Descrição da loja:</label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                placeholder="Descrição da loja..."
+                                rows="5"
+                                style={{ resize: "vertical" }}
+                                className={styles.input}
                             />
-                        ) : (
-                            <>
-                                <PlusCircleOutlined className={styles.addImageIcon} />
-                                <p className={styles.addImageText}>
-                                    Edite a imagem do produto
-                                </p>
-                            </>
-                        )}
-                    </div>
+
+                            <button type="submit" className={styles.button}>Salvar Alterações</button>
+                        </form>
+                    </section>
+                    <section className={styles.sectionEdit}>
+                        <h2>Editar Foto do Café</h2>
+                        <div className={styles.postBlock} onClick={handleImageClick}>
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                onChange={handleImageChange}
+                                accept="image/*"
+                                style={{ display: 'none' }}
+                            />
+                            {imagePreview ? (
+                                <Image
+                                    src={imagePreview}
+                                    alt="Preview do produto"
+                                    fill
+                                    style={{ objectFit: 'cover', borderRadius: '20px' }}
+                                />
+                            ) : (
+                                <>
+                                    <PlusCircleOutlined className={styles.addImageIcon} />
+                                    <p className={styles.addImageText}>
+                                        Edite a imagem do produto
+                                    </p>
+                                </>
+                            )}
+                        </div>
+                    </section>
                 </section>
-            </section>
+            </div>
 
             {isModalOpen && (
                 <div className={styles.modalOverlay}>

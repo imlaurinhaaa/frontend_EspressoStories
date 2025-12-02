@@ -1,3 +1,12 @@
+.rowArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    z-index: 1;
+}
+
 .backBanner {
     width: 100%;
 }
@@ -8,7 +17,7 @@
     height: 500px;
     overflow: hidden;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.808));
-    z-index: 0;
+    z-index: 1;
 }
 
 .backBanner Image {
@@ -19,6 +28,30 @@
     height: 100%;
     object-fit: cover;
     object-position: top;
+}
+
+.ballImage {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.511));
+}
+
+.position {
+    top: 500;
+    left: 0;
+    z-index: 0;
+}
+
+.position2 {
+    top: 700px;
+    left: 1700px;
+}
+
+.position3 {
+    top: 800px;
+    left: 800px;
+    z-index: 0;
 }
 
 .editArea {
