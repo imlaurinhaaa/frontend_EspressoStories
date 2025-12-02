@@ -5,15 +5,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'localhost',  // Permitir localhost
-        port: '4000',            // Porta do servidor de imagens
-        pathname: '/uploads/**', // Caminho para as imagens
+        hostname: 'localhost',  
+        port: '4000',           
+        pathname: '/uploads/**', 
       },
       {
         protocol: 'http',
-        hostname: '127.0.0.1',  // Permitir 127.0.0.1 (IP local)
-        port: '4000',            // Porta do servidor de imagens
-        pathname: '/uploads/**', // Caminho para as imagens
+        hostname: '127.0.0.1', 
+        port: '4000',           
+        pathname: '/uploads/**',
       },
     ],
   },
