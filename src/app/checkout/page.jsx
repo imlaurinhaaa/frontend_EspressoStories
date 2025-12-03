@@ -24,7 +24,7 @@ export default function CheckoutPage() {
     const [addresses, setAddresses] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [paymentMethod, setPaymentMethod] = useState("PIX");
+    const [paymentMethod, setPaymentMethod] = useState("pix");
 
     const [newAddress, setNewAddress] = useState({
         street: "",
@@ -69,9 +69,20 @@ export default function CheckoutPage() {
     };
 
     useEffect(() => {
-        if (userId) {
-            Promise.all([loadCart(), loadAddresses()]).finally(() => setLoading(false));
-        }
+        let mounted = true;
+        setLoading(true);
+
+        (async () => {
+            try {
+                await Promise.all([loadCart(), loadAddresses()]);
+            } catch (err) {
+                console.error("Erro ao carregar dados:", err);
+            } finally {
+                if (mounted) setLoading(false);
+            }
+        })();
+
+        return () => { mounted = false; };
     }, [userId]);
 
     const subtotal = Number(cartData.total_price || 0);
@@ -173,73 +184,75 @@ export default function CheckoutPage() {
             <Header />
 
             <main className={styles.main}>
+
                 <Image src="/img/ball.png" alt="Ball" width={400} height={400} className={`${styles.ballImage} ${styles.position}`} />
                 <Image src="/img/ball.png" alt="Ball" width={100} height={100} className={`${styles.ballImage} ${styles.position2}`} />
                 <Image src="/img/ball.png" alt="Ball" width={100} height={100} className={`${styles.ballImage} ${styles.position3}`} />
                 <Image src="/img/ball.png" alt="Ball" width={250} height={250} className={`${styles.ballImage} ${styles.position4}`} />
+
                 <div className={styles.cardContainer}>
                     <h2 className={styles.title}>Itens do Pedido</h2>
 
                     {cartData.items.map(item => {
-                        const productName = item.product_name || item.featured_product_name;
-                        const productPhoto = item.product_photo
+                        const name = item.product_name || item.featured_product_name;
+                        const photo = item.product_photo
                             ? `http://localhost:4000/uploads/${item.product_photo}.jpg`
                             : item.featured_product_photo
                                 ? `http://localhost:4000/uploads/${item.featured_product_photo}.jpg`
                                 : "/img/logo.png";
 
                         return (
-                            <div key={item.id} className={styles.itemRow}>
+                            <div key={item.id} className={styles.cartItemRow}>
                                 <Image
-                                    src={productPhoto}
-                                    alt={productName}
-                                    width={100}
-                                    height={80}
-                                    className={styles.itemImage}
+                                    src={photo}
+                                    alt={name}
+                                    width={120}
+                                    height={90}
+                                    className={styles.productPhoto}
                                     unoptimized
                                 />
 
                                 <div className={styles.itemInfo}>
-                                    <p className={styles.itemName}>{productName}</p>
-                                    <p className={styles.itemQtd}>Qtd: {item.quantity}</p>
+                                    <p className={styles.subTitle}>{name}</p>
+                                    <p className={styles.text}>Quantidade: {item.quantity}</p>
+                                    <p className={styles.itemTotal}>
+                                        Total do item: <strong>R$ {Number(item.total_item_price || 0).toFixed(2)}</strong>
+                                    </p>
                                 </div>
 
-                                <p className={styles.itemPrice}>
-                                    R$ {Number(item.total_item_price).toFixed(2)}
-                                </p>
+
+
+
+
                             </div>
                         );
                     })}
 
-                    <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
-                    <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
+                    <p className={styles.itemTotal}><strong>Subtotal:</strong> R$ {subtotal.toFixed(2)}</p>
+                    <p className={styles.itemTotal}><strong>Frete: </strong>R$ {frete.toFixed(2)}</p>
 
-                    <p className={styles.totalRow}>
-                        Total: <strong>R$ {total.toFixed(2)}</strong>
+                    <p className={styles.cartTotal}>
+                         <strong>Total: </strong>R$ {total.toFixed(2)}
                     </p>
                 </div>
-                <div className={styles.cardContainer}>
-                    <h2 classNam
-                        e={styles.title}>Endereço de Entrega</h2>
 
-                    {addresses.length > 0 ? (
-                        addresses.map(addr => (
-                            <label key={addr.id} className={styles.addressCard}>
-                                <input
-                                    type="radio"
-                                    checked={selectedAddress?.id === addr.id}
-                                    onChange={() => setSelectedAddress(addr)}
-                                />
-                                <div>
-                                    <p>{addr.street}, {addr.number}</p>
-                                    <p>{addr.neighborhood} - {addr.city}/{addr.state}</p>
-                                    <p>CEP: {addr.cep}</p>
-                                </div>
-                            </label>
-                        ))
-                    ) : (
-                        <p>Nenhum endereço cadastrado.</p>
-                    )}
+                <div className={styles.cardContainer}>
+                    <h2 className={styles.title}>Endereço de Entrega</h2>
+
+                    {addresses.map(addr => (
+                        <label key={addr.id} className={styles.addressCard}>
+                            <input
+                                type="radio"
+                                checked={selectedAddress?.id === addr.id}
+                                onChange={() => setSelectedAddress(addr)}
+                            />
+                            <div>
+                                <p>{addr.street}, {addr.number}</p>
+                                <p>{addr.neighborhood} - {addr.city}/{addr.state}</p>
+                                <p>CEP: {addr.cep}</p>
+                            </div>
+                        </label>
+                    ))}
 
                     <button
                         className={styles.addAddressBtn}
@@ -268,27 +281,24 @@ export default function CheckoutPage() {
                     <h2 className={styles.title}>Forma de Pagamento</h2>
 
                     <div className={styles.paymentRow}>
-                        {[
-                            { label: "PIX", value: "PIX" },
-                            { label: "Cartão", value: "cartao" },
-                            { label: "Dinheiro", value: "dinheiro" }
-                        ].map(method => (
+                        {["pix", "cartao", "dinheiro"].map(method => (
                             <button
-                                key={method.value}
-                                className={`${styles.paymentBtn} ${paymentMethod === method.value ? styles.active : ""}`}
-                                onClick={() => setPaymentMethod(method.value)}
+                                key={method}
+                                className={`${styles.paymentBtn} ${paymentMethod === method ? styles.active : ""}`}
+                                onClick={() => setPaymentMethod(method)}
                             >
-                                {method.label}
+                                {method === "cartao" ? "Cartão" : method.charAt(0).toUpperCase() + method.slice(1)}
                             </button>
                         ))}
                     </div>
+
                     <button className={styles.finishBtn} onClick={finalizeOrder}>
                         Finalizar Pedido
                     </button>
                 </div>
             </main>
+
             <Footer />
         </div>
     );
-
 }

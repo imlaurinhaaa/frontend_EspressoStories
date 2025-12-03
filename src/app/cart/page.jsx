@@ -92,7 +92,6 @@ export default function Carrinho() {
                 <Image src="/img/ball.png" alt="Ball" width={250} height={250} className={`${styles.ballImage} ${styles.position4}`} />
 
                 <div className={styles.cartContainer}>
-                    <div className={styles.div}></div>
                     <div className={styles.containerTitle}>
                     <h1 className={styles.title}>Seu Carrinho</h1>
 
