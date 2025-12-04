@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import Header from '../../components/header';
+import Header from '../../components/headerUser/Header';
 import Footer from '../../components/footer/footer';
 import FoodCard from "../../components/categoryCard/categoryCard";
 import Link from "next/link";

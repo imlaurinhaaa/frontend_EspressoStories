@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from './user.module.css';
 import axios from "axios";
-import Header from "../../components/header";
 import Footer from "../../components/footer/footer";
+import Header from "../../components/headerUser/Header";
 
 export default function UserProfile() {
     const [user, setUser] = useState(null);

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
-import Header from "../../../components/header";
+import Header from "../../../components/headerUser/Header";
 import styles from "./foodId.module.css";
 import { Flex, InputNumber } from "antd";
 

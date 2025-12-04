@@ -14,7 +14,7 @@
 .card:hover {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.358);
     transform: scale(1.05);
-    filter: brightness(1.2);
+    filter: brightness(1.5);
 }
 
 .card:hover .name {
@@ -28,6 +28,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    filter: brightness(0.5);
 }
 
 .name {
@@ -40,7 +41,7 @@
     font-size: 20px;
     color: #fff;
     text-align: center;
-    border-radius: 8px;
+    width: 60%;
 }
 
 @media (min-width: 1024px) {
