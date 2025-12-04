@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import styles from './page.module.css'
 import Image from 'next/image'
-import Header from '../../components/header'
+import Header from '../../components/headerUser/Header'
 import FoodCard from '../../components/foodCard1/foodCard';
 
 export default function Menu() {

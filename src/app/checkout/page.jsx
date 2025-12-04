@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { message } from "antd";
 import styles from "./page.module.css";
-import Header from "../../components/header";
+import Header from "../../components/headerUser/Header";
 import Footer from "../../components/footer/footer";
 
 export default function CheckoutPage() {

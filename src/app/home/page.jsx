@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import CategoryCard from "../../components/categoryCard/categoryCard"
 import React from "react";
-import Header from '../../components/header'
+import Header from '../../components/headerUser/Header'
 import Footer from '../../components/footer/footer'
 import Link from "next/link";
 import SearchInput from "../../components/searchInput/searchInput";
