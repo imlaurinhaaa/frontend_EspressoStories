@@ -8,6 +8,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin";
+import Loading from "../../../components/loading/Loading.jsx";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage.jsx";
 
 export default function CreateProduct() {
     const [selectedImage, setSelectedImage] = useState(null);

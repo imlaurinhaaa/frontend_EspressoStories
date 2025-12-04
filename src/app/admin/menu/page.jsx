@@ -9,28 +9,54 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../../../components/headerAdmin/HeaderAdmin.jsx";
 import ProductAdmin from "../../../components/productAdmin/ProductAdmin.jsx";
+import Loading from "../../../components/loading/Loading.jsx";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage.jsx";
 
 export default function Menu() {
 
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                setError(false);
+                const response = await axios.get(`http://localhost:4000/api/products`);
+                setProducts(Array.isArray(response.data) ? response.data : response.data.products || []);
+                console.log(response.data);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+                setProducts([]);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, [search]);
+
+    const handleRetry = () => {
+        setError(false);
+        setLoading(true);
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/api/products`);
                 setProducts(Array.isArray(response.data) ? response.data : response.data.products || []);
                 console.log(response.data);
-
-
             } catch (error) {
                 console.error("Error fetching products:", error);
                 setProducts([]);
+                setError(true);
+            } finally {
+                setLoading(false);
             }
         };
-
         fetchProducts();
-    }, [ search]);
+    };
 
 
     return (
@@ -80,12 +106,25 @@ export default function Menu() {
                         <p className={styles.categoryTitle}>Salgados</p>
                     </div>
                 </div>
-                <div className={styles.menu}>
-                    {products.map((item) => (                
-                            <ProductAdmin key={item.id} item={item}
-                            />
-                    ))}
-                </div>
+                
+                {loading ? (
+                    <Loading message="Carregando produtos..." />
+                ) : error ? (
+                    <ErrorMessage 
+                        message="Erro ao carregar produtos! Verifique sua conexão e tente novamente." 
+                        onRetry={handleRetry}
+                    />
+                ) : products.length === 0 ? (
+                    <div className={styles.emptyState}>
+                        <p className={styles.emptyText}>Nenhum produto cadastrado no momento.</p>
+                    </div>
+                ) : (
+                    <div className={styles.menu}>
+                        {products.map((item) => (                
+                                <ProductAdmin key={item.id} item={item} />
+                        ))}
+                    </div>
+                )}
             </main>
         </div>
     )
