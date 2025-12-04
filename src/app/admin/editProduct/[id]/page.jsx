@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import HeaderAdmin from "../../../../components/headerAdmin/HeaderAdmin";
+import axios from "axios";
 
 export default function EditProduct() {
     const [product, setProduct] = useState(null);
@@ -19,6 +20,9 @@ export default function EditProduct() {
     const fileInputRef = useRef(null);
     const selectRef = useRef(null);
     const branchSelectRef = useRef(null);
+    const nameRef = useRef(null);
+    const descRef = useRef(null);
+    const priceRef = useRef(null);
     const pathname = usePathname();
 
     const params = useParams();
@@ -100,6 +104,58 @@ export default function EditProduct() {
         { value: 'rio de janeiro', label: 'Rio de Janeiro - RJ' },
         { value: 'são paulo', label: 'São Paulo - SP' }
     ];
+
+    const atualizarComPut = async (produtoEditando) => {
+        try {
+            console.log('Produto a ser atualizado:', produtoEditando);
+            const payload = {
+                id: produtoEditando.id,
+                name: produtoEditando.name,
+                description: produtoEditando.description,
+                price: produtoEditando.price !== undefined && produtoEditando.price !== null ? String(produtoEditando.price) : '',
+                category_name: produtoEditando.category_name,
+                branch: produtoEditando.branch
+            };
+            console.debug('Enviando payload PUT:', payload, 'price type:', typeof payload.price);
+
+            const response = await axios.put(
+                `http://localhost:4000/api/products/${id}`,
+                payload,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+            console.log('Atualização bem-sucedida:', response.data);
+
+            const updated = response.data.product ?? response.data;
+            setProduct(updated);
+            alert('Produto atualizado com sucesso.');
+        } catch (error) {
+            console.error('Erro ao atualizar o produto:', error);
+            if (error.response) {
+                console.error('Resposta do servidor:', error.response.status, error.response.data);
+                alert('Erro ao atualizar o produto: ' + (error.response.data?.message || JSON.stringify(error.response.data)));
+            } else if (error.request) {
+                console.error('Nenhuma resposta do servidor, request enviado:', error.request);
+                alert('Erro: sem resposta do servidor. Verifique se o backend está rodando e CORS.');
+            } else {
+                alert('Erro ao atualizar o produto: ' + error.message);
+            }
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const produtoEditando = {
+            id: id,
+            name: nameRef.current?.value ?? product?.name,
+            description: descRef.current?.value ?? product?.description,
+            price: priceRef.current?.value ? parseFloat(priceRef.current.value) : product?.price,
+            category_name: selectedCategory || product?.category_name,
+            branch: selectedBranch || product?.branch
+        };
+
+        await atualizarComPut(produtoEditando);
+    };
 
     return (
         <div className={styles.page}>
@@ -188,18 +244,20 @@ export default function EditProduct() {
                         </>
                     )}
                 </div>
-                <form className={styles.postForm}>
+                <form className={styles.postForm} onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder={'Nome do Produto'}
                         defaultValue={product?.name ?? ''}
                         className={styles.formInput}
+                        ref={nameRef}
                     />
                     <textarea
                         placeholder={'Descrição do Produto'}
                         defaultValue={product?.description ?? ''}
                         className={styles.formInput}
                         rows={4}
+                        ref={descRef}
                     />
                     <input
                         type="number"
@@ -207,6 +265,7 @@ export default function EditProduct() {
                         defaultValue={product?.price ?? ''}
                         step="0.01"
                         className={styles.formInput}
+                        ref={priceRef}
                     />
                     <div className={styles.customSelect} ref={selectRef}>
                         <div
@@ -265,7 +324,7 @@ export default function EditProduct() {
                         )}
                     </div>
                     <div className={styles.buttonSection}>
-                        <button type="submit" className={styles.cancelButton}>
+                        <button type="button" className={styles.cancelButton} onClick={() => window.history.back()}>
                             CANCELAR
                         </button>
                         <button type="submit" className={styles.submitButton}>

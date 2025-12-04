@@ -56,21 +56,21 @@ export default function Home() {
                 </div>
 
                 <div className={styles.categoryCardsArea}>
-                    <Link href="/doces">
+                    <Link href="https://www.google.com/maps/place/S%C3%A3o+Paulo,+SP/@-23.5665865,-46.6453925,14.5z/data=!4m15!1m8!3m7!1s0x94ce448183a461d1:0x9ba94b08ff335bae!2zU8OjbyBQYXVsbywgU1A!3b1!8m2!3d-23.5557714!4d-46.6395571!16zL20vMDIycGZt!3m5!1s0x94ce448183a461d1:0x9ba94b08ff335bae!8m2!3d-23.5557714!4d-46.6395571!16zL20vMDIycGZt?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
                         <CategoryCard
                             img='/img/filial-saoPaulo.png'
                             alt='Filial de São Paulo'
                             name='SÃO PAULO'
                         />
                     </Link>
-                    <Link href="/bebidas">
+                    <Link href="https://www.google.com/maps/place/Rio+de+Janeiro,+RJ/@-22.9119314,-43.4143417,11.5z/data=!4m15!1m8!3m7!1s0x9bde559108a05b:0x50dc426c672fd24e!2sRio+de+Janeiro,+RJ!3b1!8m2!3d-22.9068467!4d-43.1728965!16zL20vMDZnbXI!3m5!1s0x9bde559108a05b:0x50dc426c672fd24e!8m2!3d-22.9068467!4d-43.1728965!16zL20vMDZnbXI?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
                         <CategoryCard
                             img='/img/filial-rio.png'
                             alt='Filial do Rio de Janeiro'
                             name='RIO DE JANEIRO'
                         />
                     </Link>
-                    <Link href="/salgados">
+                    <Link href="https://www.google.com/maps/place/Bel%C3%A9m,+PA/@-1.3978068,-48.5526315,12z/data=!4m15!1m8!3m7!1s0x92a461af84756ce1:0x570d540215864c35!2zQmVsw6ltLCBQQQ!3b1!8m2!3d-1.4563432!4d-48.501299!16s%2Fg%2F1pxyyzx3r!3m5!1s0x92a461af84756ce1:0x570d540215864c35!8m2!3d-1.4563432!4d-48.501299!16s%2Fg%2F1pxyyzx3r?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
                         <CategoryCard
                             img='/img/filial-belem.png'
                             alt='Filial de Belém'
