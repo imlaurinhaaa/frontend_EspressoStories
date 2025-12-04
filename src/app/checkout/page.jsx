@@ -144,12 +144,14 @@ export default function CheckoutPage() {
             });
 
             const orderResult = await orderRes.json();
+            console.log("Resposta da criação do pedido:", orderResult);
 
             if (!orderRes.ok) {
                 return message.error("Erro ao criar o pedido.");
             }
 
             const orderId = orderResult?.newOrder?.id || orderResult?.id;
+            console.log("Pedido criado com ID:", orderId);
 
             for (const item of cartData.items) {
                 await fetch(`http://localhost:4000/api/order_items`, {
@@ -169,7 +171,8 @@ export default function CheckoutPage() {
             });
 
             message.success("Pedido criado com sucesso!");
-            router.push(`/orderCompleted/[id]`);
+            console.log("Redirecionando para página de pedido finalizado:", orderId);
+            router.push(`/orderCompleted/${orderId}`);
 
         } catch (error) {
             console.error("Erro ao finalizar pedido:", error);
