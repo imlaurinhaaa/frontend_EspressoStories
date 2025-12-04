@@ -125,10 +125,8 @@ export default function Menu() {
       </section>
 
 
-      <main className={styles.mainMenu}>
+      <main className={styles.mainMenu}>        
         <div className={styles.filterContainer}>
-
-
           <div
             className={`${styles.filterCard} ${activeCategory === "Comidas Doce" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/doce-banner.png')" }}
@@ -179,6 +177,3 @@ export default function Menu() {
     </div>
   );
 }
-
-
-
