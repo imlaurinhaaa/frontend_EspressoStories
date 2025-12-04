@@ -5,6 +5,8 @@ import styles from './page.module.css'
 import Image from 'next/image'
 import Header from '../../components/headerUser/Header'
 import FoodCard from '../../components/foodCard1/foodCard';
+import Loading from '../../components/loading/Loading';
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 export default function Menu() {
 
@@ -12,12 +14,12 @@ export default function Menu() {
 
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchProducts = async () => {
     try {
-      setIsLoading(true);
+      setLoading(true);
       setError(null);
 
       console.log('Fetching products from:', `${API_URL}/products`);
@@ -27,7 +29,6 @@ export default function Menu() {
 
       let data = response.data;
 
-      // Garante que data seja um array
       if (!Array.isArray(data)) {
         if (data?.products) data = data.products;
         else if (data?.data) data = data.data;
@@ -42,7 +43,7 @@ export default function Menu() {
       setError('Não foi possível carregar os produtos. Verifique se o servidor está rodando.');
       setProducts([]);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -133,17 +134,17 @@ export default function Menu() {
         </div>
 
         <section className={styles.productsList}>
-          {isLoading ? (
-            <p>Carregando...</p>
+          {loading ? (
+            <Loading message="Carregando produtos..." />
           ) : error ? (
-            <div className={styles.errorMessage}>
-              <p>{error}</p>
-              <button onClick={fetchProducts} className={styles.retryButton}>
-                Tentar Novamente
-              </button>
-            </div>
+            <ErrorMessage 
+              message={error} 
+              onRetry={fetchProducts}
+            />
           ) : filteredItems.length === 0 ? (
-            <p>Nenhum produto encontrado.</p>
+            <div className={styles.emptyState}>
+              <p className={styles.emptyText}>Nenhum produto encontrado.</p>
+            </div>
           ) : (
             filteredItems.map((item) => (
               <FoodCard key={item.id} item={item} />

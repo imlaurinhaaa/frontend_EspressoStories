@@ -9,6 +9,8 @@ import axios from "axios";
 
 import OrderCard from "../../../components/orderCard/OrderCard.jsx";
 import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin.jsx";
+import Loading from "../../../components/loading/Loading.jsx";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage.jsx";
 
 export default function Dashboard() {
     const [orders, setOrders] = useState([]);
@@ -133,9 +135,16 @@ export default function Dashboard() {
                 </div>
 
                 {loading ? (
-                    <p>Carregando pedidos ...</p>
+                    <Loading message="Carregando pedidos..." />
                 ) : error ? (
-                    <p>Erro ao carregar pedidos!</p>
+                    <ErrorMessage 
+                        message="Erro ao carregar pedidos! Verifique sua conexão e tente novamente." 
+                        onRetry={fetchOrders}
+                    />
+                ) : orders.length === 0 ? (
+                    <div className={styles.emptyState}>
+                        <p className={styles.emptyText}>Nenhum pedido encontrado no momento.</p>
+                    </div>
                 ) : (
                     <>
                         <div className={styles.cardContainer}>

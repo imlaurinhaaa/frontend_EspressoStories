@@ -185,3 +185,19 @@
 .scrollButton:active:not(.disabled) {
     transform: scale(0.95);
 }
+
+.emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    width: 100%;
+    padding: 3rem;
+}
+
+.emptyText {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #A2663C;
+    text-align: center;
+}
