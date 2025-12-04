@@ -20,6 +20,7 @@ export default function Dashboard() {
 
     const fetchOrders = async () => {
         try {
+            setLoading(true);
             setError(false);
             const response = await axios.get("http://localhost:4000/api/order_items");
             setOrders(response.data);
@@ -31,6 +32,11 @@ export default function Dashboard() {
             setLoading(false);
         }
     };
+
+    // Carregar pedidos automaticamente ao montar o componente
+    useEffect(() => {
+        fetchOrders();
+    }, []);
 
     useEffect(() => {
         console.log("STATE orders atualizado:", orders);
@@ -49,9 +55,14 @@ export default function Dashboard() {
         const element = cardSectionRef.current;
         if (element) {
             element.addEventListener("scroll", checkScrollButtons);
-            return () => element.removeEventListener("scroll", checkScrollButtons);
+            // Verificar scroll após carregar pedidos
+            window.addEventListener("resize", checkScrollButtons);
+            return () => {
+                element.removeEventListener("scroll", checkScrollButtons);
+                window.removeEventListener("resize", checkScrollButtons);
+            };
         }
-    }, []);
+    }, [orders]); // Adicionar orders como dependência
 
     const scrollLeft = () => {
         if (cardSectionRef.current) {
@@ -59,6 +70,8 @@ export default function Dashboard() {
                 left: -320,
                 behavior: "smooth",
             });
+            // Aguardar o scroll terminar antes de verificar os botões
+            setTimeout(checkScrollButtons, 300);
         }
     };
 
@@ -68,6 +81,8 @@ export default function Dashboard() {
                 left: 320,
                 behavior: "smooth",
             });
+            // Aguardar o scroll terminar antes de verificar os botões
+            setTimeout(checkScrollButtons, 300);
         }
     };
     return (
@@ -110,10 +125,7 @@ export default function Dashboard() {
                     <button
                         type="button"
                         className={styles.button}
-                        onClick={() => {
-                            setLoading(true);
-                            fetchOrders();
-                        }}
+                        onClick={fetchOrders}
                     >
                         <SyncOutlined />
                         ATUALIZAR
@@ -138,20 +150,20 @@ export default function Dashboard() {
 
                             <div className={styles.cardSection} ref={cardSectionRef}>
                                 {orders.map((order) => {
-                                    const productImageUrl = `http://127.0.0.1:4000/uploads/${order.order_product_photo}.jpg`; // Usando 'order_product_photo'
+                                    const productImageUrl = `http://127.0.0.1:4000/uploads/${order.order_product_photo}.jpg`;
 
-                                    // Logando o URL da imagem no console
                                     console.log("Imagem do produto:", productImageUrl);
 
                                     return (
                                         <OrderCard
                                             key={order.id}
-                                            productImage={productImageUrl} // Passando a URL completa da imagem
-                                            productName={order.order_product_name} // Usando o nome correto do produto
+                                            productImage={productImageUrl}
+                                            productName={order.order_product_name} 
                                             orderNumber={order.order_id}
                                             orderClient={order.order_user_name}
                                             productQuantity={order.quantity}
                                             orderPrice={order.order_total_value}
+                                            paymentMethod={order.order_payment_method}
                                         />
                                     );
                                 })}
