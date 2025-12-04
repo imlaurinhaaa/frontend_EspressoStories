@@ -168,9 +168,10 @@
     color: #fff;
     font-size: 18px;
     position: relative;
+    pointer-events: auto;
 }
 
-.scrollButton:hover {
+.scrollButton:hover:not(.disabled) {
     background-color: #fff;
     color: #85AFD8;
     transform: scale(1.1);
@@ -179,11 +180,8 @@
 .scrollButton.disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    pointer-events: none;
 }
 
-.scrollButton.disabled:hover {
-    background-color: #85AFD8;
-    color: #fff;
-    transform: none;
+.scrollButton:active:not(.disabled) {
+    transform: scale(0.95);
 }
