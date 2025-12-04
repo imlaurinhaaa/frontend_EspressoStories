@@ -18,6 +18,7 @@ export default function Menu() {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("Todos");
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -96,22 +97,41 @@ export default function Menu() {
                     </Link>
                 </div>
                 <div className={styles.categoriesSection}>
-                    <div className={styles.categoryBox}>
+                    <div
+                        className={`${styles.categoryBox} ${selectedCategory === "Todos" ? styles.active : ""}`}
+                        onClick={() => setSelectedCategory("Todos")}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <p className={styles.categoryTitle}>Todos</p>
+                    </div>
+                    <div
+                        className={`${styles.categoryBox} ${selectedCategory === "Bebidas" ? styles.active : ""}`}
+                        onClick={() => setSelectedCategory("Bebidas")}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <p className={styles.categoryTitle}>Bebidas</p>
                     </div>
-                    <div className={styles.categoryBox}>
+                    <div
+                        className={`${styles.categoryBox} ${selectedCategory === "Sobremesas" ? styles.active : ""}`}
+                        onClick={() => setSelectedCategory("Sobremesas")}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <p className={styles.categoryTitle}>Sobremesas</p>
                     </div>
-                    <div className={styles.categoryBox}>
+                    <div
+                        className={`${styles.categoryBox} ${selectedCategory === "Salgados" ? styles.active : ""}`}
+                        onClick={() => setSelectedCategory("Salgados")}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <p className={styles.categoryTitle}>Salgados</p>
                     </div>
                 </div>
-                
+
                 {loading ? (
                     <Loading message="Carregando produtos..." />
                 ) : error ? (
-                    <ErrorMessage 
-                        message="Erro ao carregar produtos! Verifique sua conexão e tente novamente." 
+                    <ErrorMessage
+                        message="Erro ao carregar produtos! Verifique sua conexão e tente novamente."
                         onRetry={handleRetry}
                     />
                 ) : products.length === 0 ? (
@@ -120,9 +140,19 @@ export default function Menu() {
                     </div>
                 ) : (
                     <div className={styles.menu}>
-                        {products.map((item) => (                
+                        {products
+                            .filter((item) => {
+                                if (selectedCategory === "Todos") return true;
+                                return item.category_name === selectedCategory ||
+                                    (selectedCategory === "Salgados" && item.category_name === "Comidas Salgadas") ||
+                                    (selectedCategory === "Sobremesas" && item.category_name === "Comidas Doces") ||
+                                    (selectedCategory === "Bebidas" && item.category_name === "Bebidas Quentes") ||
+                                    (selectedCategory === "Bebidas" && item.category_name === "Bebidas Geladas");
+                            })
+                            .map((item) => (
                                 <ProductAdmin key={item.id} item={item} />
-                        ))}
+                            ))
+                        }
                     </div>
                 )}
             </main>

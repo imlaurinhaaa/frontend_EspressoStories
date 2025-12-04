@@ -50,7 +50,6 @@ export default function UserProfile() {
         fetchAddress();
     }, [user]);
 
-    // <<< ADICIONADO — CARREGAR PEDIDOS (CARRINHO SALVO)
     useEffect(() => {
         const loadCart = async () => {
             if (!user || !user.id) return;
@@ -68,7 +67,7 @@ export default function UserProfile() {
     }, [user]);
 
     const getUserPhoto = () => {
-        if (!user || !user.photo) return "/img/logo.png";
+        if (!user || !user.photo) return "/img/user.jpg";
         return `http://localhost:4000/uploads/${user.photo}`;
     };
 
