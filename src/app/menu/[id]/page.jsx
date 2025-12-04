@@ -5,13 +5,17 @@ import axios from "axios";
 import Image from "next/image";
 import Header from "../../../components/headerUser/Header";
 import styles from "./foodId.module.css";
-import { Flex, InputNumber } from "antd";
+import { Flex, InputNumber, message } from "antd";
 
 export default function FoodDetail() {
   const { id } = useParams();
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1); // Quantidade selecionada
+  const [adding, setAdding] = useState(false);
+
+  const cart_id = 1; // Substitua pelo ID real do carrinho do usuário logado
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -30,22 +34,35 @@ export default function FoodDetail() {
     fetchProduct();
   }, [id]);
 
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
-  if (!product) {
-    return <p>Produto não encontrado.</p>;
-  }
+  const handleAddToCart = async () => {
+    if (!product) return;
 
-  const onChange = (value) => {
-    console.log("changed", value);
+    setAdding(true);
+    try {
+      const response = await axios.post("http://localhost:4000/api/cart_items", {
+        cart_id,
+        product_id: product.id,
+        quantity,
+      });
+
+      message.success("Produto adicionado ao carrinho!");
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erro ao adicionar ao carrinho:", error);
+      message.error("Erro ao adicionar ao carrinho");
+    } finally {
+      setAdding(false);
+    }
   };
+
+  if (loading) return <p>Carregando...</p>;
+  if (!product) return <p>Produto não encontrado.</p>;
 
   const sharedProps = {
     min: 1,
     max: 10,
-    defaultValue: 3,
-    onChange,
+    value: quantity,
+    onChange: (val) => setQuantity(val),
     style: { width: 150 },
   };
 
@@ -79,16 +96,20 @@ export default function FoodDetail() {
           <div className={styles.sobre}>
             <h3 className={styles.subTitle}>Sobre</h3>
             <div className={styles.descriptionBox}>
-                <div className={styles.text}>
-              <p>{product.description}</p>
-              {product.inspiration && <p className={styles.inspiration}>{product.inspiration}</p>}
-                </div>
+              <div className={styles.text}>
+                <p>{product.description}</p>
+                {product.inspiration && (
+                  <p className={styles.inspiration}>{product.inspiration}</p>
+                )}
+              </div>
               {product.photo_inspiration && (
                 <aside className={styles.book}>
                   <Image
                     src={`http://localhost:4000/uploads/${product.photo_inspiration}.jpg`}
                     alt={
-                      product.name ? `${product.name} inspiração` : "Inspiração"
+                      product.name
+                        ? `${product.name} inspiração`
+                        : "Inspiração"
                     }
                     width={300}
                     height={300}
@@ -107,6 +128,14 @@ export default function FoodDetail() {
             </Flex>
           </aside>
         </div>
+
+        <button
+          className={styles.addButton}
+          onClick={handleAddToCart}
+          disabled={adding}
+        >
+          {adding ? "Adicionando..." : "Adicionar ao Carrinho"}
+        </button>
 
         <button
           className={styles.backButton}
