@@ -44,11 +44,14 @@
 
 .titleSection {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 3rem 0 2rem 2rem;
     position: relative;
+    gap: 1rem;
+    margin-bottom: 3rem;
 }
 
 .title {
@@ -56,7 +59,13 @@
     font-weight: 800;
     color: #3F1D0E;
     text-decoration: underline;
-    margin-bottom: 3rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3F1D0E;
+    margin: 0;
 }
 
 .navButton {
