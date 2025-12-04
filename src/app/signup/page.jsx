@@ -17,20 +17,30 @@ export default function SignUp() {
     setCarregando(true);
 
     try {
-      const { data } = await axios.post('http://localhost:4000/api/users', {
-        name: values.name,
-        email: values.email,
-        password_hash: values.password_hash,
-        cep: values.cep
-      });
+      const { data } = await axios.post(
+        "http://localhost:4000/api/users",
+        {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          password_hash: values.password_hash
+        }
+      );
 
-      sessionStorage.setItem('usuario', JSON.stringify(data.usuario || data));
+      const usuario = data.newUser;
 
-      router.replace('/home');
+      sessionStorage.setItem("usuario", JSON.stringify(usuario));
+
+      router.replace("/home");
 
     } catch (err) {
       console.error("Erro no cadastro:", err);
-      const msg = err.response?.data?.erro || err.response?.data?.message || err.message || 'Erro ao conectar com o servidor';
+      const msg =
+        err.response?.data?.message ||
+        err.response?.data?.erro ||
+        err.message ||
+        "Erro ao conectar com o servidor";
+
       setErro(msg);
     } finally {
       setCarregando(false);
@@ -72,15 +82,14 @@ export default function SignUp() {
                 <Input placeholder='Email' className={styles.input} />
               </Form.Item>
 
-
               <Form.Item
-                name="cep"
+                name="phone"
                 rules={[
-                  { required: true, message: 'CEP obrigatório' },
-                  { pattern: /^\d{5}-?\d{3}$/, message: 'CEP inválido!' }
+                  { required: true, message: 'Telefone obrigatório' },
+                  { pattern: /^\d+$/, message: 'O telefone deve conter apenas números' }
                 ]}
               >
-                <Input placeholder="CEP" maxLength={9} className={styles.input} />
+                <Input placeholder='Telefone (somente números)' maxLength={11} className={styles.input} />
               </Form.Item>
 
               <Form.Item
@@ -95,6 +104,7 @@ export default function SignUp() {
                   Sign Up
                 </Button>
               </Form.Item>
+
             </Form>
           </div>
         </div>

@@ -3,6 +3,7 @@ acolhedora
 aconchegante
 aconchego
 acreditamos
+ADICIONADO
 Água
 Alterações
 Alterar
@@ -25,10 +26,13 @@ Branco
 busca
 buscar
 cada
+cadastrado
 capítulo
 carinho
+Carrega
 Carregando
 carregar
+CARRINHO
 centro
 chamada
 cidade
@@ -43,6 +47,7 @@ culturais
 curiosidade
 deliciosa
 descobrem
+Desconhecido
 Descrição
 desfrutam
 desperta
@@ -81,6 +86,7 @@ gole
 harmonia
 história
 histórias
+Histórico
 Horário
 ícone
 Imagem
@@ -129,6 +135,7 @@ Pesquisar
 poção
 podem
 Ponto
+Preço
 preparado
 preparados
 primeiro
@@ -137,6 +144,7 @@ produtos
 próxima
 rapida
 Rápidas
+realizado
 Recarregar
 recebidos
 recém
