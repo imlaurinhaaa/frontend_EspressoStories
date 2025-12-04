@@ -141,6 +141,15 @@
     color: #ffffff;
 }
 
+.categoryBox.active {
+    background-color: #3F1D0E;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.categoryBox.active .categoryTitle {
+    color: #ffffff;
+}
+
 .categoryTitle{
     font-size: 1rem;
     font-weight: 500;
