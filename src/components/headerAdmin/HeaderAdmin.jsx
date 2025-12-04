@@ -10,11 +10,13 @@ import { SquarePen } from 'lucide-react';
 export default function HeaderAdmin() {
     return (
         <header className={styles.header}>
-            <Image src={"/img/logocompleta.png"} alt="Logo Espresso Stories" width={200} height={100} className={styles.logo} />
+            <Link href="dashboard" className={styles.link}>
+                <Image src={"/img/logocompleta.png"} alt="Logo Espresso Stories" width={200} height={100} className={styles.logo} />
+            </Link>
             <section className={styles.navLinks}>
                 <Link href="dashboard" className={styles.link}>Dashboard</Link>
                 <Link href="menu" className={styles.link}>Cardápio</Link>
-                <Link href="create"><SquarePlus className={styles.link} /></Link>
+                <Link href="createGeral"><SquarePlus className={styles.link} /></Link>
                 <Link href="editProduct"><SquarePen className={styles.link} /></Link>
                 <Link href="userAdmin"><UserRoundCheck className={styles.link} /></Link>
             </section>

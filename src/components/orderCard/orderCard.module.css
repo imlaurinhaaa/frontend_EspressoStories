@@ -11,17 +11,19 @@
     flex-shrink: 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    overflow: visible;
+    overflow: hidden;
     scroll-snap-align: center;
     transform-origin: center;
     transform: rotateX(180deg);
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
     transform: rotateX(180deg) scale(1.03) translateY(-10px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
     background-color: #A2663C;
-    height: 450px;
+    height: 480px;
     z-index: 10;
 }
 
@@ -41,23 +43,18 @@
     color: white;
 }
 
-.card:hover .orderPrice {
-    color: white;
-    margin-top: 1rem;
-}
-
-.cardButtons {
+.cardButton {
     display: flex;
-    gap: 10px;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: auto;
+    padding-bottom: 0.5rem;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     pointer-events: none;
 }
 
-.card:hover .cardButtons {
+.card:hover .cardButton {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -77,6 +74,8 @@
 .acceptButton {
     background-color: #2dd000;
     color: white;
+    position: relative;
+    overflow: hidden;
 }
 
 .acceptButton:hover {
@@ -84,14 +83,28 @@
     transform: scale(1.05);
 }
 
-.rejectButton {
-    background-color: #D90606;
-    color: white;
+.acceptButton:active {
+    background-color: #1fa000;
+    transform: scale(0.95);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-.rejectButton:hover {
-    background-color: rgb(199, 0, 20);
-    transform: scale(1.05);
+.acceptButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.acceptButton:active::after {
+    width: 300px;
+    height: 300px;
 }
 
 .cardImage {
@@ -153,6 +166,30 @@
     font-size: 1.5rem;
     font-weight: 800;
     color: #208D01;
-    margin-top: 2rem;
     margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.paymentMethod {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #3F1D0E;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .orderPrice {
+    opacity: 1;
+    transform: translateY(0);
+    color: white;
+}
+
+.card:hover .paymentMethod {
+    opacity: 1;
+    transform: translateY(0);
+    color: white;
 }

@@ -1,0 +1,107 @@
+.errorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    width: 100%;
+    padding: 3rem;
+}
+
+.errorContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 500px;
+    text-align: center;
+}
+
+.iconContainer {
+    position: relative;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+.errorIcon {
+    filter: drop-shadow(0 8px 16px rgba(63, 29, 14, 0.2)) grayscale(30%);
+    opacity: 0.8;
+}
+
+.errorSymbol {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    background-color: #D90606;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    box-shadow: 0 4px 12px rgba(217, 6, 6, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(217, 6, 6, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(217, 6, 6, 0.6);
+    }
+}
+
+.errorTitle {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #3F1D0E;
+    margin: 0;
+}
+
+.errorText {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #A2663C;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.retryButton {
+    background-color: #A2663C;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(162, 102, 60, 0.3);
+}
+
+.retryButton:hover {
+    background-color: #85AFD8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(133, 175, 216, 0.4);
+}
+
+.retryButton:active {
+    transform: translateY(-1px) scale(0.98);
+}

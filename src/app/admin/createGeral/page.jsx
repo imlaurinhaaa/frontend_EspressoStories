@@ -193,6 +193,7 @@ export default function CreateProduct() {
             <HeaderAdmin />
             <div className={styles.titleSection}>
                 <h1 className={styles.title}>CRIAR PRODUTO</h1>
+                <p className={styles.subtitle}>Preencha os dados abaixo para criar um novo produto em todas as lojas.</p>
             </div>
             <div className={styles.buttonSection}>
                 <Link href="/admin/createGeral" className={`${styles.navButton} ${pathname === '/admin/createGeral' ? styles.activeButton : ''}`}>

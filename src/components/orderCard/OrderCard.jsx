@@ -1,5 +1,4 @@
 import styles from "./orderCard.module.css";
-import Image from "next/image";
 
 export default function OrderCard({
     productImage,
@@ -8,6 +7,8 @@ export default function OrderCard({
     orderClient,
     productQuantity,
     orderPrice,
+    paymentMethod,
+    
 }) {
     return (
         <div className={styles.card}>
@@ -27,14 +28,16 @@ export default function OrderCard({
                 <p className={styles.orderQtde}>QUANTIDADE</p>
                 <div className={styles.circle}>{productQuantity}</div>
             </div>
+
+            <p className={styles.paymentMethod}>
+                PAGAMENTO - {paymentMethod.toUpperCase()}
+            </p>
+
             <h3 className={styles.orderPrice}>R${orderPrice}</h3>
 
-            <div className={styles.cardButtons}>
+            <div className={styles.cardButton}>
                 <button className={`${styles.actionButton} ${styles.acceptButton}`}>
                     PREPARAR
-                </button>
-                <button className={`${styles.actionButton} ${styles.rejectButton}`}>
-                    RECUSAR
                 </button>
             </div>
         </div>

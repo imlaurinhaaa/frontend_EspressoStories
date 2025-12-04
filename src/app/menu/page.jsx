@@ -6,26 +6,34 @@ import Image from 'next/image'
 import Header from '../../components/headerUser/Header'
 import FoodCard from '../../components/foodCard1/foodCard';
 
+
 export default function Menu() {
 
+
   const API_URL = 'http://localhost:4000/api';
+
 
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
       setError(null);
 
+
       console.log('Fetching products from:', `${API_URL}/products`);
+
 
       const response = await axios.get(`${API_URL}/products`);
       console.log('Products received:', response.data);
 
+
       let data = response.data;
+
 
       // Garante que data seja um array
       if (!Array.isArray(data)) {
@@ -34,8 +42,10 @@ export default function Menu() {
         else data = [];
       }
 
+
       sessionStorage.setItem('products', JSON.stringify(data));
       setProducts(data);
+
 
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -46,9 +56,11 @@ export default function Menu() {
     }
   };
 
+
   useEffect(() => {
     const produtosArmazenados = sessionStorage.getItem('products');
     let loadedFromCache = false;
+
 
     if (produtosArmazenados) {
       try {
@@ -63,10 +75,12 @@ export default function Menu() {
       }
     }
 
+
     if (!loadedFromCache) {
       fetchProducts();
     }
   }, []);
+
 
   const categoryMap = {
     "Comidas Doce": 1,
@@ -74,40 +88,48 @@ export default function Menu() {
     "bebidas": [3, 4],
   };
 
+
   const handleFilterClick = (category) => {
     setActiveCategory((prev) => (prev === category ? null : category));
   };
 
+
   const filteredItems = (products || []).filter((product) => {
     if (!activeCategory) return true;
 
+
     const mappedId = categoryMap[activeCategory];
     const productCategoryId = Number(product.category_id);
+
 
     if (Array.isArray(mappedId)) {
       return mappedId.includes(productCategoryId);
     }
 
+
     return productCategoryId === mappedId;
   });
+
 
   return (
     <div className={styles.menuPage}>
       <Header />
       <section className={styles.menuBanner}>
-        <Image 
-          src={"/img/menuBanner.png"} 
-          alt="Menu Banner" 
-          width={1300} 
-          height={500} 
-          className={styles.menuBannerImage} 
+        <Image
+          src={"/img/menuBanner.png"}
+          alt="Menu Banner"
+          width={1300}
+          height={500}
+          className={styles.menuBannerImage}
         />
       </section>
+
 
       <main className={styles.mainMenu}>
         <div className={styles.filterContainer}>
 
-          <div 
+
+          <div
             className={`${styles.filterCard} ${activeCategory === "Comidas Doce" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/doce-banner.png')" }}
             onClick={() => handleFilterClick("Comidas Doce")}
@@ -115,7 +137,8 @@ export default function Menu() {
             <span className={styles.filterLabel}>SOBREMESAS</span>
           </div>
 
-          <div 
+
+          <div
             className={`${styles.filterCard} ${activeCategory === "bebidas" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/bebida-banner.png')" }}
             onClick={() => handleFilterClick("bebidas")}
@@ -123,7 +146,8 @@ export default function Menu() {
             <span className={styles.filterLabel}>BEBIDAS</span>
           </div>
 
-          <div 
+
+          <div
             className={`${styles.filterCard} ${activeCategory === "Comidas Salgadas" ? styles.active : ''}`}
             style={{ backgroundImage: "url('/img/salgado-banner.png')" }}
             onClick={() => handleFilterClick("Comidas Salgadas")}
@@ -131,6 +155,7 @@ export default function Menu() {
             <span className={styles.filterLabel}>SALGADOS</span>
           </div>
         </div>
+
 
         <section className={styles.productsList}>
           {isLoading ? (
@@ -154,3 +179,6 @@ export default function Menu() {
     </div>
   );
 }
+
+
+

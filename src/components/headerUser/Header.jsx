@@ -9,8 +9,9 @@ import { CircleUserRound } from 'lucide-react';
 export default function HeaderAdmin() {
     return (
         <header className={styles.header}>
-            <Image src={"/img/logocompleta.png"} alt="Logo Espresso Stories" width={200} height={100} className={styles.logo} />
-            <section className={styles.navLinks}>
+            <Link href="/home" className={styles.link}>
+                <Image src={"/img/logocompleta.png"} alt="Logo Espresso Stories" width={200} height={100} className={styles.logo} />
+            </Link>            <section className={styles.navLinks}>
                 <Link href="/home" className={styles.link}>Home</Link>
                 <Link href="/menu" className={styles.link}>Menu</Link>
                 <Link href="/cart"><ShoppingCart className={styles.link} /></Link>

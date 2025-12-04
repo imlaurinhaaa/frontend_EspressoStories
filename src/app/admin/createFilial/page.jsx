@@ -8,6 +8,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import HeaderAdmin from "../../../components/headerAdmin/HeaderAdmin";
+import Loading from "../../../components/loading/Loading.jsx";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage.jsx";
 
 export default function CreateProduct() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -118,6 +120,7 @@ export default function CreateProduct() {
             <HeaderAdmin />
             <div className={styles.titleSection}>
                 <h1 className={styles.title}>CRIAR PRODUTO</h1>
+                <p className={styles.subtitle}>Preencha os dados abaixo para criar um novo produto na filial selecionada.</p>
             </div>
             <div className={styles.buttonSection}>
                         <Link href="/admin/createGeral" className={`${styles.navButton} ${pathname === '/admin/createGeral' ? styles.activeButton : ''}`}>
