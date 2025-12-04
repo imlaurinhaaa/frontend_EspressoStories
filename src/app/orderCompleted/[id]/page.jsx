@@ -26,6 +26,8 @@ export default function OrderCompleted({ params }) {
                 const data = await response.json();
                 if (data.orderItem) {
                     setOrderItems(data.orderItem);
+                } else {
+                    setOrderItems([]);
                 }
             } catch (error) {
                 console.error("Erro ao buscar itens do pedido:", error);
@@ -52,41 +54,42 @@ export default function OrderCompleted({ params }) {
     const calculateTotal = () => {
         return orderItems.reduce((total, item) => {
             const itemPrice = parseFloat(item.price) || 0;
-            return total + itemPrice;
+            const itemQuantity = parseInt(item.quantity) || 0;
+            return total + (itemPrice * itemQuantity);
         }, 0);
     };
 
     const totalCompra = calculateTotal().toFixed(2);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.pageContainer}>
             <div className={styles.bannerCompleted}>
-                <Image src={"/img/orderCompleted.png"} alt="Banner Pedido Completo" width={1600} height={500} style={{ objectFit: "cover" }} unoptimized />
             </div>
+
             <div className={styles.content}>
-                <h3 className={styles.title}>Seu Pedido</h3>
+                <h2 className={styles.title}>Seu Pedido</h2>
                 <div className={styles.line}></div>
+
                 <div className={styles.contentItems}>
                     <div className={styles.orderItemList}>
                         {orderItems.map((item) => (
-                            <div key={item.id} className={styles.itemHeader}>
-                                <div className={styles.itemInfo}>
-                                    {item.photo && typeof item.photo === 'string' && item.photo.trim() !== '' && (
-                                        <div className={styles.imageContainer}>
-                                            <Image
-                                                src={`http://localhost:4000/uploads/${item.photo}.jpg`}
-                                                alt={item.name}
-                                                width={80}
-                                                height={80}
-                                                style={{ objectFit: "cover" }}
-                                                unoptimized
-                                            />
-                                        </div>
-                                    )}
-                                    <h3 className={styles.name}>{item.name}</h3>
-                                </div>
+                            <div key={item.id} className={styles.itemCard}>
+
+                                {item.photo && typeof item.photo === 'string' && item.photo.trim() !== '' && (
+                                    <div className={styles.imageContainer}>
+                                        <Image
+                                            src={`http://localhost:4000/uploads/${item.photo}.jpg`}
+                                            alt={item.name}
+                                            width={80}
+                                            height={80}
+                                            style={{ objectFit: "cover" }}
+                                            unoptimized
+                                        />
+                                    </div>
+                                )}
 
                                 <div className={styles.details}>
+                                    <h3 className={styles.name}>{item.name}</h3>
                                     <p className={styles.quantity}>Quantidade: {item.quantity}</p>
                                     <p className={styles.price}>Preço: R$ {parseFloat(item.price).toFixed(2)}</p>
                                 </div>
@@ -108,7 +111,7 @@ export default function OrderCompleted({ params }) {
 
                 <div className={styles.buttonContainer}>
                     <Link href={"/home"} className={styles.button}>Volte para a nossa home</Link>
-                    <Link href={"/orderStatus"} className={styles.button}>Ver o status do pedido</Link>
+                    <Link href={"/status"} className={styles.button}>Ver o status do pedido</Link>
                 </div>
             </div>
         </div>
