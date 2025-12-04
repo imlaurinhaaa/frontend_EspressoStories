@@ -12,10 +12,22 @@ export default function FoodDetail() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1); // Quantidade selecionada
+  const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
+  const [cartId, setCartId] = useState(null);
+  const [userId, setUserId] = useState(null);
 
-  const cart_id = 1; // Substitua pelo ID real do carrinho do usuário logado
+  useEffect(() => {
+    // Pega o usuário do sessionStorage
+    const userSession = sessionStorage.getItem("usuario");
+    if (userSession) {
+      const user = JSON.parse(userSession);
+      setUserId(user.id);
+    } else {
+      message.warning("Você precisa estar logado para adicionar ao carrinho!");
+      router.push("/login"); // Redireciona para login se não estiver logado
+    }
+  }, [router]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -37,11 +49,27 @@ export default function FoodDetail() {
   const handleAddToCart = async () => {
     if (!product) return;
 
+    if (!userId) {
+      message.error("Você precisa estar logado para adicionar ao carrinho!");
+      router.push("/login");
+      return;
+    }
+
     setAdding(true);
     try {
+      // Primeiro, verifica/cria o carrinho do usuário
+      const cartResponse = await axios.get(
+        `http://localhost:4000/api/cart/verify/${userId}`
+      );
+
+      const cart_id = cartResponse.data.cart.id;
+      setCartId(cart_id);
+
+      // Depois adiciona o item ao carrinho
       const response = await axios.post("http://localhost:4000/api/cart_items", {
         cart_id,
         product_id: product.id,
+        featured_product_id: product.id,
         quantity,
       });
 

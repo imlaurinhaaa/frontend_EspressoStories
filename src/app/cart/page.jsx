@@ -28,10 +28,15 @@ export default function Carrinho() {
     };
 
     useEffect(() => {
-        const storedId = typeof window !== 'undefined' ? localStorage.getItem("userId") : null;
-        const id = storedId ? Number(storedId) : 1;
-        setUserId(id);
-        if (id) loadCart(id);
+        const userSession = sessionStorage.getItem("usuario");
+        if (userSession) {
+            const user = JSON.parse(userSession);
+            setUserId(user.id);
+            loadCart(user.id);
+        } else {
+            message.warning("Você precisa estar logado para adicionar ao carrinho!");
+            router.push("/login"); // Redireciona para login se não estiver logado
+        }
     }, []);
 
     if (loading || !cartData || !cartData.items) return <p>Carregando carrinho...</p>;
@@ -52,12 +57,12 @@ export default function Carrinho() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ item_id: id })
             });
-    
+
             if (!response.ok) {
                 throw new Error("Erro ao diminuir a quantidade do item.");
             }
-    
-            await loadCart(userId); 
+
+            await loadCart(userId);
         } catch (error) {
             console.error("Erro ao diminuir a quantidade:", error);
         }
@@ -93,13 +98,13 @@ export default function Carrinho() {
 
                 <div className={styles.cartContainer}>
                     <div className={styles.containerTitle}>
-                    <h1 className={styles.title}>Seu Carrinho</h1>
+                        <h1 className={styles.title}>Seu Carrinho</h1>
 
-                    {cartData.items.filter(item => item?.product_id || item?.featured_product_id).length > 0 && (
-                        <button className={styles.deleteAllBtn} onClick={deleteAll}>
-                            <Trash2 size={20} /> Remover tudo
-                        </button>
-                    )}
+                        {cartData.items.filter(item => item?.product_id || item?.featured_product_id).length > 0 && (
+                            <button className={styles.deleteAllBtn} onClick={deleteAll}>
+                                <Trash2 size={20} /> Remover tudo
+                            </button>
+                        )}
                     </div>
 
                     {cartData.items.filter(item => item?.product_id || item?.featured_product_id).length === 0 ? (
@@ -128,13 +133,13 @@ export default function Carrinho() {
 
                                         <div className={styles.itemInfo}>
                                             <div className={styles.itemHeader}>
-                                            <h3 className={styles.subTitle}>{productName}</h3>
-                                            <button
-                                                className={styles.deleteItemBtn}
-                                                onClick={() => deleteItem(item.id)}
-                                            >
-                                                <Trash2 size={20} /> 
-                                            </button>
+                                                <h3 className={styles.subTitle}>{productName}</h3>
+                                                <button
+                                                    className={styles.deleteItemBtn}
+                                                    onClick={() => deleteItem(item.id)}
+                                                >
+                                                    <Trash2 size={20} />
+                                                </button>
                                             </div>
 
                                             <div className={styles.qtyControls}>
