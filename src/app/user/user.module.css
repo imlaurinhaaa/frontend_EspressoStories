@@ -1,20 +1,18 @@
 .page {
     display: flex;
-    position: fixed;
+    position: relative;
     flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    width: 100%;
     z-index: 1;
 }
 
 .main {
-    flex: 1;
+    flex: 1 1 auto;
     position: relative;
     background-color: #E6E2D7;
     padding: 2rem;
     overflow-y: auto;
-    justify-content: center;
     z-index: 2;
 }
 
@@ -88,7 +86,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #ffffff;
     font-size: 0.8rem;
     font-weight: bold;
     opacity: 0;
@@ -102,7 +100,6 @@
 .addressSection {
     width: 100%;
     max-width: 600px;
-    margin-top: 2rem;
     background: rgba(255, 255, 255, 0.5);
     padding: 1.5rem;
     border-radius: 1rem;
@@ -146,14 +143,14 @@
 .button {
     background-color: #A2663CB8;
     color: #3F1D0E;
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
     border-radius: 5rem;
     font-weight: bold;
     font-size: 1rem;
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 .button:hover {
@@ -161,4 +158,124 @@
     color: #FFFFFF;
     transform: scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.infoSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+
+.cartItems {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cartItem {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid #f0ebe7;
+    box-shadow: 0 4px 14px #3f1d0e3b;
+}
+
+/* Harmonizar visual dos itens do carrinho com a tabela de endereços */
+.cartItems {
+    width: 100%;
+    max-width: 600px; /* mesma largura da .addressSection */
+}
+
+.cartItem {
+    background: rgba(255, 255, 255, 0.5); 
+    border: 1px solid rgba(162, 102, 60, 0.12);
+    transition: background 0.15s ease-in-out, transform 0.12s ease;
+}
+
+.productPhoto {
+    width: 160px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.photoWrap {
+    flex: 0 0 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productPhoto {
+    width: 200px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 14px #3f1d0e47;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.subTitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: #3F1D0E;;
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    color: #555;
+    font-size: 1rem;
+    margin-top: 0.35rem;
+}
+
+.itemTotal {
+    margin-top: 0.75rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #3F1D0E;
+}
+
+.cartTotal {
+    text-align: right;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #3F1D0E;
+    margin-bottom: 1.5rem;
+}
+
+
+.qtyControls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+.qtyControls button {
+    background: #f2e9e4;
+    border: 1px solid #d8cfc8;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qtyControls button:hover {
+    background: #e0d6cf;
+}
+
+.quantity {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #3F1D0E;
 }
