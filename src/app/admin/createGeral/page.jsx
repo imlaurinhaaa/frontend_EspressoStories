@@ -23,6 +23,10 @@ export default function CreateProduct() {
     const selectRef = useRef(null);
     const branchSelectRef = useRef(null);
     const pathname = usePathname();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+    const [response, setResponse] = useState(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -83,6 +87,72 @@ export default function CreateProduct() {
         { value: 'são paulo', label: 'São Paulo - SP' }
     ];
 
+    const enviarDados = async (e) => {
+        e.preventDefault();
+
+        try {
+            setLoading(true);
+            console.log('📤 Iniciando POST request...');
+            console.log('📋 Dados enviados:', formData);
+
+            const response = await fetch(
+                'http://localhost:4000/api/products',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        description: formData.description,
+                        price: formData.price,
+                        category: formData.category,
+                        photo: formData.photo,
+                    })
+                }
+            );
+
+            console.log('✅ POST bem-sucedido!');
+            console.log('📊 Status:', response.status);
+            console.log('📡 Headers:', response.headers);
+
+            const data = await response.json();
+            console.log('📦 Dados:', data);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            setResponse(data);
+            setSuccess(true);
+
+        } catch (error) {
+            console.error('❌ Erro:', error);
+            setError('Falha ao enviar dados');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const [formData, setFormData] = useState({
+        name: '',
+        description: '',
+        price: '',
+        category: '',
+        photo: '',
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        console.log(`🖊️ Campo: "${name}" com valor: ${value}`);
+
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
     return (
         <div className={styles.page}>
             <Image
@@ -141,6 +211,9 @@ export default function CreateProduct() {
                             onChange={(e) => handleImageChange(e, 1)}
                             accept="image/*"
                             style={{ display: 'none' }}
+                            value={formData.photo}
+                            name="photo"
+                            required
                         />
                         {imagePreview1 ? (
                             <Image
@@ -161,19 +234,31 @@ export default function CreateProduct() {
                     <form className={styles.postForm}>
                         <input
                             type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
                             placeholder="Nome do Produto"
                             className={styles.formInput}
+                            required
                         />
                         <textarea
                             placeholder="Descrição do Produto"
+                            value={formData.description}
+                            name="description"
+                            onChange={handleInputChange}
                             className={styles.formInput}
                             rows={11}
+                            required
                         />
                         <input
                             type="number"
                             placeholder="Preço do Produto (R$)"
                             step="0.01"
                             className={styles.formInput}
+                            value={formData.price}
+                            name="price"
+                            onChange={handleInputChange}
+                            required
                         />
                         <div className={styles.customSelect} ref={selectRef}>
                             <div
@@ -240,7 +325,10 @@ export default function CreateProduct() {
                             <button type="submit" className={styles.cancelButton}>
                                 CANCELAR
                             </button>
-                            <button type="submit" className={styles.submitButton}>
+                            <button
+                                type="submit" 
+                                className={styles.submitButton}
+                                onClick={enviarDados}>
                                 SALVAR
                             </button>
                         </div>
