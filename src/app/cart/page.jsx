@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import { Plus, Minus, Trash2 } from "lucide-react";
 import styles from "./page.module.css";
-import Header from "../../components/header";
+import Header from "../../components/headerUser/Header";
 import Footer from "../../components/footer/footer";
 
 export default function Carrinho() {
