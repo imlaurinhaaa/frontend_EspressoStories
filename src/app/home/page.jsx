@@ -58,23 +58,23 @@ export default function Home() {
                 <div className={styles.categoryCardsArea}>
                     <Link href="/doces">
                         <CategoryCard
-                            img='/img/doce-banner.png'
-                            alt='Banner de sobremesas'
-                            name='SOBREMESAS'
+                            img='/img/filial-saoPaulo.png'
+                            alt='Filial de São Paulo'
+                            name='SÃO PAULO'
                         />
                     </Link>
                     <Link href="/bebidas">
                         <CategoryCard
-                            img='/img/bebida-banner.png'
-                            alt='Banner de bebida'
-                            name='BEBIDAS'
+                            img='/img/filial-rio.png'
+                            alt='Filial do Rio de Janeiro'
+                            name='RIO DE JANEIRO'
                         />
                     </Link>
                     <Link href="/salgados">
                         <CategoryCard
-                            img='/img/salgado-banner.png'
-                            alt='Banner de salgado'
-                            name='SALGADOS'
+                            img='/img/filial-belem.png'
+                            alt='Filial de Belém'
+                            name='BELÉM'
                         />
                     </Link>
                 </div>
@@ -129,7 +129,7 @@ export default function Home() {
                             height={30}
                             className={styles.drinkmeTitle}
                         />
-                        <p>Este elixir mágico e refrescante é um convite líquido para o País das Maravilhas, combinando o doce e o cítrico em perfeita harmonia. Sua cor azul-arroxeada vibrante e a leve efervescência garantem um frescor imediato. É preparado com Infusão de Blueberry e Chá Branco, Suco de Limão Siciliano e um toque de mistério floral do Xarope de Flor de Sabugueiro, finalizado com Água Gaseificada. Uma poção deliciosa que desperta a curiosidade a cada gole.</p>
+                        <p className={styles.textDrinkMe}>Este elixir mágico e refrescante é um convite líquido para o País das Maravilhas, combinando o doce e o cítrico em perfeita harmonia. Sua cor azul-arroxeada vibrante e a leve efervescência garantem um frescor imediato. É preparado com Infusão de Blueberry e Chá Branco, Suco de Limão Siciliano e um toque de mistério floral do Xarope de Flor de Sabugueiro, finalizado com Água Gaseificada. Uma poção deliciosa que desperta a curiosidade a cada gole.</p>
                     </div>
                 </div>
             </div>
