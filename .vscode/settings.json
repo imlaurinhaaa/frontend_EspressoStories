@@ -13,5 +13,10 @@
         "GERAL",
         "itens",
         "response"
-    ]
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#022F53",
+        "titleBar.activeBackground": "#034274",
+        "titleBar.activeForeground": "#F5FAFF"
+    }
 }

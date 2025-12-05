@@ -51,16 +51,28 @@ export default function CreateProduct() {
 
     const handleImageChange = (event, index) => {
         const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (index === 1) setImagePreview1(e.target.result);
-                if (index === 2) setImagePreview2(e.target.result);
-            };
-            reader.readAsDataURL(file);
-            if (index === 1) setSelectedImage1(file);
-            if (index === 2) setSelectedImage2(file);
-        }
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            if (index === 1) {
+                setImagePreview1(e.target.result);
+                setFormData(prev => ({
+                    ...prev,
+                    photo: file // keep the File for multipart upload
+                }));
+                setSelectedImage1(file);
+            }
+            if (index === 2) {
+                setImagePreview2(e.target.result);
+                setFormData(prev => ({
+                    ...prev,
+                    photo_inspiration: file // optional inspiration image
+                }));
+                setSelectedImage2(file);
+            }
+        };
+        reader.readAsDataURL(file);
     };
 
     const handleCategorySelect = (category) => {
@@ -95,20 +107,49 @@ export default function CreateProduct() {
             console.log('📤 Iniciando POST request...');
             console.log('📋 Dados enviados:', formData);
 
+            // Validações
+            if (!formData.name || !formData.name.trim()) {
+                throw new Error('Nome do produto é obrigatório');
+            }
+            if (!formData.description || !formData.description.trim()) {
+                throw new Error('Descrição do produto é obrigatória');
+            }
+            if (!formData.price || parseFloat(formData.price) <= 0) {
+                throw new Error('Preço do produto deve ser maior que zero');
+            }
+            if (!selectedCategory) {
+                throw new Error('Categoria é obrigatória');
+            }
+            if (!formData.photo) {
+                throw new Error('Foto do produto é obrigatória - clique para selecionar uma imagem');
+            }
+            if (!imagePreview1) {
+                throw new Error('Imagem do produto não foi carregada corretamente');
+            }
+
+            const categoryMap = {
+                'bebidas': 1,
+                'doces': 2,
+                'salgados': 3
+            };
+            const category_id = categoryMap[selectedCategory] || null;
+
+            const payload = new FormData();
+            payload.append('category_id', category_id);
+            payload.append('name', formData.name);
+            payload.append('description', formData.description);
+            payload.append('price', parseFloat(formData.price));
+            if (formData.inspiration) payload.append('inspiration', formData.inspiration);
+            if (formData.photo) payload.append('photo', formData.photo);
+            if (formData.photo_inspiration) payload.append('photo_inspiration', formData.photo_inspiration);
+
+            console.log('📦 Payload (FormData) pronto para envio');
+
             const response = await fetch(
                 'http://localhost:4000/api/products',
                 {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: formData.name,
-                        description: formData.description,
-                        price: formData.price,
-                        category: formData.category,
-                        photo: formData.photo,
-                    })
+                    body: payload,
                 }
             );
 
@@ -116,11 +157,21 @@ export default function CreateProduct() {
             console.log('📊 Status:', response.status);
             console.log('📡 Headers:', response.headers);
 
-            const data = await response.json();
+            const contentType = response.headers.get('content-type');
+            let data;
+            
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                console.error('❌ Resposta não é JSON:', text);
+                throw new Error('Servidor retornou resposta inválida (não é JSON)');
+            }
+            
             console.log('📦 Dados:', data);
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status} - ${data.message || data.error || 'Erro desconhecido'}`);
             }
 
             setResponse(data);
@@ -128,7 +179,7 @@ export default function CreateProduct() {
 
         } catch (error) {
             console.error('❌ Erro:', error);
-            setError('Falha ao enviar dados');
+            setError(error.message || 'Falha ao enviar dados');
         } finally {
             setLoading(false);
         }
@@ -138,8 +189,10 @@ export default function CreateProduct() {
         name: '',
         description: '',
         price: '',
-        category: '',
+        category_id: '',
         photo: '',
+        inspiration: '',
+        photo_inspiration: '',
     });
 
     const handleInputChange = (e) => {
@@ -195,6 +248,34 @@ export default function CreateProduct() {
                 <h1 className={styles.title}>CRIAR PRODUTO</h1>
                 <p className={styles.subtitle}>Preencha os dados abaixo para criar um novo produto em todas as lojas.</p>
             </div>
+            {error && (
+                <div style={{
+                    backgroundColor: '#fee',
+                    color: '#c00',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    marginBottom: '16px',
+                    marginLeft: '20px',
+                    marginRight: '20px',
+                    border: '1px solid #fcc'
+                }}>
+                    ❌ {error}
+                </div>
+            )}
+            {success && (
+                <div style={{
+                    backgroundColor: '#efe',
+                    color: '#0a0',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    marginBottom: '16px',
+                    marginLeft: '20px',
+                    marginRight: '20px',
+                    border: '1px solid #cfc'
+                }}>
+                    ✅ Produto criado com sucesso!
+                </div>
+            )}
             <div className={styles.buttonSection}>
                 <Link href="/admin/createGeral" className={`${styles.navButton} ${pathname === '/admin/createGeral' ? styles.activeButton : ''}`}>
                     GERAL
@@ -212,8 +293,6 @@ export default function CreateProduct() {
                             onChange={(e) => handleImageChange(e, 1)}
                             accept="image/*"
                             style={{ display: 'none' }}
-                            value={formData.photo}
-                            name="photo"
                             required
                         />
                         {imagePreview1 ? (
@@ -321,6 +400,9 @@ export default function CreateProduct() {
                             type="text"
                             placeholder="Livro de Inspiração"
                             className={styles.formInput}
+                            name="inspiration"
+                            value={formData.inspiration}
+                            onChange={handleInputChange}
                         />
                         <div className={styles.buttonSection}>
                             <button type="submit" className={styles.cancelButton}>
