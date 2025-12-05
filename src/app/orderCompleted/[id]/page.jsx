@@ -1,119 +1,106 @@
 "use client";
-import { useState, useEffect, use } from "react";
-import Link from "next/link";
-import styles from "../page.module.css";
-import Image from "next/image";
 
-export default function OrderCompleted({ params }) {
-    const { id: orderId } = use(params);
-    const [orderItems, setOrderItems] = useState([]);
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import styles from "../page.module.css";
+import { message } from "antd";
+
+export default function OrderCompleted() {
+    const params = useParams();
+    const router = useRouter();
+    const orderId = params?.id;
+
+    const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchItems() {
-            try {
-                const response = await fetch(`http://localhost:4000/api/order_items/${orderId}`);
+    const loadOrder = async () => {
+        try {
+            const res = await fetch(`http://localhost:4000/api/orders/${orderId}`);
+            const data = await res.json();
 
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.message || "Itens do pedido não encontrados.");
-                    }
-                    setOrderItems([]);
-                    return;
-                }
-
-                const data = await response.json();
-                if (data.orderItem) {
-                    setOrderItems(data.orderItem);
-                } else {
-                    setOrderItems([]);
-                }
-            } catch (error) {
-                console.error("Erro ao buscar itens do pedido:", error);
-            } finally {
-                setLoading(false);
+            if (!res.ok) {
+                alert("Erro ao carregar pedido.");
+                return;
             }
-        }
-
-        if (orderId) {
-            fetchItems();
-        } else {
+            
+            setOrder(data.order);
+        } catch (err) {
+            console.error("Erro ao carregar pedido:", err);
+            alert("Erro ao carregar pedido.");
+        } finally {
             setLoading(false);
         }
-    }, [orderId]);
-
-    if (loading) {
-        return <p className={styles.loading}>Carregando itens do pedido...</p>
-    }
-
-    if (orderItems.length === 0) {
-        return <p className={styles.noItems}>Nenhum item encontrado para este pedido.</p>
-    }
-
-    const calculateTotal = () => {
-        return orderItems.reduce((total, item) => {
-            const itemPrice = parseFloat(item.price) || 0;
-            const itemQuantity = parseInt(item.quantity) || 0;
-            return total + (itemPrice * itemQuantity);
-        }, 0);
     };
 
-    const totalCompra = calculateTotal().toFixed(2);
+    useEffect(() => {
+        if (orderId) loadOrder();
+    }, [orderId]);
+
+    if (loading) return <p>Carregando...</p>;
+    if (!order) return <p>Pedido não encontrado</p>;
+
+    const subtotal = Number(order?.subtotal_value);
+    const frete = 15;
+    const total = Number(order?.total_value) ;
 
     return (
-        <div className={styles.pageContainer}>
-            <div className={styles.bannerCompleted}>
-            </div>
+        <div className={styles.page}>
+            <main className={styles.main}>
+                <Image src="/img/ball.png" alt="Ball" width={200} height={200} className={styles.ball1} />
 
-            <div className={styles.content}>
-                <h2 className={styles.title}>Seu Pedido</h2>
-                <div className={styles.line}></div>
-
-                <div className={styles.contentItems}>
-                    <div className={styles.orderItemList}>
-                        {orderItems.map((item) => (
-                            <div key={item.id} className={styles.itemCard}>
-
-                                {item.photo && typeof item.photo === 'string' && item.photo.trim() !== '' && (
-                                    <div className={styles.imageContainer}>
-                                        <Image
-                                            src={`http://localhost:4000/uploads/${item.photo}.jpg`}
-                                            alt={item.name}
-                                            width={80}
-                                            height={80}
-                                            style={{ objectFit: "cover" }}
-                                            unoptimized
-                                        />
-                                    </div>
-                                )}
-
-                                <div className={styles.details}>
-                                    <h3 className={styles.name}>{item.name}</h3>
-                                    <p className={styles.quantity}>Quantidade: {item.quantity}</p>
-                                    <p className={styles.price}>Preço: R$ {parseFloat(item.price).toFixed(2)}</p>
-                                </div>
-                                <div className={styles.lineItems}></div>
-                            </div>
-                        ))}
-                    </div>
-                    <aside className={styles.sideImage}>
-                        <Image src={"/img/mensagem_order.png"} alt="Café Completo" width={350} height={380} style={{ objectFit: "cover" }} />
-                    </aside>
-                </div>
-
-                <div className={styles.orderSummary}>
-                    <div className={styles.summaryLine}></div>
-                    <p className={styles.finalTotal}>
-                        Total da Compra: <strong>R$ {totalCompra}</strong>
+                <div className={styles.cardContainer}>
+                    <h2 className={styles.title}>Pedido Finalizado 🎉</h2>
+                    <p className={styles.text}>
+                        Obrigado pela sua compra! Seu pedido foi registrado com sucesso.
                     </p>
-                </div>
 
-                <div className={styles.buttonContainer}>
-                    <Link href={"/home"} className={styles.button}>Volte para a nossa home</Link>
-                    <Link href={"/status"} className={styles.button}>Ver o status do pedido</Link>
+                    <h3 className={styles.subTitle}>Informações do Pedido</h3>
+
+                    <p><strong>ID do Pedido:</strong> {order.id}</p>
+                    <p><strong>Cliente:</strong> {order.user_name}</p>
+                    <p><strong>Forma de Pagamento:</strong> {order.payment_method}</p>
+
+                    <h3 className={styles.subTitle}>Itens</h3>
+
+                    {order.items?.map((item) => {
+                        const name = item.product_name || item.featured_product_name;
+                        const photo = item.product_photo
+                            ? `http://localhost:4000/uploads/${item.product_photo}.jpg`
+                            : item.featured_product_photo
+                                ? `http://localhost:4000/uploads/${item.featured_product_photo}.jpg`
+                                : "/img/logo.png";
+
+                        return (
+                            <div key={item.item_id} className={styles.itemRow}>
+                                <Image
+                                    src={photo}
+                                    alt={name}
+                                    width={120}
+                                    height={90}
+                                    className={styles.itemImage}
+                                    unoptimized
+                                />
+
+                                <div className={styles.itemDetails}>
+                                    <p className={styles.text}>{name}</p>
+                                    <p className={styles.text}>Quantidade: {item.quantity}</p>
+                                    <p className={styles.text}>Preço: R$ {Number(item.price).toFixed(2)}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+
+                    <h3 className={styles.subTitle}>Resumo</h3>
+                    <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
+                    <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
+                    <p className={styles.totalText}>Total: <strong>R$ {total.toFixed(2)}</strong></p>
+
+                    <button className={styles.finishBtn} onClick={() => router.push("/home")}>
+                        Voltar para Home
+                    </button>
                 </div>
-            </div>
+            </main>
         </div>
-    )
+    );
 }

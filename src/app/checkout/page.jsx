@@ -12,12 +12,10 @@ export default function CheckoutPage() {
     const params = useSearchParams();
     const router = useRouter();
 
-    const paramUserId = params?.get("userId");
-    const initialUserId = paramUserId
-        ? Number(paramUserId)
-        : typeof window !== "undefined"
-            ? Number(localStorage.getItem("userId")) || 1
-            : 1;
+    
+    const initialUserId = sessionStorage.getItem("usuario")
+        ? JSON.parse(sessionStorage.getItem("usuario")).id
+        : null;
 
     const [userId] = useState(initialUserId);
     const [cartData, setCartData] = useState({ cart: null, items: [], total_price: 0 });
@@ -48,25 +46,27 @@ export default function CheckoutPage() {
         }
     };
 
-    const loadAddresses = async () => {
-        try {
-            const res = await fetch(`http://localhost:4000/api/user_addresses?user_id=${userId}`);
-            const data = await res.json();
+   const loadAddresses = async () => {
+    try {
+        console.log("Carregando endereços para o usuário ID:", userId);
+        const res = await fetch(`http://localhost:4000/api/user_addresses?user_id=${userId}`);
+        const data = await res.json();
 
-            setAddresses(data.addresses || []);
+        setAddresses(Array.isArray(data) ? data : []);
 
-            if (data.addresses?.length > 0) {
-                setSelectedAddress(data.addresses[0]);
-                setIsCreatingAddress(false);
-            } else {
-                setIsCreatingAddress(true);
-            }
-        } catch (err) {
-            console.error("Erro ao carregar endereços:", err);
-            setAddresses([]);
+        if (Array.isArray(data) && data.length > 0) {
+            setSelectedAddress(data[0]);
+            setIsCreatingAddress(false);
+        } else {
             setIsCreatingAddress(true);
         }
-    };
+    } catch (err) {
+        console.error("Erro ao carregar endereços:", err);
+        setAddresses([]);
+        setIsCreatingAddress(true);
+    }
+};
+
 
     useEffect(() => {
         let mounted = true;

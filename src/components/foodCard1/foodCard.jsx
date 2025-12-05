@@ -25,8 +25,10 @@ export default function FoodCard({ item, onClick }) {
           className={styles.productPhoto}
           unoptimized
         />
-        <h4>{item.name}</h4>
-        <p>Preço: R$ {item.price}</p>
+        <h4 className={styles.name}>{item.name}</h4>
+        <p className={styles.price}>Preço: R$ {item.price}</p>
+
+        <button className={styles.viewButton}>Ver Mais</button>
       </div>
     </div>
   );
