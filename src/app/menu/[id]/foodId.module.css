@@ -1,125 +1,262 @@
-.container {
-    background-color: #E6E2D7;
+.page {
+    min-height: 100vh;
+    background: #efe9df;
 }
 
-.productBanner{
-    width: 100%;
-    height: 600px;
+.main {
+    position: relative;
+    min-height: 100vh;
+    padding: 80px 100px;
     overflow: hidden;
+}
+
+.content {
+    max-width: 1200px;
+    margin: auto;
     display: flex;
-}
-
-.semiCircle{
-    width: 100%;
-    height:70%;
-    background-color: #C1DBE8;
-    border-radius: 0% 0% 100% 100%;
-    margin: 0 auto;
-    position: relative;
-    top: -40px;
-    display: flex;
-    align-items:last baseline
-}
-
-.productPhoto {
-    object-fit: cover;
-    position: relative;
-    top: 270px;
-    margin: 0 auto;
-}
-
-.productDetails {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.productHeader {
-    display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
 .productName {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    color: #3F1D0E;
+    font-size: 3.5rem;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
 }
 
 .price {
-    font-size: 1.5rem;
-    color: #555;
-    margin-bottom: 2rem;
-}
-
-.info {
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     align-items: center;
-     gap: 2rem;
-}
-
-.sobre {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #333;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.subTitle {
-    font-size: 1.8rem;
-    margin-top: 2rem;
+    color: #6b3f2b;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
     margin-bottom: 1rem;
 }
 
+
 .descriptionBox {
-    background-color: #E4CDB0;
-    padding: 1rem;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
 }
 
+/* Texto principal */
 .text {
-    flex-direction: column;
-    
+  color: #3F1D0E;
+  font-size: 1rem;
+  line-height: 1.5;
+  flex: 1;
 }
 
+/* Frase de inspiração */
 .inspiration {
-    margin-top: 1rem;
-    font-style: italic;
-    font-size: larger;
-    color: #444;
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #6b3f2b;
+  border-left: 3px solid #8b5a3c;
+  padding-left: 10px;
+}
+
+/* Livro / imagem da inspiração */
+.book {
+  min-width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inspirationPhoto {
-    width: 10rem;
-    height: auto;
+  width: 90px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  object-fit: cover;
 }
 
-.quantitySection {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+
+/* Container dos botões */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* ===== INPUT NUMBER (– 1 +) ===== */
+.actions :global(.ant-input-number) {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  height: 42px;
+}
+
+.actions :global(.ant-input-number-handler-wrap) {
+  display: none; /* some com as setinhas do antd */
+}
+
+.actions :global(.ant-input-number-input-wrap) {
+  display: flex;
+  align-items: center;
+}
+
+.actions :global(.ant-input-number-input) {
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
+/* Container dos botões */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Caixa branca – 1 + */
+.qtyBox {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  height: 42px;
+  padding: 0 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Botões – e + */
+.qtyBtn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: #6b3f2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qtyBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+}
+
+/* Número */
+.qtyValue {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Botão Adicionar */
+.addButton {
+  background: #8b5a3c;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+}
+
+.addButton:hover {
+  background: #6b3f2b;
+  transform: translateY(-1px);
+}
+
+.addButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link {
+  color: white;
+  width: 16px;
+  height: 16px;
 }
 
 .backButton {
-    margin-top: 2rem;
-    padding: 0.5rem 1rem;
-    background-color: #A2663C;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background: #be8a6a;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+  margin-top: 1rem;;
 }
+
 .backButton:hover {
-    background-color: #c27a47;
-    
+  background: #6b3f2b;
+  transform: translateY(-1px);
+}
+
+
+.info {
+    max-width: 480px;
+    z-index: 2;
+}
+
+.imageContainer {
+  position: relative;
+  z-index: 2;
+}
+
+.productPhoto {
+    width: 430px;
+    height: auto;
+}
+
+.ball {
+    margin-right: 3rem;
+    position: absolute;
+    background: #8db9e3;
+    z-index: 0;
+    box-shadow: 8px 18px 25px rgba(0, 0, 0, 0.18);
+}
+
+.ball1 {
+    width: 300px;
+    height: 300px;
+    right: 120px;
+    top: 80px;
+    border-radius: 85% 80% 75% 85% / 80% 85% 75% 80%;
+}
+
+.ball2 {
+    width: 300px;
+    height: 300px;
+    right: 60px;
+    top: 230px;
+    border-radius: 85% 80% 75% 85% / 80% 85% 75% 80%;
+}
+
+.ball3 {
+    width: 300px;
+    height: 300px;
+    right: 260px;
+    top: 180px;
+    border-radius: 85% 80% 75% 85% / 80% 85% 75% 80%;
 }

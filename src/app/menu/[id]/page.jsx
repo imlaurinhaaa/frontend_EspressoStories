@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
+import { ShoppingCart } from "lucide-react";
 import Header from "../../../components/headerUser/Header";
 import styles from "./foodId.module.css";
 import { Flex, InputNumber, message } from "antd";
@@ -59,13 +60,12 @@ export default function FoodDetail() {
     try {
       // Primeiro, verifica/cria o carrinho do usuário
       const cartResponse = await axios.get(
-        `http://localhost:4000/api/cart/verify/${userId}`
+        `http://localhost:4000/api/users/cart/${userId}`
       );
 
       const cart_id = cartResponse.data.cart.id;
       setCartId(cart_id);
 
-      // Depois adiciona o item ao carrinho
       const response = await axios.post("http://localhost:4000/api/cart_items", {
         cart_id,
         product_id: product.id,
@@ -93,43 +93,33 @@ export default function FoodDetail() {
     onChange: (val) => setQuantity(val),
     style: { width: 150 },
   };
-
   return (
-    <div className={styles.container}>
+    <div className={styles.page}>
       <Header />
-      <section className={styles.productBanner}>
-        <div className={styles.semiCircle}>
-          <Image
-            src={
-              product.photo
-                ? `http://localhost:4000/uploads/${product.photo}.jpg`
-                : "/img/logo.png"
-            }
-            alt={product.name || "Item sem nome"}
-            width={650}
-            height={600}
-            className={styles.productPhoto}
-            unoptimized
-          />
-        </div>
-      </section>
 
-      <section className={styles.productDetails}>
-        <div className={styles.productHeader}>
-          <h2 className={styles.productName}>{product.name}</h2>
-          <p className={styles.price}>Preço: R$ {product.price}</p>
-        </div>
+      <main className={styles.main}>
+        {/* Bolas decorativas */}
+        <div className={`${styles.ball} ${styles.ball1}`} />
+        <div className={`${styles.ball} ${styles.ball2}`} />
+        <div className={`${styles.ball} ${styles.ball3}`} />
 
-        <div className={styles.info}>
-          <div className={styles.sobre}>
-            <h3 className={styles.subTitle}>Sobre</h3>
+        {/* Conteúdo principal */}
+        <section className={styles.content}>
+          {/* Texto */}
+          <div className={styles.info}>
+            <h1 className={styles.productName}>{product.name}</h1>
+            <p className={styles.price}>Preço: R$ {product.price}</p>
+
             <div className={styles.descriptionBox}>
               <div className={styles.text}>
                 <p>{product.description}</p>
                 {product.inspiration && (
-                  <p className={styles.inspiration}>{product.inspiration}</p>
+                  <p className={styles.inspiration}>
+                    {product.inspiration}
+                  </p>
                 )}
               </div>
+
               {product.photo_inspiration && (
                 <aside className={styles.book}>
                   <Image
@@ -146,32 +136,47 @@ export default function FoodDetail() {
                   />
                 </aside>
               )}
+                          <div className={styles.actions}>
+              <Flex vertical gap="middle">
+                <InputNumber {...sharedProps} />
+              </Flex>
+
+              <button
+                className={styles.addButton}
+                onClick={handleAddToCart}
+                disabled={adding}
+              >
+                {adding ? "Adicionando..." : "Adicionar"}
+                <ShoppingCart className={styles.link} />
+              </button>
+
+
             </div>
+            <button
+              className={styles.backButton}
+              onClick={() => router.push("/menu")}
+            >
+              Voltar ao Menu
+            </button>
+            </div>
+            </div>
+
+          <div className={styles.imageContainer}>
+            <Image
+              src={
+                product.photo
+                  ? `http://localhost:4000/uploads/${product.photo}.jpg`
+                  : "/img/logo.png"
+              }
+              alt={product.name || "Item sem nome"}
+              width={620}
+              height={620}
+              className={styles.productPhoto}
+              unoptimized
+            />
           </div>
-
-          <aside className={styles.quantitySection}>
-            <h3 className={styles.subTitle}>Quantidade</h3>
-            <Flex vertical gap="middle">
-              <InputNumber {...sharedProps} />
-            </Flex>
-          </aside>
-        </div>
-
-        <button
-          className={styles.addButton}
-          onClick={handleAddToCart}
-          disabled={adding}
-        >
-          {adding ? "Adicionando..." : "Adicionar ao Carrinho"}
-        </button>
-
-        <button
-          className={styles.backButton}
-          onClick={() => router.push("/menu")}
-        >
-          Voltar ao Menu
-        </button>
-      </section>
+        </section>
+      </main>
     </div>
   );
 }

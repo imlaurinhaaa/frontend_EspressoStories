@@ -92,7 +92,7 @@ export default function Menu() {
                             <Search className={styles.searchIcon} />
                         </div>
                     </div>
-                    <Link href="create" className={styles.button}>
+                    <Link href="createGeral" className={styles.button}>
                         <h1 className={styles.buttonText}>CRIAR PRODUTO</h1>
                     </Link>
                 </div>
