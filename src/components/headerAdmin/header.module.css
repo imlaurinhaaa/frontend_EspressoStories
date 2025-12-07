@@ -29,3 +29,61 @@
 .link:hover {
     color: #A2663C;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .logo {
+        height: 5rem;
+    }
+
+    .navLinks {
+        width: 26rem;
+        font-size: 1.1rem;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0.5rem 1rem;
+    }
+
+    .logo {
+        height: 4rem;
+    }
+
+    .navLinks {
+        width: auto;
+        gap: 1.5rem;
+        font-size: 1rem;
+        margin-right: 1rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .logo {
+        height: 3rem;
+        margin: 0 auto;
+    }
+
+    .navLinks {
+        width: 100%;
+        justify-content: space-around;
+        gap: 0.8rem;
+        font-size: 0.85rem;
+        margin-right: 0;
+        padding: 0.3rem;
+    }
+
+    .link {
+        font-size: 0.85rem;
+    }
+}

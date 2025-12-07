@@ -201,3 +201,229 @@
     color: #A2663C;
     text-align: center;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .main {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .ballImage.position1 {
+        width: 300px;
+        height: 300px;
+        top: -130px;
+        left: 150px;
+    }
+
+    .ballImage.position2 {
+        width: 60px;
+        height: 60px;
+        top: 60px;
+        right: 180px;
+    }
+
+    .ballImage.position3 {
+        width: 220px;
+        height: 220px;
+        top: 650px;
+        right: 30px;
+    }
+
+    .ballImage.position4 {
+        width: 80px;
+        height: 80px;
+        top: 850px;
+        left: 60px;
+    }
+
+    .cardSection {
+        gap: 2rem;
+        padding: 150px 20px 30px 20px;
+        min-height: 620px;
+        height: 620px;
+    }
+
+    .scrollButton {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 1rem;
+    }
+
+    .titleSection {
+        margin: 2rem 0 1.5rem 0;
+        gap: 0.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .button {
+        width: 8rem;
+        height: 2.3rem;
+        font-size: 0.8rem;
+    }
+
+    .ballImage.position1 {
+        width: 200px;
+        height: 200px;
+        top: -100px;
+        left: 80px;
+    }
+
+    .ballImage.position2 {
+        width: 50px;
+        height: 50px;
+        top: 40px;
+        right: 100px;
+    }
+
+    .ballImage.position3 {
+        width: 150px;
+        height: 150px;
+        top: 550px;
+        right: 20px;
+    }
+
+    .ballImage.position4 {
+        width: 60px;
+        height: 60px;
+        top: 750px;
+        left: 40px;
+    }
+
+    .cardContainer {
+        padding-top: 3rem;
+        gap: 15px;
+    }
+
+    .cardSection {
+        gap: 1.5rem;
+        padding: 120px 15px 25px 15px;
+        min-height: 580px;
+        height: 580px;
+    }
+
+    .scrollButton {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .emptyText {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .main {
+        padding: 0.8rem;
+    }
+
+    .titleSection {
+        margin: 1.5rem 0 1rem 0;
+        gap: 0.3rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .buttonSection {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .button {
+        width: 7.5rem;
+        height: 2.2rem;
+        font-size: 0.75rem;
+    }
+
+    .ballImage.position1 {
+        width: 150px;
+        height: 150px;
+        top: -70px;
+        left: 30px;
+    }
+
+    .ballImage.position2 {
+        width: 40px;
+        height: 40px;
+        top: 30px;
+        right: 50px;
+    }
+
+    .ballImage.position3 {
+        width: 120px;
+        height: 120px;
+        top: 500px;
+        right: 10px;
+    }
+
+    .ballImage.position4 {
+        width: 50px;
+        height: 50px;
+        top: 650px;
+        left: 20px;
+    }
+
+    .cardContainer {
+        padding-top: 2rem;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .cardSection {
+        gap: 1.2rem;
+        padding: 100px 10px 20px 10px;
+        min-height: 520px;
+        height: auto;
+        flex-direction: column;
+        scroll-snap-type: y mandatory;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .scrollButton {
+        display: none;
+    }
+
+    .emptyState {
+        min-height: 300px;
+        padding: 2rem;
+    }
+
+    .emptyText {
+        font-size: 1rem;
+    }
+}
+
