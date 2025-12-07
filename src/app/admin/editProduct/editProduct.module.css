@@ -404,3 +404,276 @@ select.formInput:focus {
     background-color: #B8733D;
     transform: translateX(0);
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .titleSection {
+        padding: 2.5rem 0 1.5rem 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .navButton {
+        height: 2.8rem;
+        width: 11rem;
+        font-size: 0.95rem;
+    }
+
+    .container {
+        min-width: 50rem;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .postBlock {
+        width: 380px;
+        height: 380px;
+    }
+
+    .postForm {
+        width: 420px;
+    }
+
+    .addImageIcon {
+        font-size: 5rem;
+    }
+
+    .ballImage.position1 {
+        width: 320px;
+        height: 320px;
+        top: -130px;
+        left: 170px;
+    }
+
+    .ballImage.position2 {
+        width: 65px;
+        height: 65px;
+        top: 120px;
+        right: 200px;
+    }
+
+    .ballImage.position3 {
+        width: 200px;
+        height: 200px;
+        top: 600px;
+        right: 30px;
+    }
+
+    .ballImage.position4 {
+        width: 240px;
+        height: 240px;
+        top: 700px;
+        left: -90px;
+    }
+
+    .ballImage.position5 {
+        width: 80px;
+        height: 80px;
+        top: 800px;
+        right: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .titleSection {
+        padding: 2rem 0 1rem 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .navButton {
+        height: 2.5rem;
+        width: 10rem;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        min-width: auto;
+        width: 95%;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        margin: 2rem 0 5rem 0;
+    }
+
+    .postBlock {
+        width: 100%;
+        max-width: 400px;
+        height: 350px;
+    }
+
+    .postForm {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .addImageIcon {
+        font-size: 4.5rem;
+    }
+
+    .formInput {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+    }
+
+    .submitButton,
+    .cancelButton {
+        height: 2.8rem;
+        width: 11rem;
+        font-size: 0.95rem;
+    }
+
+    .ballImage.position1 {
+        width: 250px;
+        height: 250px;
+        top: -100px;
+        left: 100px;
+    }
+
+    .ballImage.position2 {
+        width: 55px;
+        height: 55px;
+        top: 100px;
+        right: 120px;
+    }
+
+    .ballImage.position3 {
+        width: 160px;
+        height: 160px;
+        top: 550px;
+        right: 20px;
+    }
+
+    .ballImage.position4 {
+        width: 180px;
+        height: 180px;
+        top: 650px;
+        left: -60px;
+    }
+
+    .ballImage.position5 {
+        width: 70px;
+        height: 70px;
+        top: 750px;
+        right: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        padding: 0 0.5rem;
+    }
+
+    .titleSection {
+        padding: 1.5rem 0 0.8rem 0.8rem;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .buttonSection {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .navButton {
+        height: 2.3rem;
+        width: 100%;
+        font-size: 0.85rem;
+    }
+
+    .container {
+        width: 100%;
+        padding: 1rem;
+        gap: 1rem;
+        margin: 1.5rem 0 3rem 0;
+        border-radius: 20px;
+    }
+
+    .postBlock {
+        width: 100%;
+        max-width: 100%;
+        height: 280px;
+    }
+
+    .postForm {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .addImageIcon {
+        font-size: 3.5rem;
+    }
+
+    .addImageText {
+        font-size: 0.9rem;
+    }
+
+    .formInput {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .submitButton,
+    .cancelButton {
+        height: 2.5rem;
+        width: 100%;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .ballImage.position1 {
+        width: 180px;
+        height: 180px;
+        top: -80px;
+        left: 30px;
+    }
+
+    .ballImage.position2 {
+        width: 45px;
+        height: 45px;
+        top: 70px;
+        right: 40px;
+    }
+
+    .ballImage.position3 {
+        width: 120px;
+        height: 120px;
+        top: 500px;
+        right: 10px;
+    }
+
+    .ballImage.position4 {
+        width: 130px;
+        height: 130px;
+        top: 600px;
+        left: -40px;
+    }
+
+    .ballImage.position5 {
+        width: 60px;
+        height: 60px;
+        top: 700px;
+        right: 150px;
+    }
+
+    .selectHeader {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .selectOption {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
