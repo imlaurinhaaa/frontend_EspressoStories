@@ -1,0 +1,126 @@
+/* ===================== CONTAINER GERAL ===================== */
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #f3eee3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 165px;
+}
+
+/* ========================= BANNER ========================= */
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* melhora nitidez */
+.banner img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
+}
+
+/* degradê suave como no exemplo */
+.banner::after {
+  content: "";
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #f3eee3);
+  z-index: 3;
+}
+
+/* ======================= CARD CENTRAL ======================= */
+.card {
+  position: relative;
+  z-index: 5;
+  width: 75%;
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 48px;
+  box-shadow: 0px 8px 26px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+/* ============================ TÍTULO ============================ */
+.title {
+  font-size: 24px;
+  color: #4a4a4a;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+
+/* ============================ STEPS ============================ */
+.steps :global(.ant-steps-item-title) {
+  font-size: 13px;
+  color: #606060;
+}
+
+.steps :global(.ant-steps-item-icon) {
+  background-color: #d6f2ff !important;
+  border-color: #aee2ff !important;
+}
+
+.steps :global(.ant-steps-item-process .ant-steps-item-icon) {
+  background-color: #4eb5ff !important;
+  border-color: #4eb5ff !important;
+  color: white !important;
+}
+
+.steps :global(.ant-steps-item-finish .ant-steps-item-icon) {
+  background-color: #30d66b !important;
+  border-color: #30d66b !important;
+  color: white !important;
+}
+
+/* ======================= BOTÃO VERDE ======================= */
+.receivedBtn {
+  background: #38c24c;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 38px;
+  margin-top: 35px;
+  cursor: default;
+}
+
+/* ======================== AVALIAÇÃO ======================== */
+.ratingArea {
+  margin-top: 40px;
+  margin-bottom: 28px;
+  font-size: 18px;
+  color: #404040;
+}
+
+/* ===================== CAIXA DE COMENTÁRIO ===================== */
+.commentBox {
+  text-align: left;
+}
+
+.commentBox label {
+  font-size: 15px;
+  color: #4d4d4d;
+}
+
+.commentBox textarea {
+  width: 100%;
+  height: 150px;
+  border-radius: 18px;
+  border: 2px solid #dcdcdc;
+  padding: 16px;
+  font-size: 15px;
+  outline: none;
+  resize: none;
+}
