@@ -23,7 +23,7 @@ export default function OrderCompleted() {
                 alert("Erro ao carregar pedido.");
                 return;
             }
-            
+
             setOrder(data.order);
         } catch (err) {
             console.error("Erro ao carregar pedido:", err);
@@ -42,65 +42,100 @@ export default function OrderCompleted() {
 
     const subtotal = Number(order?.subtotal_value);
     const frete = 15;
-    const total = Number(order?.total_value) ;
+    const total = Number(order?.total_value);
 
     return (
         <div className={styles.page}>
-            <main className={styles.main}>
-                <Image src="/img/ball.png" alt="Ball" width={200} height={200} className={styles.ball1} />
+            <div className={styles.bannerContainer}>
+                <Image src="/img/orderCompleted.png"
+                    alt="Order Completed"
+                    width={1600}
+                    height={400}
+                    quality={100}
+                    priority
+                    sizes="100vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                />
+            </div>
 
-                <div className={styles.cardContainer}>
-                    <h2 className={styles.title}>Pedido Finalizado 🎉</h2>
-                    <p className={styles.text}>
-                        Obrigado pela sua compra! Seu pedido foi registrado com sucesso.
-                    </p>
-
+            <div className={styles.cardContainer}>
+                <div className={styles.infoContainer}>
                     <h3 className={styles.subTitle}>Informações do Pedido</h3>
-
-                    <p><strong>ID do Pedido:</strong> {order.id}</p>
                     <p><strong>Cliente:</strong> {order.user_name}</p>
                     <p><strong>Forma de Pagamento:</strong> {order.payment_method}</p>
 
                     <h3 className={styles.subTitle}>Itens</h3>
-
-                    {order.items?.map((item) => {
-                        const name = item.product_name || item.featured_product_name;
-                        const photo = item.product_photo
-                            ? `http://localhost:4000/uploads/${item.product_photo}.jpg`
-                            : item.featured_product_photo
-                                ? `http://localhost:4000/uploads/${item.featured_product_photo}.jpg`
-                                : "/img/logo.png";
-
-                        return (
-                            <div key={item.item_id} className={styles.itemRow}>
-                                <Image
-                                    src={photo}
-                                    alt={name}
-                                    width={120}
-                                    height={90}
-                                    className={styles.itemImage}
-                                    unoptimized
-                                />
-
-                                <div className={styles.itemDetails}>
-                                    <p className={styles.text}>{name}</p>
-                                    <p className={styles.text}>Quantidade: {item.quantity}</p>
-                                    <p className={styles.text}>Preço: R$ {Number(item.price).toFixed(2)}</p>
-                                </div>
-                            </div>
-                        );
-                    })}
-
-                    <h3 className={styles.subTitle}>Resumo</h3>
-                    <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
-                    <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
-                    <p className={styles.totalText}>Total: <strong>R$ {total.toFixed(2)}</strong></p>
-
-                    <button className={styles.finishBtn} onClick={() => router.push("/home")}>
-                        Voltar para Home
-                    </button>
+                    <div className={styles.lineItems}></div>
                 </div>
-            </main>
+
+                <div className={styles.contentItems}>
+                    <div className={styles.orderItemList}>
+                        {order.items?.map((item) => {
+                            const name = item.product_name || item.featured_product_name;
+                            const photo = item.product_photo
+                                ? `http://localhost:4000/uploads/${item.product_photo}.jpg`
+                                : item.featured_product_photo
+                                    ? `http://localhost:4000/uploads/${item.featured_product_photo}.jpg`
+                                    : "/img/logo.png";
+
+                            return (
+                                <div key={item.item_id} className={styles.itemCard}>
+                                    <div className={styles.itemInfo}>
+                                        <div className={styles.imageContainer}>
+                                            <Image
+                                                src={photo}
+                                                alt={name}
+                                                width={80}
+                                                height={80}
+                                                style={{ objectFit: "cover" }}
+                                                unoptimized
+                                            />
+                                        </div>
+
+                                        <p className={styles.name}>{name}</p>
+                                    </div>
+
+                                    <div className={styles.details}>
+                                        <p className={styles.quantity}>Quantidade: {item.quantity}</p>
+                                        <p className={styles.price}>Preço: R$ {Number(item.price).toFixed(2)}</p>
+                                    </div>
+
+                                    <div className={styles.lineItems}></div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    <aside className={styles.sideImage}>
+                        <Image src={"/img/mensagem_order.png"} alt="Café Completo" width={350} height={380} style={{ objectFit: "cover" }} />
+                    </aside>
+                </div>
+
+                <div className={styles.totals}>
+                    <h3 className={styles.subTitle}>Resumo</h3>
+
+                    <div className={styles.totalsGroup}>
+                        <p>Subtotal: <strong>R$ {subtotal.toFixed(2)}</strong></p>
+                        <p>Frete: <strong>R$ {frete.toFixed(2)}</strong></p>
+                    </div>
+
+                    <div className={styles.totalFinal}>
+                        <p className={styles.totalText}>Total:</p> 
+                        <strong>R$ {total.toFixed(2)}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.buttons}>
+                <button className={styles.homehBtn} onClick={() => router.push("/home")}>
+                    Voltar para Home
+                </button>
+
+                <button className={styles.statusBtn} onClick={() => router.push("/orderStatus")}>
+                    Ver Status do Pedido
+                </button>
+            </div>
         </div>
     );
 }
+
