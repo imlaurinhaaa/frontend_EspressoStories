@@ -244,3 +244,46 @@
     font-weight: 900;
     text-shadow: 0 2px 4px rgba(162, 102, 60, 0.2);
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15vh;
+    width: calc(100% - 48px);
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 20px 0;
+}
+
+.homeBtn,
+.statusBtn {
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.3px;
+}
+
+.homeBtn {
+    background: linear-gradient(135deg, #A2663C 0%, #8B5A3C 100%);
+    color: #fff;
+    border: 2px solid transparent;
+}
+
+.homehBtn:hover {
+    background: linear-gradient(135deg, #8B5A3C 0%, #704930 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(162, 102, 60, 0.3);
+    border-color: #E4CDB0;
+}
+
+.statusBtn {
+    background: linear-gradient(135deg, #4b85bf 0%, #3a6a9e 100%);
+    color: #fff;
+}

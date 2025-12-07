@@ -127,7 +127,7 @@ export default function OrderCompleted() {
             </div>
 
             <div className={styles.buttons}>
-                <button className={styles.homehBtn} onClick={() => router.push("/home")}>
+                <button className={styles.homeBtn} onClick={() => router.push("/home")}>
                     Voltar para Home
                 </button>
 
