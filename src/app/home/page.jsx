@@ -49,10 +49,6 @@ export default function Home() {
                         className={styles.espressoName}
                     />
 
-                    <SearchInput 
-                        placeholder={"Pesquisar produtos..."}
-                    />
-
                 </div>
 
                 <div className={styles.categoryCardsArea}>

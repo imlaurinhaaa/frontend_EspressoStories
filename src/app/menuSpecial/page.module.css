@@ -1,0 +1,191 @@
+.menuPage {
+    background: linear-gradient(180deg, #E6E2D7 0%, #f4efe9 100%);
+    padding-bottom: 4rem;
+    min-height: 100vh;
+  }
+
+  .menuBanner {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .menuBannerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .mainMenuTitle {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 2.5rem 0 3.5rem 0;
+    text-align: center;
+    color: #3F1D0E;
+    letter-spacing: 1.5px;
+    text-shadow: 0 6px 26px rgba(63, 29, 14, 0.25);
+  }
+
+  .searchSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  .inputContainer {
+    position: relative;
+    width: 30rem;
+  }
+
+  .input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 5rem;
+    border: 2px solid #3F1D0E94;
+    padding: 0 4rem 0 1rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+
+  .input:focus {
+    border-color: #3F1D0E;
+  }
+
+  .iconBox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4rem;
+    height: 100%;
+    background-color: #3F1D0E;
+    border-radius: 0 5rem 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .searchIcon {
+    color: white;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .categoriesSection {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .categoryBox {
+    background: #ffffff;
+    padding: 0.9rem 2rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid transparent;
+  }
+
+  .categoryBox:hover {
+    background-color: #A2663CB8;
+    border-color: #A2663C;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  .categoryBox:hover .categoryTitle {
+    color: white;
+  }
+
+  .categoryBox.active {
+    background-color: #3F1D0E;
+    border-color: #3F1D0E;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  .categoryBox.active .categoryTitle {
+    color: white;
+  }
+
+  .categoryTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3F1D0E;
+  }
+
+  .filterContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 3rem 0 4rem 0;
+    flex-wrap: wrap;
+  }
+
+  .filterCard {
+    width: 200px;
+    height: 160px;
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.12),
+      inset 0 0 10px rgba(255, 255, 255, 0.25);
+    transition: 0.25s ease;
+  }
+
+  .filterCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+  }
+
+  .filterCard:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, 0.18),
+      inset 0 0 14px rgba(255, 255, 255, 0.35);
+  }
+
+  .filterCard:hover::before {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .filterCard.active {
+    transform: translateY(-8px) scale(1.05);
+    border: 2px solid #6b2e12;
+    box-shadow:
+      0 14px 30px rgba(0, 0, 0, 0.25),
+      inset 0 0 16px rgba(255, 255, 255, 0.45);
+  }
+
+  .filterLabel {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .productsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3.2rem;
+    padding: 0 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+  }

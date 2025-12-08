@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Header from "../../../components/headerUser/Header";
-import styles from "./foodId.module.css";
+import styles from "./page.module.css";
 import { Flex, InputNumber, message } from "antd";
 import Footer from "../../../components/footer/footer";
 
@@ -34,7 +34,7 @@ export default function FoodDetail() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/products/${id}`
+          `http://localhost:4000/api/feature_products/${id}`
         );
         setProduct(response.data.product);
       } catch (error) {
@@ -107,33 +107,12 @@ export default function FoodDetail() {
           <div className={styles.info}>
             <h2 className={styles.productName}>{product.name}</h2>
             <p className={styles.price}>Preço: R$ {product.price}</p>
+            <p>Filial: {product.branch}</p>
 
             <div className={styles.descriptionBox}>
               <div className={styles.text}>
                 <p>{product.description}</p>
-                {product.inspiration && (
-                  <p className={styles.inspiration}>
-                    {product.inspiration}
-                  </p>
-                )}
               </div>
-
-              {product.photo_inspiration && (
-                <aside className={styles.book}>
-                  <Image
-                    src={`http://localhost:4000/uploads/${product.photo_inspiration}.jpg`}
-                    alt={
-                      product.name
-                        ? `${product.name} inspiração`
-                        : "Inspiração"
-                    }
-                    width={300}
-                    height={300}
-                    className={styles.inspirationPhoto}
-                    unoptimized
-                  />
-                </aside>
-              )}
             </div>
 
           <aside className={styles.quantitySection}>
