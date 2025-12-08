@@ -4,48 +4,35 @@ import axios from 'axios';
 import styles from './page.module.css'
 import Image from 'next/image'
 import Header from '../../components/headerUser/Header'
-import FoodCard from '../../components/foodCard1/foodCard';
-
+import FoodCard from '../../components/foodCard1/foodCard'
+import { Search } from 'lucide-react'
 
 export default function Menu() {
 
-
   const API_URL = 'http://localhost:4000/api';
-
 
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
 
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
       setError(null);
 
-
-      console.log('Fetching products from:', `${API_URL}/products`);
-
-
       const response = await axios.get(`${API_URL}/products`);
-      console.log('Products received:', response.data);
-
-
       let data = response.data;
 
-
-      // Garante que data seja um array
       if (!Array.isArray(data)) {
         if (data?.products) data = data.products;
         else if (data?.data) data = data.data;
         else data = [];
       }
 
-
       sessionStorage.setItem('products', JSON.stringify(data));
       setProducts(data);
-
 
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -56,11 +43,9 @@ export default function Menu() {
     }
   };
 
-
   useEffect(() => {
     const produtosArmazenados = sessionStorage.getItem('products');
     let loadedFromCache = false;
-
 
     if (produtosArmazenados) {
       try {
@@ -68,52 +53,39 @@ export default function Menu() {
         if (produtos) {
           setProducts(produtos);
           loadedFromCache = true;
-          console.log('Produtos carregados da sessionStorage:', produtos);
         }
       } catch (error) {
         console.error('Erro ao ler sessionStorage:', error);
       }
     }
 
-
     if (!loadedFromCache) {
       fetchProducts();
     }
   }, []);
 
+  // =======================
+  // FILTRO FINAL (CATEGORIA + BUSCA)
+  // =======================
+  const filteredItems = products.filter((product) => {
+    const matchesCategory = (() => {
+      if (!activeCategory) return true;
+      const categoryId = Number(product.category_id);
+      return categoryId === activeCategory;
+    })();
 
-  const categoryMap = {
-    "Comidas Doce": 1,
-    "Comidas Salgadas": 2,
-    "bebidas": [3, 4],
-  };
+    const matchesSearch = product.name
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
 
-
-  const handleFilterClick = (category) => {
-    setActiveCategory((prev) => (prev === category ? null : category));
-  };
-
-
-  const filteredItems = (products || []).filter((product) => {
-    if (!activeCategory) return true;
-
-
-    const mappedId = categoryMap[activeCategory];
-    const productCategoryId = Number(product.category_id);
-
-
-    if (Array.isArray(mappedId)) {
-      return mappedId.includes(productCategoryId);
-    }
-
-
-    return productCategoryId === mappedId;
+    return matchesCategory && matchesSearch;
   });
-
 
   return (
     <div className={styles.menuPage}>
       <Header />
+
+      {/* BANNER */}
       <section className={styles.menuBanner}>
         <Image
           src={"/img/menuBanner.png"}
@@ -124,37 +96,55 @@ export default function Menu() {
         />
       </section>
 
-
-      <main className={styles.mainMenu}>        
-        <div className={styles.filterContainer}>
-          <div
-            className={`${styles.filterCard} ${activeCategory === "Comidas Doce" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/doce-banner.png')" }}
-            onClick={() => handleFilterClick("Comidas Doce")}
-          >
-            <span className={styles.filterLabel}>SOBREMESAS</span>
-          </div>
-
-
-          <div
-            className={`${styles.filterCard} ${activeCategory === "bebidas" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/bebida-banner.png')" }}
-            onClick={() => handleFilterClick("bebidas")}
-          >
-            <span className={styles.filterLabel}>BEBIDAS</span>
-          </div>
-
-
-          <div
-            className={`${styles.filterCard} ${activeCategory === "Comidas Salgadas" ? styles.active : ''}`}
-            style={{ backgroundImage: "url('/img/salgado-banner.png')" }}
-            onClick={() => handleFilterClick("Comidas Salgadas")}
-          >
-            <span className={styles.filterLabel}>SALGADOS</span>
+      {/* 🔍 BUSCA */}
+      <div className={styles.searchSection}>
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="Buscar item do menu..."
+            className={styles.input}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <div className={styles.iconBox}>
+            <Search className={styles.searchIcon} />
           </div>
         </div>
+      </div>
 
+      {/* CATEGORIAS */}
+      <div className={styles.categoriesSection}>
+        <div
+          className={`${styles.categoryBox} ${activeCategory === null ? styles.active : ""}`}
+          onClick={() => setActiveCategory(null)}
+        >
+          <p className={styles.categoryTitle}>Todos</p>
+        </div>
 
+        <div
+          className={`${styles.categoryBox} ${activeCategory === 3 ? styles.active : ""}`}
+          onClick={() => setActiveCategory(3)}
+        >
+          <p className={styles.categoryTitle}>Bebidas</p>
+        </div>
+
+        <div
+          className={`${styles.categoryBox} ${activeCategory === 1 ? styles.active : ""}`}
+          onClick={() => setActiveCategory(1)}
+        >
+          <p className={styles.categoryTitle}>Sobremesas</p>
+        </div>
+
+        <div
+          className={`${styles.categoryBox} ${activeCategory === 2 ? styles.active : ""}`}
+          onClick={() => setActiveCategory(2)}
+        >
+          <p className={styles.categoryTitle}>Salgados</p>
+        </div>
+      </div>
+
+      {/* LISTA DE PRODUTOS */}
+      <main className={styles.mainMenu}>
         <section className={styles.productsList}>
           {isLoading ? (
             <p>Carregando...</p>
