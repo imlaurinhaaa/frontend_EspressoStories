@@ -226,3 +226,195 @@
     90% { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(-10px); }
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .backBanner {
+        height: 400px;
+    }
+
+    .sectionEdit {
+        width: 55vw;
+        padding: 40px;
+        top: -150px;
+    }
+
+    .postBlock {
+        width: 380px;
+        height: 380px;
+    }
+
+    .addImageIcon {
+        font-size: 5rem;
+    }
+
+    .ballImage.position {
+        width: 200px;
+        height: 200px;
+    }
+
+    .ballImage.position2 {
+        top: 600px;
+        left: 1400px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .ballImage.position3 {
+        top: 700px;
+        left: 650px;
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rowArea {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .backBanner {
+        height: 300px;
+    }
+
+    .editArea {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .sectionEdit {
+        width: 85vw;
+        padding: 30px;
+        top: -100px;
+        gap: 1.5rem;
+    }
+
+    .postBlock {
+        width: 100%;
+        max-width: 350px;
+        height: 350px;
+    }
+
+    .addImageIcon {
+        font-size: 4.5rem;
+    }
+
+    .input {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+    }
+
+    .button,
+    .buttonCancel {
+        width: 60%;
+        font-size: 0.95rem;
+    }
+
+    .ballImage.position {
+        width: 150px;
+        height: 150px;
+        top: 400px;
+    }
+
+    .ballImage.position2 {
+        top: 550px;
+        left: auto;
+        right: 50px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .ballImage.position3 {
+        top: 650px;
+        left: 400px;
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rowArea {
+        gap: 20px;
+    }
+
+    .backBanner {
+        height: 200px;
+    }
+
+    .sectionEdit {
+        width: 90vw;
+        padding: 20px;
+        top: -60px;
+        gap: 1rem;
+    }
+
+    .postBlock {
+        width: 100%;
+        max-width: 100%;
+        height: 280px;
+    }
+
+    .addImageIcon {
+        font-size: 3.5rem;
+    }
+
+    .addImageText {
+        font-size: 0.9rem;
+    }
+
+    .input {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .button,
+    .buttonCancel {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+
+    .modalContent {
+        padding: 15px;
+        width: 90%;
+        max-width: 320px;
+    }
+
+    .modalActions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .confirmation {
+        top: 10px;
+        right: 10px;
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .checkIcon {
+        font-size: 1.2rem;
+    }
+
+    .ballImage.position {
+        width: 100px;
+        height: 100px;
+        top: 300px;
+        left: 20px;
+    }
+
+    .ballImage.position2 {
+        top: 450px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .ballImage.position3 {
+        top: 550px;
+        left: 150px;
+        width: 100px;
+        height: 100px;
+    }
+}
