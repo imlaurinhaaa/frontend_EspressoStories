@@ -159,7 +159,9 @@ export default function Dashboard() {
 
                             <div className={styles.cardSection} ref={cardSectionRef}>
                                 {orders.map((order) => {
-                                    const productImageUrl = `http://127.0.0.1:4000/uploads/${order.order_product_photo}.jpg`;
+                                    const productImageUrl = order.order_product_photo 
+                                        ? `http://127.0.0.1:4000/uploads/${order.order_product_photo}.jpg`
+                                        : `http://127.0.0.1:4000/uploads/${order.featured_product_photo}.jpg`;
 
                                     console.log("Imagem do produto:", productImageUrl);
 
@@ -167,11 +169,11 @@ export default function Dashboard() {
                                         <OrderCard
                                             key={order.id}
                                             productImage={productImageUrl}
-                                            productName={order.order_product_name} 
+                                            productName={order.order_product_name || order.featured_product_name} 
                                             orderNumber={order.order_id}
                                             orderClient={order.order_user_name}
                                             productQuantity={order.quantity}
-                                            orderPrice={order.order_total_value}
+                                            orderPrice={order.order_total_value || order.price}
                                             paymentMethod={order.order_payment_method}
                                         />
                                     );
