@@ -66,7 +66,7 @@ export default function SignUp() {
 
             {erro && <div style={{ color: 'red', marginBottom: '1rem' }}>{erro}</div>}
 
-            <Form onFinish={onFinish} className={styles.form}>
+            <Form onFinish={onFinish} className={styles.form} autoComplete="off">
 
               <Form.Item
                 name="name"
