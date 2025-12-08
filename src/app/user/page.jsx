@@ -165,55 +165,6 @@ export default function UserProfile() {
                                 <p style={{ fontSize: "1.2rem", color: "#888" }}>Nenhum endereço cadastrado.</p>
                             )}
                         </div>
-
-                        <div className={styles.orderHistorySection}>
-                            {cartData && cartData.items ? (
-                                cartData.items.length === 0 ? (
-                                    <div className={styles.cartItems}>
-                                        <div className={styles.cartItem}>
-                                            <p style={{ fontSize: "1.2rem", color: "#888", margin: 0 }}>Nenhum pedido realizado até o momento.</p>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className={styles.cartItems}>
-                                        {cartData.items.map(item => {
-                                            const productName = item.product_name || item.featured_product_name || "Produto Desconhecido";
-
-                                            const productPhoto = item.product_photo
-                                                ? `http://localhost:4000/uploads/${item.product_photo}${item.product_photo.includes('.') ? '' : '.jpg'}`
-                                                : item.featured_product_photo
-                                                    ? `http://localhost:4000/uploads/${item.featured_product_photo}${item.featured_product_photo.includes('.') ? '' : '.jpg'}`
-                                                    : "/img/logo.png";
-
-                                            const productPrice = item.product_price || item.featured_product_price || 0;
-
-                                            return (
-                                                <div key={item.id} className={styles.cartItem}>
-                                                    <Image
-                                                        src={productPhoto}
-                                                        alt={productName}
-                                                        width={160}
-                                                        height={120}
-                                                        className={styles.productPhoto}
-                                                        unoptimized
-                                                    />
-
-                                                    <div className={styles.itemInfo}>
-                                                        <h3 className={styles.subTitle}>{productName}</h3>
-
-                                                        <p className={styles.text}>Preço: R$ {Number(productPrice).toFixed(2)}</p>
-
-                                                        <p className={styles.itemTotal}>
-                                                            Total do item: <strong>R$ {Number(item.total_item_price || 0).toFixed(2)}</strong>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                )
-                            ) : null}
-                        </div>
                     </div>
 
                     <Link className={styles.button} href="/">Sair</Link>
