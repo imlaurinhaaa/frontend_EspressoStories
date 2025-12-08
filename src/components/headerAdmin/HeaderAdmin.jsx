@@ -6,6 +6,7 @@ import styles from "./header.module.css";
 import { UserRoundCheck } from 'lucide-react';
 import { SquarePlus } from 'lucide-react';
 import { SquarePen } from 'lucide-react';
+import { MapPinHouse } from 'lucide-react';
 
 export default function HeaderAdmin() {
     return (
@@ -19,6 +20,7 @@ export default function HeaderAdmin() {
                 <Link href="createGeral"><SquarePlus className={styles.link} /></Link>
                 <Link href="editProduct"><SquarePen className={styles.link} /></Link>
                 <Link href="userAdmin"><UserRoundCheck className={styles.link} /></Link>
+                <Link href="editInfo"><MapPinHouse className={styles.link} /></Link>
             </section>
         </header>
     )
