@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Header from "../../components/headerUser/Header";
+import Footer from '../../components/footer/footer'
 import FoodCard from "../../components/foodCard2/foodCard";
 import { Search } from "lucide-react";
 
@@ -11,7 +12,7 @@ export default function MenuSpecial() {
   const API_URL = "http://localhost:4000/api";
 
   const [activeCategory, setActiveCategory] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // 🟢 BUSCA
+  const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -44,21 +45,15 @@ export default function MenuSpecial() {
     fetchProducts();
   }, []);
 
-  // nomes CORRETOS conforme seu backend
+  // CATEGORIAS AJUSTADAS
   const categoryMap = {
-    "Comidas Doces": 1,
-    "Comidas Salgadas": 2,
-    bebidas: [3, 4],
+    Bebidas: [3, 4],
+    Sobremesas: 1,
+    Salgados: 2,
   };
 
-  const handleFilterClick = (category) => {
-    setActiveCategory((prev) => (prev === category ? null : category));
-  };
-
-  // 🟢 FILTRO + BUSCA
-  const filteredItems = (products || [])
+  const filteredItems = products
     .filter((product) => {
-      // FILTRAR CATEGORIA
       if (!activeCategory) return true;
 
       const mappedId = categoryMap[activeCategory];
@@ -68,11 +63,9 @@ export default function MenuSpecial() {
 
       return productCategoryId === mappedId;
     })
-    .filter((product) => {
-      // FILTRAR BUSCA
-      if (!searchTerm) return true;
-      return product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   return (
     <div className={styles.menuPage}>
@@ -105,38 +98,46 @@ export default function MenuSpecial() {
       </div>
 
       <main className={styles.mainMenu}>
-        {/* 🔥 FILTROS */}
-       <div className={styles.categoriesSection}>
-        <div
-          className={`${styles.categoryBox} ${activeCategory === null ? styles.active : ""}`}
-          onClick={() => setActiveCategory(null)}
-        >
-          <p className={styles.categoryTitle}>Todos</p>
+        {/* 📌 FILTROS */}
+        <div className={styles.categoriesSection}>
+          <div
+            className={`${styles.categoryBox} ${
+              activeCategory === null ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory(null)}
+          >
+            <p className={styles.categoryTitle}>Todos</p>
+          </div>
+
+          <div
+            className={`${styles.categoryBox} ${
+              activeCategory === "Bebidas" ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory("Bebidas")}
+          >
+            <p className={styles.categoryTitle}>Bebidas</p>
+          </div>
+
+          <div
+            className={`${styles.categoryBox} ${
+              activeCategory === "Sobremesas" ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory("Sobremesas")}
+          >
+            <p className={styles.categoryTitle}>Sobremesas</p>
+          </div>
+
+          <div
+            className={`${styles.categoryBox} ${
+              activeCategory === "Salgados" ? styles.active : ""
+            }`}
+            onClick={() => setActiveCategory("Salgados")}
+          >
+            <p className={styles.categoryTitle}>Salgados</p>
+          </div>
         </div>
 
-        <div
-          className={`${styles.categoryBox} ${activeCategory === 3 ? styles.active : ""}`}
-          onClick={() => setActiveCategory(3)}
-        >
-          <p className={styles.categoryTitle}>Bebidas</p>
-        </div>
-
-        <div
-          className={`${styles.categoryBox} ${activeCategory === 1 ? styles.active : ""}`}
-          onClick={() => setActiveCategory(1)}
-        >
-          <p className={styles.categoryTitle}>Sobremesas</p>
-        </div>
-
-        <div
-          className={`${styles.categoryBox} ${activeCategory === 2 ? styles.active : ""}`}
-          onClick={() => setActiveCategory(2)}
-        >
-          <p className={styles.categoryTitle}>Salgados</p>
-        </div>
-      </div>
-
-        {/* 🛒 LISTA DE PRODUTOS */}
+        {/* 🛒 LISTA */}
         <section className={styles.productsList}>
           {isLoading ? (
             <p>Carregando...</p>
@@ -154,6 +155,7 @@ export default function MenuSpecial() {
           )}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

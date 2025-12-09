@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './page.module.css'
 import Image from 'next/image'
 import Header from '../../components/headerUser/Header'
+import Footer from '../../components/footer/footer'
 import FoodCard from '../../components/foodCard1/foodCard'
 import { Search } from 'lucide-react'
 
@@ -157,6 +158,7 @@ export default function Menu() {
           )}
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
