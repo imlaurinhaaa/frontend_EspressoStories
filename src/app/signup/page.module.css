@@ -137,3 +137,257 @@
 .button:hover {
   background-color: #5a2e14 !important;
 }
+
+@media (max-width: 1439px) {
+  .posterContainer {
+    width: 45%;
+  }
+
+  .posterImage {
+    width: 50%;
+  }
+
+  .formContainer {
+    width: 35%;
+    padding: 28px;
+  }
+
+  .logo {
+    margin-bottom: 45px;
+  }
+
+  .position2 {
+    left: 1200px;
+  }
+
+  .position4 {
+    left: 1300px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contentContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .posterContainer {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .posterImage {
+    position: relative;
+    width: 60%;
+    max-width: 300px;
+  }
+
+  .formContainer {
+    width: 90%;
+    max-width: 450px;
+    padding: 24px;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .ballImage {
+    display: none;
+  }
+
+  .position2,
+  .position3,
+  .position4 {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageContent {
+    padding: 16px;
+  }
+
+  .formContainer {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+  }
+
+  .logo {
+    margin-bottom: 24px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .form {
+    padding: 8px;
+  }
+
+  .input {
+    padding: 7px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .button {
+    width: 40%;
+    max-width: 180px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .posterImage {
+    width: 70%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 639px) {
+  .pageContent {
+    padding: 12px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .contentContainer {
+    padding-top: 30px;
+    flex-direction: column;
+  }
+
+  .posterContainer {
+    margin-bottom: 15px;
+  }
+
+  .posterImage {
+    width: 75%;
+    max-width: 200px;
+  }
+
+  .formContainer {
+    width: 95%;
+    max-width: 350px;
+    padding: 18px;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .form {
+    padding: 6px;
+  }
+
+  .input {
+    padding: 6px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .button {
+    width: 45%;
+    max-width: 160px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 479px) {
+  .container {
+    overflow: hidden;
+  }
+
+  .pageContent {
+    padding: 10px;
+  }
+
+  .contentContainer {
+    padding-top: 20px;
+  }
+
+  .posterContainer {
+    margin-bottom: 12px;
+  }
+
+  .posterImage {
+    width: 80%;
+    max-width: 180px;
+  }
+
+  .formContainer {
+    width: 98%;
+    max-width: 320px;
+    padding: 16px;
+  }
+
+  .logo {
+    margin-bottom: 18px;
+    width: 55px;
+    height: 55px;
+  }
+
+  .form {
+    padding: 4px;
+  }
+
+  .input {
+    padding: 5px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+  }
+
+  .button {
+    width: 50%;
+    max-width: 140px;
+    height: 34px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 419px) {
+  .pageContent {
+    padding: 8px;
+  }
+
+  .contentContainer {
+    padding-top: 15px;
+  }
+
+  .posterImage {
+    width: 85%;
+    max-width: 160px;
+  }
+
+  .formContainer {
+    width: 99%;
+    max-width: 300px;
+    padding: 14px;
+  }
+
+  .logo {
+    margin-bottom: 16px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .input {
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .button {
+    width: 55%;
+    max-width: 130px;
+    height: 32px;
+    font-size: 10px;
+  }
+}

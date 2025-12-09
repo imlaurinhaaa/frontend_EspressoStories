@@ -279,3 +279,485 @@
     font-weight: 700;
     color: #3F1D0E;
 }
+
+@media (max-width: 1439px) {
+    .main {
+        padding: 1.8rem;
+    }
+
+    .titleSection {
+        margin: 1.8rem 0;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .photoContainer {
+        width: 180px;
+        height: 180px;
+    }
+
+    .productPhoto {
+        width: 180px;
+        height: 140px;
+    }
+
+    .addressSection,
+    .cartItems {
+        max-width: 550px;
+    }
+
+    .infoSection {
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .subTitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    .main {
+        padding: 1.5rem;
+    }
+
+    .titleSection {
+        margin: 1.5rem 0;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .photoContainer {
+        width: 160px;
+        height: 160px;
+    }
+
+    .productPhoto {
+        width: 160px;
+        height: 120px;
+    }
+
+    .photoWrap {
+        flex: 0 0 140px;
+    }
+
+    .addressSection,
+    .cartItems {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .addressTable th,
+    .addressTable td {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .infoSection {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .cartItem {
+        flex-direction: row;
+        gap: 1.2rem;
+        padding: 1rem;
+    }
+
+    .subTitle {
+        font-size: 1.2rem;
+    }
+
+    .text {
+        font-size: 0.9rem;
+    }
+
+    .button {
+        padding: 0.9rem 3.5rem;
+        font-size: 0.95rem;
+    }
+
+    .addressTitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .main {
+        padding: 1.2rem;
+    }
+
+    .titleSection {
+        margin: 1.2rem 0;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .photoContainer {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 0.8rem;
+    }
+
+    .ballImage {
+        display: none;
+    }
+
+    .productPhoto {
+        width: 130px;
+        height: 100px;
+    }
+
+    .photoWrap {
+        flex: 0 0 120px;
+    }
+
+    .cartItem {
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+
+    .addressTable {
+        font-size: 0.85rem;
+    }
+
+    .addressTable th,
+    .addressTable td {
+        padding: 0.5rem;
+    }
+
+    .addressTable input {
+        padding: 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    .subTitle {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .text {
+        font-size: 0.85rem;
+    }
+
+    .itemTotal {
+        font-size: 1.1rem;
+    }
+
+    .cartTotal {
+        font-size: 1.2rem;
+    }
+
+    .button {
+        padding: 0.8rem 3rem;
+        font-size: 0.9rem;
+        margin-top: 2rem;
+    }
+
+    .addressTitle {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .infoSection {
+        margin-top: 1.5rem;
+    }
+
+    .qtyControls {
+        gap: 8px;
+    }
+
+    .qtyControls button {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+
+    .quantity {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 639px) {
+    .main {
+        padding: 1rem;
+    }
+
+    .titleSection {
+        margin: 1rem 0;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .photoContainer {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 0.6rem;
+    }
+
+    .productPhoto {
+        width: 110px;
+        height: 85px;
+    }
+
+    .photoWrap {
+        flex: 0 0 100px;
+    }
+
+    .cartItem {
+        gap: 0.6rem;
+        padding: 0.6rem;
+    }
+
+    .subTitle {
+        font-size: 1rem;
+    }
+
+    .text {
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
+    }
+
+    .itemTotal {
+        font-size: 1rem;
+        margin-top: 0.4rem;
+    }
+
+    .cartTotal {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .addressSection,
+    .cartItems {
+        padding: 1rem;
+    }
+
+    .addressTitle {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .addressTable th,
+    .addressTable td {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .addressTable input {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .button {
+        padding: 0.7rem 2.5rem;
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+    }
+
+    .infoSection {
+        margin-top: 1.2rem;
+        gap: 1rem;
+    }
+
+    .qtyControls {
+        gap: 6px;
+        margin: 6px 0;
+    }
+
+    .qtyControls button {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+
+    .quantity {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .main {
+        padding: 0.8rem;
+        overflow-x: hidden;
+    }
+
+    .titleSection {
+        margin: 0.8rem 0;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .photoContainer {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0.5rem;
+    }
+
+    .contentContainer {
+        width: 100%;
+    }
+
+    .productPhoto {
+        width: 90px;
+        height: 70px;
+    }
+
+    .photoWrap {
+        flex: 0 0 85px;
+    }
+
+    .cartItem {
+        gap: 0.5rem;
+        padding: 0.5rem;
+        flex-direction: column;
+    }
+
+    .itemInfo {
+        width: 100%;
+    }
+
+    .subTitle {
+        font-size: 0.95rem;
+    }
+
+    .text {
+        font-size: 0.75rem;
+    }
+
+    .itemTotal {
+        font-size: 0.95rem;
+    }
+
+    .cartTotal {
+        font-size: 1rem;
+    }
+
+    .addressSection,
+    .cartItems {
+        padding: 0.8rem;
+        width: 100%;
+    }
+
+    .addressTitle {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .addressTable {
+        font-size: 0.7rem;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .addressTable th,
+    .addressTable td {
+        padding: 0.3rem;
+    }
+
+    .addressTable input {
+        padding: 0.3rem;
+        font-size: 0.75rem;
+    }
+
+    .button {
+        padding: 0.6rem 2rem;
+        font-size: 0.8rem;
+        margin-top: 1.2rem;
+    }
+
+    .infoSection {
+        margin-top: 1rem;
+        gap: 0.8rem;
+    }
+
+    .qtyControls {
+        gap: 4px;
+    }
+
+    .qtyControls button {
+        padding: 2px 4px;
+        font-size: 0.7rem;
+    }
+
+    .quantity {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 419px) {
+    .main {
+        padding: 0.6rem;
+    }
+
+    .titleSection {
+        margin: 0.6rem 0;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+
+    .photoContainer {
+        width: 90px;
+        height: 90px;
+    }
+
+    .productPhoto {
+        width: 80px;
+        height: 60px;
+    }
+
+    .photoWrap {
+        flex: 0 0 75px;
+    }
+
+    .subTitle {
+        font-size: 0.9rem;
+    }
+
+    .text {
+        font-size: 0.7rem;
+    }
+
+    .itemTotal {
+        font-size: 0.9rem;
+    }
+
+    .cartTotal {
+        font-size: 0.95rem;
+    }
+
+    .addressSection,
+    .cartItems {
+        padding: 0.6rem;
+    }
+
+    .addressTitle {
+        font-size: 0.95rem;
+    }
+
+    .button {
+        padding: 0.5rem 1.8rem;
+        font-size: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .qtyControls {
+        gap: 4px;
+        margin: 4px 0;
+    }
+
+    .quantity {
+        font-size: 0.85rem;
+    }
+}

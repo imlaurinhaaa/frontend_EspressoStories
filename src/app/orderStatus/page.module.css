@@ -277,3 +277,493 @@
     0 6px 20px rgba(56, 134, 194, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
+
+@media (max-width: 1439px) {
+  .bannerContainer {
+    padding-top: 150px;
+    padding-bottom: 50px;
+  }
+
+  .banner {
+    height: 350px;
+  }
+
+  .card {
+    padding: 48px 56px;
+    border-radius: 28px;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 36px;
+  }
+
+  .title::after {
+    width: 70px;
+  }
+
+  .ratingArea {
+    padding: 24px;
+    margin-top: 40px;
+    margin-bottom: 28px;
+  }
+
+  .ratingArea p {
+    font-size: 18px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 38px !important;
+  }
+
+  .commentBox textarea {
+    height: 140px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .bannerContainer {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+
+  .banner {
+    height: 300px;
+  }
+
+  .card {
+    width: 95%;
+    padding: 40px 48px;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  .title::after {
+    width: 60px;
+    height: 2px;
+  }
+
+  .steps :global(.ant-steps-item-title) {
+    font-size: 13px !important;
+  }
+
+  .steps :global(.ant-steps-item-description) {
+    font-size: 11px !important;
+  }
+
+  .ratingArea {
+    padding: 20px;
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+
+  .ratingArea p {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 34px !important;
+  }
+
+  .ratingArea :global(.ant-rate-star) {
+    margin: 0 6px !important;
+  }
+
+  .commentBox label {
+    font-size: 15px;
+  }
+
+  .commentBox textarea {
+    height: 120px;
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .submitFeedbackBtn {
+    font-size: 15px;
+    padding: 12px 36px;
+  }
+
+  .receivedBtn {
+    font-size: 17px;
+    padding: 14px 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bannerContainer {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  .banner {
+    height: 250px;
+  }
+
+  .banner::after {
+    height: 100px;
+    bottom: -40px;
+  }
+
+  .card {
+    width: 96%;
+    padding: 32px 40px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+  }
+
+  .title::after {
+    width: 50px;
+    height: 2px;
+  }
+
+  .steps {
+    margin-bottom: 16px;
+  }
+
+  .steps :global(.ant-steps-item-title) {
+    font-size: 12px !important;
+  }
+
+  .steps :global(.ant-steps-item-description) {
+    font-size: 10px !important;
+  }
+
+  .receivedBtn {
+    font-size: 16px;
+    padding: 12px 36px;
+    margin-top: 24px;
+  }
+
+  .ratingArea {
+    padding: 18px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+  }
+
+  .ratingArea p {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 30px !important;
+  }
+
+  .ratingArea :global(.ant-rate-star) {
+    margin: 0 5px !important;
+  }
+
+  .commentBox {
+    margin-top: 18px;
+  }
+
+  .commentBox label {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .commentBox textarea {
+    height: 100px;
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 16px;
+  }
+
+  .submitFeedbackBtn {
+    font-size: 14px;
+    padding: 10px 32px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 639px) {
+  .bannerContainer {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .banner {
+    height: 200px;
+  }
+
+  .banner::after {
+    height: 80px;
+    bottom: -30px;
+  }
+
+  .card {
+    width: 97%;
+    padding: 28px 32px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+  }
+
+  .title::after {
+    width: 40px;
+    height: 2px;
+  }
+
+  .steps {
+    margin-bottom: 12px;
+  }
+
+  .steps :global(.ant-steps-item-title) {
+    font-size: 11px !important;
+  }
+
+  .steps :global(.ant-steps-item-description) {
+    font-size: 9px !important;
+  }
+
+  .receivedBtn {
+    font-size: 15px;
+    padding: 11px 32px;
+    margin-top: 20px;
+  }
+
+  .ratingArea {
+    padding: 16px;
+    margin-top: 24px;
+    margin-bottom: 18px;
+    border-radius: 14px;
+  }
+
+  .ratingArea p {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 26px !important;
+  }
+
+  .ratingArea :global(.ant-rate-star) {
+    margin: 0 4px !important;
+  }
+
+  .commentBox {
+    margin-top: 16px;
+  }
+
+  .commentBox label {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .commentBox textarea {
+    height: 90px;
+    padding: 10px 12px;
+    font-size: 12px;
+    border-radius: 14px;
+  }
+
+  .submitFeedbackBtn {
+    font-size: 13px;
+    padding: 9px 28px;
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 479px) {
+  .bannerContainer {
+    padding-top: 60px;
+    padding-bottom: 15px;
+    overflow-x: hidden;
+  }
+
+  .banner {
+    height: 160px;
+  }
+
+  .banner::after {
+    height: 60px;
+    bottom: -20px;
+  }
+
+  .card {
+    width: 98%;
+    padding: 24px 24px;
+    border-radius: 16px;
+    box-shadow: 
+      0px 8px 24px rgba(0, 0, 0, 0.1),
+      0px 2px 8px rgba(162, 102, 60, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+  }
+
+  .title::after {
+    width: 35px;
+    height: 2px;
+  }
+
+  .steps {
+    margin-bottom: 10px;
+  }
+
+  .steps :global(.ant-steps-item-title) {
+    font-size: 10px !important;
+  }
+
+  .steps :global(.ant-steps-item-description) {
+    font-size: 8px !important;
+  }
+
+  .steps :global(.ant-steps-item-icon) {
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 12px !important;
+  }
+
+  .receivedBtn {
+    font-size: 14px;
+    padding: 10px 28px;
+    margin-top: 18px;
+  }
+
+  .ratingArea {
+    padding: 14px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .ratingArea p {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 22px !important;
+  }
+
+  .ratingArea :global(.ant-rate-star) {
+    margin: 0 3px !important;
+  }
+
+  .commentBox {
+    margin-top: 14px;
+  }
+
+  .commentBox label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .commentBox textarea {
+    height: 80px;
+    padding: 8px 10px;
+    font-size: 11px;
+    border-radius: 12px;
+  }
+
+  .submitFeedbackBtn {
+    font-size: 12px;
+    padding: 8px 24px;
+    margin-top: 12px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 419px) {
+  .bannerContainer {
+    padding-top: 50px;
+    padding-bottom: 10px;
+  }
+
+  .banner {
+    height: 140px;
+  }
+
+  .banner::after {
+    height: 50px;
+    bottom: -15px;
+  }
+
+  .card {
+    width: 99%;
+    padding: 20px 18px;
+    border-radius: 14px;
+  }
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 6px;
+  }
+
+  .title::after {
+    width: 30px;
+  }
+
+  .steps :global(.ant-steps-item-title) {
+    font-size: 9px !important;
+  }
+
+  .steps :global(.ant-steps-item-description) {
+    font-size: 7px !important;
+  }
+
+  .receivedBtn {
+    font-size: 13px;
+    padding: 9px 24px;
+    margin-top: 16px;
+  }
+
+  .ratingArea {
+    padding: 12px;
+    margin-top: 16px;
+    margin-bottom: 14px;
+  }
+
+  .ratingArea p {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ratingArea :global(.ant-rate) {
+    font-size: 20px !important;
+  }
+
+  .ratingArea :global(.ant-rate-star) {
+    margin: 0 2px !important;
+  }
+
+  .commentBox label {
+    font-size: 11px;
+  }
+
+  .commentBox textarea {
+    height: 70px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .submitFeedbackBtn {
+    font-size: 11px;
+    padding: 7px 20px;
+    margin-top: 10px;
+  }
+}

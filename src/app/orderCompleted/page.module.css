@@ -287,3 +287,522 @@
     background: linear-gradient(135deg, #4b85bf 0%, #3a6a9e 100%);
     color: #fff;
 }
+
+@media (max-width: 1439px) {
+    .content {
+        max-width: 100%;
+        padding: 28px 20px;
+    }
+
+    .subTitle {
+        font-size: 1.3rem;
+        margin-top: 32px;
+        margin-bottom: 16px;
+    }
+
+    .infoContainer {
+        max-width: 100%;
+        padding: 40px;
+    }
+
+    .contentItems {
+        gap: 20vh;
+    }
+
+    .itemCard {
+        width: 700px;
+        padding: 24px;
+    }
+
+    .sideImage {
+        width: 280px;
+    }
+
+    .buttons {
+        gap: 12vh;
+    }
+}
+
+@media (max-width: 1023px) {
+    .content {
+        padding: 24px 16px;
+    }
+
+    .contentItems {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        justify-items: center;
+    }
+
+    .sideImage {
+        width: 260px;
+        max-width: 80%;
+    }
+
+    .itemCard {
+        width: 600px;
+        padding: 20px;
+    }
+
+    .infoContainer {
+        max-width: 100%;
+        padding: 32px 24px;
+    }
+
+    .infoContainer p {
+        font-size: 0.95rem;
+        gap: 16px;
+        padding: 10px 14px;
+    }
+
+    .buttons {
+        flex-direction: row;
+        gap: 8vh;
+        width: calc(100% - 32px);
+    }
+
+    .name {
+        font-size: 1rem;
+    }
+
+    .price {
+        font-size: 1rem;
+    }
+
+    .totals h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .content {
+        padding: 20px 12px;
+    }
+
+    .subTitle {
+        font-size: 1.1rem;
+        margin-top: 24px;
+        margin-bottom: 12px;
+    }
+
+    .itemCard {
+        width: 100%;
+        max-width: 500px;
+        padding: 16px;
+    }
+
+    .itemInfo {
+        gap: 12px;
+    }
+
+    .imageContainer {
+        width: 70px;
+        height: 70px;
+        border-width: 2px;
+    }
+
+    .name {
+        font-size: 0.95rem;
+    }
+
+    .quantity {
+        font-size: 0.9rem;
+    }
+
+    .price {
+        font-size: 0.95rem;
+    }
+
+    .details {
+        gap: 12px;
+    }
+
+    .sideImage {
+        width: 220px;
+        max-width: 70%;
+        border-radius: 15px;
+    }
+
+    .infoContainer {
+        padding: 24px 16px;
+    }
+
+    .infoContainer p {
+        font-size: 0.9rem;
+        gap: 12px;
+        padding: 8px 12px;
+    }
+
+    .infoContainer strong {
+        min-width: 140px;
+    }
+
+    .totalsGroup {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .totalsGroup p {
+        font-size: 0.9rem;
+    }
+
+    .totalsGroup strong {
+        font-size: 0.95rem;
+    }
+
+    .totals h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .totalFinal {
+        padding: 14px 16px;
+    }
+
+    .totalFinal p {
+        font-size: 1rem;
+    }
+
+    .totalFinal strong {
+        font-size: 1.2rem;
+    }
+
+    .homeBtn,
+    .statusBtn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .buttons {
+        gap: 5vh;
+        padding: 16px 0;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - Mobile Large (480px - 639px)
+   ======================================== */
+@media (max-width: 639px) {
+    .content {
+        padding: 16px 10px;
+    }
+
+    .subTitle {
+        font-size: 1rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 12px;
+    }
+
+    .itemCard {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .itemInfo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .imageContainer {
+        width: 60px;
+        height: 60px;
+    }
+
+    .name {
+        font-size: 0.9rem;
+    }
+
+    .quantity {
+        font-size: 0.85rem;
+    }
+
+    .price {
+        font-size: 0.9rem;
+    }
+
+    .details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .lineItems {
+        margin-top: 12px;
+    }
+
+    .sideImage {
+        width: 180px;
+        max-width: 60%;
+    }
+
+    .infoContainer {
+        padding: 20px 12px;
+    }
+
+    .infoContainer p {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        gap: 8px;
+        padding: 6px 10px;
+    }
+
+    .infoContainer strong {
+        min-width: auto;
+    }
+
+    .totals {
+        width: calc(100% - 20px);
+        padding: 16px;
+        margin: 16px auto;
+        gap: 12px;
+    }
+
+    .totals h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .totalsGroup {
+        padding: 8px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .totalsGroup p,
+    .totalsGroup strong {
+        font-size: 0.85rem;
+        width: 100%;
+    }
+
+    .totalFinal {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 12px;
+        gap: 8px;
+    }
+
+    .totalFinal p,
+    .totalFinal strong {
+        width: 100%;
+        text-align: left;
+    }
+
+    .totalFinal p {
+        font-size: 0.95rem;
+    }
+
+    .totalFinal strong {
+        font-size: 1.1rem;
+    }
+
+    .homeBtn,
+    .statusBtn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 0;
+        width: calc(100% - 20px);
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - Mobile Medium (420px - 479px)
+   ======================================== */
+@media (max-width: 479px) {
+    .page {
+        width: 100%;
+    }
+
+    .container {
+        overflow-x: hidden;
+    }
+
+    .content {
+        padding: 12px 8px;
+    }
+
+    .subTitle {
+        font-size: 0.95rem;
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    .cardContainer {
+        gap: 1.5vh;
+    }
+
+    .itemCard {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .itemInfo {
+        gap: 8px;
+    }
+
+    .imageContainer {
+        width: 55px;
+        height: 55px;
+        border-width: 2px;
+    }
+
+    .name {
+        font-size: 0.85rem;
+    }
+
+    .quantity {
+        font-size: 0.8rem;
+    }
+
+    .price {
+        font-size: 0.85rem;
+    }
+
+    .sideImage {
+        width: 160px;
+        max-width: 50%;
+        border-radius: 12px;
+    }
+
+    .infoContainer {
+        padding: 16px 10px;
+    }
+
+    .infoContainer p {
+        font-size: 0.8rem;
+        gap: 6px;
+        padding: 5px 8px;
+    }
+
+    .totals {
+        width: calc(100% - 16px);
+        padding: 12px;
+        margin: 12px auto;
+    }
+
+    .totals h3 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .totalsGroup {
+        padding: 6px 10px;
+    }
+
+    .totalsGroup p,
+    .totalsGroup strong {
+        font-size: 0.8rem;
+    }
+
+    .totalFinal {
+        padding: 10px;
+    }
+
+    .totalFinal p {
+        font-size: 0.9rem;
+    }
+
+    .totalFinal strong {
+        font-size: 1rem;
+    }
+
+    .homeBtn,
+    .statusBtn {
+        padding: 9px 18px;
+        font-size: 0.8rem;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - Mobile Small (<420px)
+   ======================================== */
+@media (max-width: 419px) {
+    .content {
+        padding: 10px 6px;
+    }
+
+    .subTitle {
+        font-size: 0.9rem;
+        margin-top: 12px;
+    }
+
+    .itemCard {
+        padding: 10px;
+    }
+
+    .imageContainer {
+        width: 50px;
+        height: 50px;
+    }
+
+    .name {
+        font-size: 0.8rem;
+    }
+
+    .price {
+        font-size: 0.8rem;
+    }
+
+    .sideImage {
+        width: 140px;
+        max-width: 45%;
+    }
+
+    .infoContainer {
+        padding: 12px 8px;
+    }
+
+    .infoContainer p {
+        font-size: 0.75rem;
+        padding: 4px 6px;
+    }
+
+    .totals {
+        width: calc(100% - 12px);
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    .totals h3 {
+        font-size: 0.9rem;
+    }
+
+    .totalsGroup p,
+    .totalsGroup strong {
+        font-size: 0.75rem;
+    }
+
+    .totalFinal p {
+        font-size: 0.85rem;
+    }
+
+    .totalFinal strong {
+        font-size: 0.95rem;
+    }
+
+    .homeBtn,
+    .statusBtn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: calc(100% - 12px);
+        gap: 8px;
+    }
+}

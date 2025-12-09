@@ -194,3 +194,392 @@
 .button:hover {
   background-color: #5a2e14 !important;
 }
+
+@media (max-width: 1439px) {
+  .posterContainer {
+    width: 45%;
+  }
+
+  .posterImage {
+    width: 50%;
+  }
+
+  .formContainer {
+    width: 35%;
+    padding: 28px;
+  }
+
+  .welcomeTitle {
+    font-size: 19px;
+    margin-bottom: 18px;
+  }
+
+  .logo02 {
+    margin-bottom: 18px;
+  }
+
+  .position2 {
+    left: 1200px;
+  }
+
+  .position4 {
+    left: 1300px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contentContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    padding-top: 40px;
+  }
+
+  .posterContainer {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .posterImage {
+    position: relative;
+    width: 60%;
+    max-width: 300px;
+  }
+
+  .formContainer {
+    width: 90%;
+    max-width: 450px;
+    padding: 24px;
+    align-items: center;
+  }
+
+  .welcomeTitle {
+    font-size: 18px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .logo02 {
+    margin-bottom: 16px;
+    width: 130px;
+  }
+
+  .form {
+    padding: 8px;
+    align-items: center;
+  }
+
+  .input {
+    padding: 7px;
+    border-radius: 6px;
+  }
+
+  .button {
+    width: 40%;
+    max-width: 180px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .ballImage {
+    display: none;
+  }
+
+  .position,
+  .position2,
+  .position3,
+  .position4 {
+    display: none;
+  }
+
+  .icons {
+    gap: 24px;
+  }
+
+  .line {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageContent {
+    padding: 16px;
+  }
+
+  .logoContainer .logo {
+    height: 80px;
+    margin-top: 70px;
+  }
+
+  .formContainer {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+  }
+
+  .welcomeTitle {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .logo02 {
+    margin-bottom: 14px;
+    width: 110px;
+  }
+
+  .form {
+    padding: 6px;
+  }
+
+  .input {
+    padding: 6px;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .button {
+    width: 45%;
+    max-width: 160px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .posterImage {
+    width: 70%;
+    max-width: 250px;
+  }
+
+  .options {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .inLine {
+    gap: 8px;
+  }
+
+  .line {
+    width: 20%;
+  }
+
+  .icons {
+    gap: 18px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 639px) {
+  .pageContent {
+    padding: 12px;
+    min-height: 100vh;
+  }
+
+  .logoContainer .logo {
+    height: 70px;
+    margin-top: 60px;
+  }
+
+  .contentContainer {
+    padding-top: 30px;
+  }
+
+  .posterContainer {
+    margin-bottom: 15px;
+  }
+
+  .posterImage {
+    width: 75%;
+    max-width: 200px;
+  }
+
+  .formContainer {
+    width: 95%;
+    max-width: 350px;
+    padding: 18px;
+  }
+
+  .welcomeTitle {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .logo02 {
+    margin-bottom: 12px;
+    width: 100px;
+  }
+
+  .form {
+    padding: 4px;
+  }
+
+  .input {
+    padding: 6px;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .button {
+    width: 50%;
+    max-width: 150px;
+    height: 34px;
+    font-size: 11px;
+  }
+
+  .options {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .line {
+    width: 18%;
+  }
+
+  .icons {
+    gap: 16px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 479px) {
+  .container {
+    overflow: hidden;
+  }
+
+  .pageContent {
+    padding: 10px;
+  }
+
+  .logoContainer .logo {
+    height: 60px;
+    margin-top: 50px;
+    margin-right: 5px;
+  }
+
+  .contentContainer {
+    padding-top: 20px;
+  }
+
+  .posterContainer {
+    margin-bottom: 12px;
+  }
+
+  .posterImage {
+    width: 80%;
+    max-width: 180px;
+  }
+
+  .formContainer {
+    width: 98%;
+    max-width: 320px;
+    padding: 16px;
+  }
+
+  .welcomeTitle {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .logo02 {
+    margin-bottom: 10px;
+    width: 90px;
+  }
+
+  .form {
+    padding: 4px;
+  }
+
+  .input {
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .button {
+    width: 55%;
+    max-width: 140px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .options {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .inLine {
+    gap: 6px;
+  }
+
+  .line {
+    width: 16%;
+  }
+
+  .icons {
+    gap: 14px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 419px) {
+  .pageContent {
+    padding: 8px;
+  }
+
+  .logoContainer .logo {
+    height: 50px;
+    margin-top: 40px;
+  }
+
+  .contentContainer {
+    padding-top: 15px;
+  }
+
+  .posterImage {
+    width: 85%;
+    max-width: 160px;
+  }
+
+  .formContainer {
+    width: 99%;
+    max-width: 300px;
+    padding: 14px;
+  }
+
+  .welcomeTitle {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .logo02 {
+    margin-bottom: 8px;
+    width: 80px;
+  }
+
+  .input {
+    padding: 5px;
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .button {
+    width: 60%;
+    max-width: 130px;
+    height: 30px;
+    font-size: 9px;
+  }
+
+  .options {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .line {
+    width: 14%;
+  }
+
+  .icons {
+    gap: 12px;
+  }
+}

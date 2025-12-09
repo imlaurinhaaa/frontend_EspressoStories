@@ -70,3 +70,80 @@
   cursor: pointer;
   font-size: 1rem;
 }
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .productsArea {
+    gap: 15px;
+  }
+
+  .foodCardsArea {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menuBanner {
+    max-height: 250px;
+  }
+
+  .menuBannerImage {
+    object-fit: cover;
+    height: 250px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin: 15px 0;
+  }
+
+  .productsArea {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .emptyState {
+    font-size: 1.2rem;
+    padding: 15px;
+  }
+
+  .retryButton {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .emptyState {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .retryButton {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .productsArea {
+    gap: 10px;
+  }
+}

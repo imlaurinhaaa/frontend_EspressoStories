@@ -293,17 +293,111 @@
     background: #2b1308;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 900px) {
     .cardContainer {
-        padding: 2rem 1.5rem;
+        padding: 1.8rem 1.4rem;
+        max-width: 95%;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .ballImage {
+        opacity: 0.35;
+        transform: scale(0.7);
+    }
+
+    .position {
+        top: -60px;
+        left: -90px;
+    }
+    .position2 {
+        top: 20px;
+        right: -40px;
+    }
+    .position3 {
+        bottom: 40px;
+        left: -10px;
+    }
+    .position4 {
+        bottom: 20px;
+        right: -20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .main {
+        padding: 1.2rem;
+    }
+
+    .cartItemRow {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
     }
 
     .productPhoto {
-        width: 90px;
-        height: 70px;
+        width: 110px;
+        height: 90px;
     }
-    
+
+    .itemInfo {
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .addressForm {
+        flex-direction: column;
+    }
+
     .addressForm input {
-        min-width: 100%;
+        min-width: 100% !important;
+        width: 100%;
+    }
+
+    .paymentRow {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .paymentBtn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .finishBtn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .cardContainer {
+        padding: 1.2rem;
+    }
+
+    .saveBtn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .paymentBtn {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .ballImage {
+        display: none; 
     }
 }
