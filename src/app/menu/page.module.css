@@ -2,7 +2,6 @@
 .menuPage {
   background: linear-gradient(180deg, #E6E2D7 0%, #f4efe9 100%);
   padding-bottom: 4rem;
-  font-family: 'Inter', sans-serif;
   min-height: 100vh;
 }
 
@@ -191,4 +190,134 @@
   padding: 0 2.5rem;
   margin-top: 3rem;
   margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+
+  .mainMenuTitle {
+    font-size: 2.6rem;
+  }
+
+  .inputContainer {
+    width: 26rem;
+  }
+
+  .filterContainer {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .productsList {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+
+  .mainMenuTitle {
+    font-size: 2.3rem;
+    margin-top: 2rem;
+  }
+
+  .inputContainer {
+    width: 90%;
+    padding: 0 1rem;
+  }
+
+  .categoriesSection {
+    gap: 0.8rem;
+  }
+
+  .categoryBox {
+    padding: 0.7rem 1.5rem;
+  }
+
+  .filterContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .filterCard {
+    height: 150px;
+  }
+
+  .productsList {
+    padding: 0 1rem;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+
+  .mainMenuTitle {
+    font-size: 1.9rem;
+    margin: 1.5rem 0 2rem 0;
+  }
+
+  .inputContainer {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .input {
+    height: 2.8rem;
+    font-size: 0.9rem;
+    padding-right: 3rem;
+  }
+
+  .iconBox {
+    width: 3rem;
+  }
+
+  .categoriesSection {
+    gap: 0.7rem;
+  }
+
+  .categoryBox {
+    padding: 0.6rem 1.3rem;
+  }
+
+  .categoryTitle {
+    font-size: 0.9rem;
+  }
+
+  .filterContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .filterCard {
+    height: 130px;
+  }
+
+  .filterLabel {
+    font-size: 0.9rem;
+  }
+
+  .productsList {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .mainMenuTitle {
+    font-size: 1.6rem;
+  }
+
+  .categoryBox {
+    padding: 0.5rem 1rem;
+  }
+
+  .filterCard {
+    height: 115px;
+  }
+
+  .filterLabel {
+    font-size: 0.8rem;
+  }
 }

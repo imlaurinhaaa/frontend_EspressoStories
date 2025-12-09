@@ -30,3 +30,104 @@
 .link:hover {
     color: #A2663C;
 }
+
+@media (max-width: 1439px) {
+    .logo {
+        height: 5.5rem;
+    }
+
+    .navLinks {
+        width: 28rem;
+        font-size: 1.1rem;
+        gap: 1.8rem;
+        margin-right: 1.8rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    .logo {
+        height: 5rem;
+    }
+
+    .navLinks {
+        width: 24rem;
+        font-size: 1rem;
+        gap: 1.5rem;
+        margin-right: 1.5rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    .logo {
+        height: 4.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .navLinks {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        gap: 1.2rem;
+        margin-right: 0;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 639px) {
+    .header {
+        padding: 0.8rem 0;
+    }
+
+    .logo {
+        height: 4rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .navLinks {
+        font-size: 0.85rem;
+        gap: 1rem;
+        padding: 0.4rem;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 479px) {
+    .header {
+        padding: 0.6rem 0;
+    }
+
+    .logo {
+        height: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .navLinks {
+        font-size: 0.75rem;
+        gap: 0.8rem;
+        padding: 0.3rem;
+        width: 95%;
+    }
+}
+
+@media (max-width: 419px) {
+    .header {
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        height: 3rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .navLinks {
+        font-size: 0.7rem;
+        gap: 0.6rem;
+        padding: 0.2rem;
+    }
+}

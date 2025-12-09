@@ -17,10 +17,10 @@
 }
 
 .ballImage {
-    position: absolute; 
-    z-index: 0; 
+    position: absolute;
+    z-index: 0;
     pointer-events: none;
-    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.3)); 
+    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.3));
 }
 
 .position {
@@ -54,16 +54,20 @@
     position: relative;
 }
 
-.containerTitle{
+.containerTitle {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .title {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 900;
     color: #3F1D0E;
-    margin-top: 1rem;
 }
 
 .deleteAllBtn {
@@ -77,17 +81,14 @@
     cursor: pointer;
     color: #fff;
     font-weight: 600;
-    margin-bottom: 4rem;
     transition: 0.2s;
     width: max-content;
     margin-left: auto;
-    margin-top: 1.5rem;
 }
 
 .deleteAllBtn:hover {
     background: #4e2310;
 }
-
 
 .cartItems {
     display: flex;
@@ -104,6 +105,7 @@
     background: #ffffff;
     border: 1px solid #f0ebe7;
     box-shadow: 0 4px 14px #3f1d0e3b;
+    flex-wrap: wrap;
 }
 
 .photoWrap {
@@ -119,6 +121,7 @@
     border-radius: 12px;
     object-fit: cover;
     box-shadow: 0 4px 14px #3f1d0e47;
+    max-width: 100%;
 }
 
 .itemInfo {
@@ -130,8 +133,7 @@
 .subTitle {
     font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 0.35rem;
-    color: #3F1D0E;;
+    color: #3F1D0E;
     margin-bottom: 0.5rem;
 }
 
@@ -153,9 +155,7 @@
     font-size: 1.4rem;
     font-weight: 800;
     color: #3F1D0E;
-    margin-bottom: 1.5rem;
 }
-
 
 .qtyControls {
     display: flex;
@@ -223,6 +223,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .deleteItemBtn {
@@ -236,10 +237,9 @@
     margin-top: 5px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 820px) {
     .cartContainer {
-        margin: 1rem;
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .cartItem {
@@ -247,13 +247,53 @@
         text-align: center;
     }
 
+    .photoWrap {
+        flex: none;
+    }
+
     .productPhoto {
         width: 100%;
         height: auto;
+        max-height: 260px;
+    }
+
+    .itemHeader {
+        justify-content: center;
     }
 
     .cartTotal {
         text-align: center;
-        margin-top: 2rem;
+    }
+
+    .checkoutBtn {
+        width: 100%;
+    }
+
+    .deleteAllBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cartContainer {
+        padding: 1.4rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .productPhoto {
+        max-height: 220px;
+    }
+
+    .deleteAllBtn {
+        font-size: 0.9rem;
+    }
+
+    .checkoutBtn {
+        font-size: 1.1rem;
+        padding: 14px;
     }
 }

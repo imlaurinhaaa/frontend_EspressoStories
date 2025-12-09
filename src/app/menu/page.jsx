@@ -64,9 +64,6 @@ export default function Menu() {
     }
   }, []);
 
-  // =======================
-  // FILTRO FINAL (CATEGORIA + BUSCA)
-  // =======================
   const filteredItems = products.filter((product) => {
     const matchesCategory = (() => {
       if (!activeCategory) return true;
@@ -85,7 +82,6 @@ export default function Menu() {
     <div className={styles.menuPage}>
       <Header />
 
-      {/* BANNER */}
       <section className={styles.menuBanner}>
         <Image
           src={"/img/menuBanner.png"}
@@ -96,7 +92,6 @@ export default function Menu() {
         />
       </section>
 
-      {/* 🔍 BUSCA */}
       <div className={styles.searchSection}>
         <div className={styles.inputContainer}>
           <input
@@ -112,7 +107,6 @@ export default function Menu() {
         </div>
       </div>
 
-      {/* CATEGORIAS */}
       <div className={styles.categoriesSection}>
         <div
           className={`${styles.categoryBox} ${activeCategory === null ? styles.active : ""}`}
@@ -142,8 +136,7 @@ export default function Menu() {
           <p className={styles.categoryTitle}>Salgados</p>
         </div>
       </div>
-
-      {/* LISTA DE PRODUTOS */}
+      
       <main className={styles.mainMenu}>
         <section className={styles.productsList}>
           {isLoading ? (

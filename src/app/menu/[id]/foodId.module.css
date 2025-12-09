@@ -33,7 +33,6 @@
     margin-bottom: 1rem;
 }
 
-
 .descriptionBox {
   margin-bottom: 1.5rem;
   display: flex;
@@ -42,7 +41,6 @@
   align-items: flex-start;
 }
 
-/* Texto principal */
 .text {
   color: #3F1D0E;
   font-size: 1rem;
@@ -50,7 +48,6 @@
   flex: 1;
 }
 
-/* Frase de inspiração */
 .inspiration {
   margin-top: 12px;
   font-style: italic;
@@ -60,7 +57,6 @@
   padding-left: 10px;
 }
 
-/* Livro / imagem da inspiração */
 .book {
   min-width: 110px;
   display: flex;
@@ -76,15 +72,12 @@
   object-fit: cover;
 }
 
-
-/* Container dos botões */
 .actions {
   align-items: center;
   gap: 16px;
   margin-top: 24px;
 }
 
-/* ===== INPUT NUMBER (– 1 +) ===== */
 .actions :global(.ant-input-number) {
   display: flex;
   align-items: center;
@@ -97,7 +90,7 @@
 }
 
 .actions :global(.ant-input-number-handler-wrap) {
-  display: none; /* some com as setinhas do antd */
+  display: none; 
 }
 
 .actions :global(.ant-input-number-input-wrap) {
@@ -112,14 +105,6 @@
   border: none;
 }
 
-/* Container dos botões */
-.actions {
-  align-items: center;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-/* Caixa branca – 1 + */
 .qtyBox {
   display: flex;
   align-items: center;
@@ -137,7 +122,6 @@
   margin-bottom: 8px;
 }
 
-/* Botões – e + */
 .qtyBtn {
   background: transparent;
   border: none;
@@ -156,7 +140,6 @@
   border-radius: 50%;
 }
 
-/* Número */
 .qtyValue {
   min-width: 28px;
   text-align: center;
@@ -165,7 +148,6 @@
   color: #333;
 }
 
-/* Botão Adicionar */
 .addButton {
   background: #8b5a3c;
   color: white;
@@ -219,7 +201,6 @@
   transform: translateY(-1px);
 }
 
-
 .info {
     max-width: 480px;
     z-index: 2;
@@ -263,5 +244,101 @@
     height: 300px;
     right: 260px;
     top: 180px;
-    border-radius: 85% 80% 75% 85% / 80% 85% 75% 80%;
+    border-radius: 85% 80% 75% 80%;
+}
+
+@media (max-width: 992px) {
+  .main {
+    padding: 50px 40px;
+  }
+
+  .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .info {
+    max-width: 90%;
+  }
+
+  .productPhoto {
+    width: 320px;
+  }
+
+  .ball,
+  .ball1,
+  .ball2,
+  .ball3 {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 30px 20px;
+  }
+
+  .productName {
+    font-size: 2.2rem;
+  }
+
+  .price {
+    font-size: 1.4rem;
+  }
+
+  .text {
+    font-size: 0.95rem;
+  }
+
+  .productPhoto {
+    width: 250px;
+  }
+
+  .ball,
+  .ball1,
+  .ball2,
+  .ball3 {
+    display: none !important;
+  }
+
+  .actions {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .addButton, .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .productName {
+    font-size: 1.9rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  .productPhoto {
+    width: 200px;
+    margin-top: 10px;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .addButton, .backButton {
+    padding: 10px 16px;
+    border-radius: 18px;
+  }
+  .ball,
+  .ball1,
+  .ball2,
+  .ball3 {
+    display: none !important;
+  }
 }
