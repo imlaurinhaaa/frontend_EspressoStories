@@ -165,3 +165,245 @@
     justify-content: center;
     align-items: center;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .main {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 3.2rem;
+    }
+
+    .titleSection {
+        margin: 2.5rem 0 1.5rem 0;
+    }
+
+    .searchSection {
+        margin-top: 2.5rem;
+        gap: 1.5rem;
+    }
+
+    .inputContainer {
+        width: 26rem;
+    }
+
+    .input {
+        height: 2.8rem;
+        font-size: 0.95rem;
+    }
+
+    .iconBox {
+        width: 4.5rem;
+    }
+
+    .searchIcon {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+
+    .button {
+        width: 11rem;
+        height: 2.8rem;
+    }
+
+    .buttonText {
+        font-size: 0.95rem;
+    }
+
+    .categoriesSection {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .categoryBox {
+        width: 9rem;
+        padding: 0.9rem 1.8rem;
+    }
+
+    .categoryTitle {
+        font-size: 0.95rem;
+    }
+
+    .ballImage.position1 {
+        width: 320px;
+        height: 320px;
+        top: -150px;
+        left: 170px;
+    }
+
+    .ballImage.position2 {
+        width: 150px;
+        height: 150px;
+        top: 60px;
+        right: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .titleSection {
+        margin: 2rem 0 1rem 0;
+        gap: 0.5rem;
+    }
+
+    .searchSection {
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .inputContainer {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .input {
+        height: 2.6rem;
+        font-size: 0.9rem;
+        padding-left: 0.9rem;
+    }
+
+    .iconBox {
+        width: 4rem;
+    }
+
+    .searchIcon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .button {
+        width: 10rem;
+        height: 2.6rem;
+    }
+
+    .buttonText {
+        font-size: 0.9rem;
+    }
+
+    .categoriesSection {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .categoryBox {
+        width: 8rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .categoryTitle {
+        font-size: 0.9rem;
+    }
+
+    .menu {
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .ballImage.position1 {
+        width: 250px;
+        height: 250px;
+        top: -120px;
+        left: 80px;
+    }
+
+    .ballImage.position2 {
+        width: 120px;
+        height: 120px;
+        top: 50px;
+        right: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 0.8rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .titleSection {
+        margin: 1.5rem 0 0.8rem 0;
+        gap: 0.4rem;
+    }
+
+    .searchSection {
+        margin-top: 1.5rem;
+        gap: 0.8rem;
+    }
+
+    .inputContainer {
+        width: 100%;
+    }
+
+    .input {
+        height: 2.5rem;
+        font-size: 0.85rem;
+        padding-left: 0.8rem;
+        padding-right: 3.5rem;
+    }
+
+    .iconBox {
+        width: 3.5rem;
+    }
+
+    .searchIcon {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+
+    .button {
+        width: 100%;
+        max-width: 280px;
+        height: 2.5rem;
+    }
+
+    .buttonText {
+        font-size: 0.85rem;
+    }
+
+    .categoriesSection {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    .categoryBox {
+        width: 7rem;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .categoryTitle {
+        font-size: 0.85rem;
+    }
+
+    .menu {
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+    }
+
+    .ballImage.position1 {
+        width: 180px;
+        height: 180px;
+        top: -90px;
+        left: 30px;
+    }
+
+    .ballImage.position2 {
+        width: 90px;
+        height: 90px;
+        top: 40px;
+        right: 40px;
+    }
+}

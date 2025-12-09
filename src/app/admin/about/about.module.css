@@ -88,3 +88,168 @@
     color: #333;
     margin: 10px 0;
 }
+
+.logo {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .containerContent {
+        height: auto;
+        padding: 15px;
+        gap: 40px;
+    }
+
+    .rowArea {
+        gap: 35px;
+    }
+
+    .aboutSection {
+        max-width: 500px;
+        padding: 18px;
+    }
+
+    .imageSection {
+        max-width: 500px;
+    }
+
+    .position {
+        width: 220px;
+        height: 220px;
+    }
+
+    .position2 {
+        width: 80px;
+        height: 80px;
+        left: 900px;
+    }
+
+    .position3 {
+        width: 80px;
+        height: 80px;
+        top: 650px;
+        left: 180px;
+    }
+
+    .position4 {
+        width: 350px;
+        height: 350px;
+        top: 600px;
+        left: 1100px;
+    }
+
+    .paragrafo {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .containerContent {
+        padding: 1.5rem;
+        gap: 2rem;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .rowArea {
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .aboutSection {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .imageSection {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .storeImage {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ballImage {
+        display: none;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .paragrafo {
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .containerContent {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .rowArea {
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .aboutSection {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .imageSection {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .storeImage {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ballImage {
+        display: none;
+    }
+
+    .position {
+        display: none;
+    }
+
+    .position2 {
+        display: none;
+    }
+
+    .position3 {
+        display: none;
+    }
+
+    .position4 {
+        display: none;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .paragrafo {
+        font-size: 0.85rem;
+        margin: 8px 0;
+    }
+
+    .logo {
+        max-width: 250px;
+    }
+}

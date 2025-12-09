@@ -68,3 +68,131 @@
     text-decoration: none;
     text-align: center;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .content {
+        padding: 1.8rem;
+        width: 90%;
+    }
+
+    .productInfo {
+        margin-left: 1.5rem;
+        gap: 0.9rem;
+    }
+
+    .productName {
+        font-size: 1.4rem;
+    }
+
+    .productPrice {
+        font-size: 0.95rem;
+    }
+
+    .productDescription {
+        font-size: 0.95rem;
+        width: 90%;
+    }
+
+    .productPhoto {
+        margin-right: 1.5rem;
+        width: 180px;
+        height: auto;
+    }
+
+    .updateButton,
+    .deleteButton {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        padding: 1.5rem;
+        width: 95%;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .productInfo {
+        margin-left: 0;
+        gap: 0.8rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .productName {
+        font-size: 1.3rem;
+    }
+
+    .productPrice {
+        font-size: 0.9rem;
+    }
+
+    .productDescription {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .productPhoto {
+        margin-right: 0;
+        margin: 0 auto;
+        width: 200px;
+    }
+
+    .buttonsContainer {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .updateButton,
+    .deleteButton {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+        flex: 1;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 1rem;
+        border-radius: 1.5rem;
+        align-items: center;
+    }
+
+    .productInfo {
+        gap: 0.6rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .productName {
+        font-size: 1.1rem;
+    }
+
+    .productPrice {
+        font-size: 0.85rem;
+    }
+
+    .productDescription {
+        font-size: 0.85rem;
+    }
+
+    .productPhoto {
+        width: 160px;
+    }
+
+    .buttonsContainer {
+        gap: 0.8rem;
+    }
+
+    .updateButton,
+    .deleteButton {
+        padding: 0.45rem 1rem;
+        font-size: 0.85rem;
+    }
+}

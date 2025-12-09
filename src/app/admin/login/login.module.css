@@ -137,3 +137,198 @@
 .button:hover {
   background-color: #5a2e14 !important;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .posterContainer {
+    width: 45%;
+  }
+
+  .posterImage {
+    width: 50%;
+  }
+
+  .formContainer {
+    width: 35%;
+    padding: 25px;
+  }
+
+  .logo {
+    margin-bottom: 40px;
+    width: 180px;
+    height: auto;
+  }
+
+  .button {
+    width: 40%;
+    font-size: 13px;
+  }
+
+  .ballImage.position {
+    width: 350px;
+    height: 350px;
+    top: -80px;
+    left: -80px;
+  }
+
+  .ballImage.position2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .ballImage.position3 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ballImage.position4 {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .posterContainer {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .posterImage {
+    position: relative;
+    width: 60%;
+    max-width: 300px;
+  }
+
+  .formContainer {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    width: 160px;
+  }
+
+  .input {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .button {
+    width: 50%;
+    font-size: 13px;
+    height: 38px;
+  }
+
+  .ballImage.position {
+    width: 280px;
+    height: 280px;
+    top: -60px;
+    left: -60px;
+  }
+
+  .ballImage.position2 {
+    width: 120px;
+    height: 120px;
+    top: 120px;
+    left: auto;
+    right: 50px;
+  }
+
+  .ballImage.position3 {
+    width: 180px;
+    height: 180px;
+    top: 500px;
+    left: 100px;
+  }
+
+  .ballImage.position4 {
+    width: 140px;
+    height: 140px;
+    top: 450px;
+    left: auto;
+    right: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageContent {
+    padding: 15px;
+  }
+
+  .contentContainer {
+    padding-top: 20px;
+  }
+
+  .posterContainer {
+    margin-bottom: 15px;
+  }
+
+  .posterImage {
+    width: 70%;
+    max-width: 250px;
+  }
+
+  .formContainer {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .logo {
+    margin-bottom: 25px;
+    width: 140px;
+  }
+
+  .form {
+    padding: 5px;
+  }
+
+  .input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 60%;
+    font-size: 12px;
+    height: 36px;
+    padding: 8px !important;
+  }
+
+  .ballImage.position {
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    left: -50px;
+  }
+
+  .ballImage.position2 {
+    width: 90px;
+    height: 90px;
+    top: 100px;
+    right: 30px;
+  }
+
+  .ballImage.position3 {
+    width: 130px;
+    height: 130px;
+    top: 450px;
+    left: 50px;
+  }
+
+  .ballImage.position4 {
+    width: 100px;
+    height: 100px;
+    top: 400px;
+    right: 40px;
+  }
+}
