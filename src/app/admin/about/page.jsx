@@ -62,6 +62,7 @@ export default function About() {
                             alt="Logo Espresso Stories"
                             width={400}
                             height={120}
+                            className={styles.logo}
                         />
                         <p className={styles.paragrafo}><strong>Horário de Funcionamento:</strong> {storeInfo.hours || "Seg a Sex: 8h - 17h"}</p>
                         <p className={styles.paragrafo}><strong>Contato:</strong> {storeInfo.contact || "(11) 12345-6789"}</p>

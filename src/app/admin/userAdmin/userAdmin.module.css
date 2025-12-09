@@ -83,3 +83,113 @@
     transform: scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .ballImage.position1 {
+        width: 350px;
+        height: 350px;
+        top: -150px;
+        left: 180px;
+    }
+
+    .ballImage.position2 {
+        width: 70px;
+        height: 70px;
+        top: 70px;
+        right: 200px;
+    }
+
+    .adminPhoto {
+        width: 180px;
+        height: 180px;
+    }
+
+    .button {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 1.5rem;
+    }
+
+    .titleSection {
+        margin: 2rem 0 1.5rem 0;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .ballImage.position1 {
+        width: 280px;
+        height: 280px;
+        top: -120px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ballImage.position2 {
+        width: 60px;
+        height: 60px;
+        top: 50px;
+        right: 20px;
+    }
+
+    .adminPhoto {
+        width: 160px;
+        height: 160px;
+    }
+
+    .button {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 1rem;
+    }
+
+    .titleSection {
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .ballImage.position1 {
+        width: 200px;
+        height: 200px;
+        top: -80px;
+    }
+
+    .ballImage.position2 {
+        width: 50px;
+        height: 50px;
+        top: 40px;
+        right: 10px;
+    }
+
+    .adminPhoto {
+        width: 140px;
+        height: 140px;
+    }
+
+    .button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 280px;
+    }
+}
