@@ -10,7 +10,7 @@ export const StoreProvider = ({ children }) => {
         hours: "Seg-Sex: 8h-18h",
         contact: "(11) 1234-5678",
         description: "Um café aconchegante onde histórias são compartilhadas com um bom espresso.",
-        image: "/img/defaultImage.png", 
+        image: "/img/smallLogo.png", 
     });
 
     return (
