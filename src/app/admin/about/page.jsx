@@ -46,15 +46,13 @@ export default function About() {
                 />
                 <div className={styles.rowArea}>
                     <section className={styles.imageSection}>
-                        {storeInfo.image && (
-                            <Image
-                                src={storeInfo.image}
-                                alt="Imagem da loja"
-                                width={300}
-                                height={300}
-                                className={styles.storeImage}
-                            />
-                        )}
+                        <Image
+                            src={storeInfo.image || "/img/smallLogo.png"}
+                            alt="Imagem da loja"
+                            width={300}
+                            height={300}
+                            className={styles.storeImage}
+                        />
                     </section>
                     <section className={styles.aboutSection}>
                         <Image
